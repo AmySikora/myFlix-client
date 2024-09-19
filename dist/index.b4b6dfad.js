@@ -27412,7 +27412,7 @@ const MainView = ()=>{
         {
             id: 5,
             title: "One Flew Over the Cuckoo's Nest",
-            image: "https://en.wikipedia.org/wiki/File:One_Flew_Over_the_Cuckoo%27s_Nest_poster.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/en/2/26/One_Flew_Over_the_Cuckoo%27s_Nest_poster.jpg?20170307125725",
             genre: "Drama",
             director: "Milos Forman"
         }
@@ -27450,7 +27450,7 @@ const MainView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "sFoj76KHWWNCXsaUYmfSflljFdQ=");
+_s(MainView, "NS3RwBte2mHPOMGX7ir4+SqrZpk=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");

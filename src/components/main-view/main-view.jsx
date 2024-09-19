@@ -40,7 +40,7 @@ export const MainView = () => {
       id: 5,
       title: "One Flew Over the Cuckoo's Nest",
       image:
-      "https://en.wikipedia.org/wiki/File:One_Flew_Over_the_Cuckoo%27s_Nest_poster.jpg",
+      "https://upload.wikimedia.org/wikipedia/en/2/26/One_Flew_Over_the_Cuckoo%27s_Nest_poster.jpg?20170307125725",
       genre: "Drama",
       director: "Milos Forman",
     },
