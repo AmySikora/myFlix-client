@@ -27391,7 +27391,7 @@ const MainView = ()=>{
         {
             id: 2,
             title: "Reservoir Dogs",
-            image: "https://www.imdb.com/title/tt0105236/mediaviewer/rm1533490688/?ref_=tt_ov_i",
+            image: "https://en.wikipedia.org/wiki/File:Reservoir_Dogs.png",
             genre: "Crime Film",
             director: "Quentin Tarantino"
         },
@@ -27412,7 +27412,7 @@ const MainView = ()=>{
         {
             id: 5,
             title: "One Flew Over the Cuckoo's Nest",
-            image: "https://www.imdb.com/title/tt0073486/mediaviewer/rm2186479360/?ref_=tt_ov_i",
+            image: "https://en.wikipedia.org/wiki/File:One_Flew_Over_the_Cuckoo%27s_Nest_poster.jpg",
             genre: "Drama",
             director: "Milos Forman"
         }
@@ -27450,7 +27450,7 @@ const MainView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "Zb5Su/vX5w04Qb5uyb6Dp3/oLeA=");
+_s(MainView, "sFoj76KHWWNCXsaUYmfSflljFdQ=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
