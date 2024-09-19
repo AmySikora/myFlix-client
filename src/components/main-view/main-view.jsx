@@ -16,7 +16,7 @@ export const MainView = () => {
       id: 2,
       title: "Reservoir Dogs",
       image:
-      "https://en.wikipedia.org/wiki/File:Reservoir_Dogs.png",
+      "https://upload.wikimedia.org/wikipedia/en/0/01/Reservoir_Dogs.png?20221019142459",
       genre: "Crime Film",
       director: "Quentin Tarantino",
     },
@@ -24,7 +24,7 @@ export const MainView = () => {
       id: 3,
       title: "The Shawshank Redemption",
       image:
-      "https://en.wikipedia.org/wiki/File:ShawshankRedemptionMoviePoster.jpg",
+      "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg",
       genre: "Drama",
       director: "Frank Darabont",
     },

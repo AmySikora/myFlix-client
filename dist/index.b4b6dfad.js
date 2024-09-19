@@ -27391,14 +27391,14 @@ const MainView = ()=>{
         {
             id: 2,
             title: "Reservoir Dogs",
-            image: "https://en.wikipedia.org/wiki/File:Reservoir_Dogs.png",
+            image: "https://upload.wikimedia.org/wikipedia/en/0/01/Reservoir_Dogs.png?20221019142459",
             genre: "Crime Film",
             director: "Quentin Tarantino"
         },
         {
             id: 3,
             title: "The Shawshank Redemption",
-            image: "https://en.wikipedia.org/wiki/File:ShawshankRedemptionMoviePoster.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg",
             genre: "Drama",
             director: "Frank Darabont"
         },
@@ -27450,7 +27450,7 @@ const MainView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "NS3RwBte2mHPOMGX7ir4+SqrZpk=");
+_s(MainView, "JcTI/cEqE9hK71g3TZP8B9MNQMA=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
