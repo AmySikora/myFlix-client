@@ -3,7 +3,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 
 export const MainView = () => {
-  const [movies, setmovies] = useState([
+  const [movies, setMovies] = useState([
     {
       id: 1,
       title: "The Godfather",
