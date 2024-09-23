@@ -1,56 +1,38 @@
-import { useState } from "react";
-import { MovieCard } from "../movie-card/movie-card";
+import React, { useState, useEffect } from "react";
+import { MovieCard } from "../movie-card/movie-card"; // Correct import
 import { MovieView } from "../movie-view/movie-view";
 
 export const MainView = () => {
-  const [movies, setMovies] = useState([
-    {
-      id: 1,
-      title: "The Godfather",
-      image:
-        "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
-      genre: "Gangster Film",
-      director: "Francis Ford Coppola",
-    },
-    {
-      id: 2,
-      title: "Reservoir Dogs",
-      image:
-      "https://upload.wikimedia.org/wikipedia/en/0/01/Reservoir_Dogs.png?20221019142459",
-      genre: "Crime Film",
-      director: "Quentin Tarantino",
-    },
-    {
-      id: 3,
-      title: "The Shawshank Redemption",
-      image:
-      "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg",
-      genre: "Drama",
-      director: "Frank Darabont",
-    },
-    {
-      id: 4,
-      title: "Silence of the Lambs",
-      image:
-        "https://upload.wikimedia.org/wikipedia/en/8/86/The_Silence_of_the_Lambs_poster.jpg",
-      genre: "Thriller",
-      director: "Jonathan Demme",
-    },
-    {
-      id: 5,
-      title: "One Flew Over the Cuckoo's Nest",
-      image:
-      "https://upload.wikimedia.org/wikipedia/en/2/26/One_Flew_Over_the_Cuckoo%27s_Nest_poster.jpg?20170307125725",
-      genre: "Drama",
-      director: "Milos Forman",
-    },
-  ]);
-
+  const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
+  useEffect(() => {
+    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies")
+      .then((response) => response.json())
+      .then((data) => {
+        data.forEach((movie) => {
+          if (!movie.ImageURL) {
+            console.warn(`Movie with ID ${movie._id} is missing ImageURL`);
+          }
+        });
+        const moviesFromApi = data.map((movie) => ({
+          id: movie._id,
+          Title: movie.Title,
+          Genre: movie.Genre,
+          ImageURL: movie.ImageURL,
+          Description: movie.Description,
+          Director: movie.Director,
+        }));
+        setMovies(moviesFromApi);
+      })
+      .catch((error) => console.error("Error fetching movies:", error));
+  }, []);
   if (selectedMovie) {
     return (
-      <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+      <MovieView
+        movie={selectedMovie}
+        onBackClick={() => setSelectedMovie(null)}
+      />
     );
   }
 
@@ -61,9 +43,8 @@ export const MainView = () => {
   return (
     <div>
       {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          movie={movie}
+        <MovieCard movie={movie}
+          key={movie.id} // Ensure id is passed correctly
           onMovieClick={(newSelectedMovie) => {
             setSelectedMovie(newSelectedMovie);
           }}
