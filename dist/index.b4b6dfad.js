@@ -27381,40 +27381,87 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _movieCard = require("../movie-card/movie-card"); // Correct import
 var _movieView = require("../movie-view/movie-view");
+var _signupView = require("../signup-view/signup-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
+    const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
+    const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
     const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(LoginView, {
+                onLoggedIn: (user, token)=>{
+                    setUser(user);
+                    setToken(token);
+                }
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 17,
+                columnNumber: 9
+            }, undefined),
+            "or",
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 22,
+                columnNumber: 9
+            }, undefined)
+        ]
+    }, void 0, true);
     (0, _react.useEffect)(()=>{
-        fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
-            data.forEach((movie)=>{
-                if (!movie.ImageURL) console.warn(`Movie with ID ${movie._id} is missing ImageURL`);
-            });
-            const moviesFromApi = data.map((movie)=>({
-                    id: movie._id,
-                    Title: movie.Title,
-                    Genre: movie.Genre,
-                    ImageURL: movie.ImageURL,
-                    Description: movie.Description,
-                    Director: movie.Director
-                }));
-            setMovies(moviesFromApi);
-        }).catch((error)=>console.error("Error fetching movies:", error));
-    }, []);
-    if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-        movie: selectedMovie,
-        onBackClick: ()=>setSelectedMovie(null)
+        if (!token) return;
+        fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>response.json()).then((movies)=>{
+            setMovies(movies);
+        });
+    }, [
+        token
+    ]);
+    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+        onClick: ()=>{
+            setUser(null);
+            setToken(null);
+            localStorage.clear();
+        },
+        children: "Logout"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 32,
-        columnNumber: 7
+        lineNumber: 42,
+        columnNumber: 1
     }, undefined);
+    if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: ()=>{
+                    setUser(null);
+                },
+                children: "Logout"
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 52,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(BookView, {
+                book: selectedBook,
+                onBackClick: ()=>setSelectedBook(null)
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 59,
+                columnNumber: 9
+            }, undefined)
+        ]
+    }, void 0, true);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 40,
+        lineNumber: 68,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27425,16 +27472,16 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 46,
+                lineNumber: 74,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 44,
+        lineNumber: 72,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "PO+XgOji7E32nFJj3H5UPLPJ7w4=");
+_s(MainView, "skShail9kO25ilQX788tJ78Yq3c=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27444,7 +27491,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx"}],"gkKU3":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../signup-view/signup-view":"4OGiN"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -28413,6 +28460,8 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["gjUm6","1xC6H","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"4OGiN":[function(require,module,exports) {
+
+},{}]},["gjUm6","1xC6H","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

@@ -1,55 +1,72 @@
 import React, { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card"; // Correct import
 import { MovieView } from "../movie-view/movie-view";
+import { SignupView } from "../signup-view/signup-view";
+import { LoginView } from "../login-view/login-view"; // Ensure this import is correct
 
 export const MainView = () => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
+
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  useEffect(() => {
-    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies")
-      .then((response) => response.json())
-      .then((data) => {
-        data.forEach((movie) => {
-          if (!movie.ImageURL) {
-            console.warn(`Movie with ID ${movie._id} is missing ImageURL`);
-          }
-        });
-        const moviesFromApi = data.map((movie) => ({
-          id: movie._id,
-          Title: movie.Title,
-          Genre: movie.Genre,
-          ImageURL: movie.ImageURL,
-          Description: movie.Description,
-          Director: movie.Director,
-        }));
-        setMovies(moviesFromApi);
-      })
-      .catch((error) => console.error("Error fetching movies:", error));
-  }, []);
-  if (selectedMovie) {
+  if (!user) {
     return (
-      <MovieView
-        movie={selectedMovie}
-        onBackClick={() => setSelectedMovie(null)}
-      />
+      <>
+        <LoginView
+          onLoggedIn={(user, token) => {
+            setUser(user);
+            setToken(token);
+            // Save user and token to localStorage
+            localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("token", token);
+          }}
+        />
+        or
+        <SignupView />
+      </>
     );
   }
 
-  if (movies.length === 0) {
-    return <div>The list is empty!</div>;
-  }
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+
+    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setMovies(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching movies:", error);
+      });
+  }, [token]);
 
   return (
     <div>
-      {movies.map((movie) => (
-        <MovieCard movie={movie}
-          key={movie.id} // Ensure id is passed correctly
-          onMovieClick={(newSelectedMovie) => {
-            setSelectedMovie(newSelectedMovie);
-          }}
-        />
-      ))}
+      {movies.length === 0 ? (
+        <p>Loading movies...</p>
+      ) : (
+        <div className="movie-list">
+          {movies.map((movie) => (
+            <MovieCard
+              key={movie._id}
+              movie={movie}
+              onMovieClick={(selectedMovie) => setSelectedMovie(selectedMovie)}
+            />
+          ))}
+        </div>
+      )}
+
+      {}
+      {selectedMovie && <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />}
     </div>
   );
 };
+
