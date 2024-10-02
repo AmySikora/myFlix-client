@@ -1,0 +1,70 @@
+// SCSS variables
+$primary-color: DarkSlateBlue;
+$secondary-color: Wheat;
+$text-color: MidnightBlue;
+$background-color: AntiqueWhite;
+$border-color: Tomato;
+$input-background-color: #f0f0f0;
+$input-text-color: #333;
+
+// Main form container
+.login-view-container, .signup-view-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: $background-color;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  // Form title
+  .form-title {
+    text-align: center;
+    font-size: 2rem;
+    color: $primary-color;
+    margin-bottom: 20px;
+  }
+  
+  // Form groups and labels
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-label {
+    font-size: 1rem;
+    color: $text-color;
+  }
+  
+  // Form input fields
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    background-color: $input-background-color;
+    color: $input-text-color;
+  
+    &:focus {
+      border-color: $primary-color;
+      outline: none;
+      box-shadow: 0px 0px 5px rgba($primary-color, 0.5);
+    }
+  }
+  
+  // Submit button
+  .btn-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+
+@import "~bootstrap/scss/bootstrap.scss";
