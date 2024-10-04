@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { useParams, Link } from "react-router-dom";
-import { Button, Card, Row } from "react-bootstrap";
-import './movie-view.scss';
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import ".movie-view.scss";
 
 export const MovieView = ({ movies, user, token, setUser }) => {
   const { MovieID } = useParams();
