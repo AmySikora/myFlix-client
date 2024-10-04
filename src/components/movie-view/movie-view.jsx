@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { useParams, Link } from "react-router-dom";
 import { Button, Card, Row } from "react-bootstrap";
 import './movie-view.scss';
 
-
 export const MovieView = ({ movies, user, token, setUser }) => {
   const { MovieID } = useParams();
-  const [isFavorite, setIsFavorite] = useState(flase);
+  const [isFavorite, setIsFavorite] = useState(false);
+
   const movie = movies.find((b) => b.id === MovieID);
 
   useEffect(() => {
-    id(user && user.FavoriteMovies) {
-      const isFavorite = user.FavoriteMovies.includes(movieID)
+    if (user && user.FavoriteMovies) {
+      const isFavorite = user.FavoriteMovies.includes(MovieID);
       setIsFavorite(isFavorite);
     }
-  }, [movieId, user ]
-);
+  }, [MovieID, user]);
 
-
+  if (!movie) return <div>Movie not found</div>;
 
   return (
-    <div>
+    <div className="movie-view">
       <div>
-        <img src={imageURL} alt={`${movie.Title} poster`} />
+        <img src={movie.ImageURL} alt={`${movie.Title} poster`} />
       </div>
       <div>
         <span>Title: </span>
@@ -37,21 +36,30 @@ export const MovieView = ({ movies, user, token, setUser }) => {
         <span>Genre: </span>
         <span>{movie.Genre.Name}</span>
       </div>
-      <button onClick={onBackClick}>Back</button>
+      <Link to="/">
+        <Button variant="primary">Back</Button>
+      </Link>
     </div>
   );
 };
 
 MovieView.propTypes = {
-  movie: PropTypes.shape({
-    Title: PropTypes.string.isRequired,
-    Genre: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-    }).isRequired,
-    Director: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-    }).isRequired,
-    ImageURL: PropTypes.string,
-  }).isRequired,
-  onBackClick: PropTypes.func.isRequired,
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      Title: PropTypes.string.isRequired,
+      Genre: PropTypes.shape({
+        Name: PropTypes.string.isRequired,
+      }).isRequired,
+      Director: PropTypes.shape({
+        Name: PropTypes.string.isRequired,
+      }).isRequired,
+      ImageURL: PropTypes.string,
+    })
+  ).isRequired,
+  user: PropTypes.shape({
+    FavoriteMovies: PropTypes.arrayOf(PropTypes.string),
+  }),
+  token: PropTypes.string,
+  setUser: PropTypes.func,
 };
