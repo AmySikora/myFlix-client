@@ -15,8 +15,6 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!token) return;
@@ -26,17 +24,17 @@ export const MainView = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        const moviesFromApi = data.map((movie) => {
+        const moviesApi = data.map((movie) => {
           return {
             id: movie._id,
             title: movie.Title,
-            image: movie.ImagePath || "https://via.placeholder.com/150",
-            director: movie.Director || "Unknown Director",
-            description: movie.Description || "No description available",
-            genre: movie.Genre || "Unknown genre",
+            image: movie.ImagePath,
+            director: movie.Director,
+            description: movie.Description,
+            genre: movie.Genre
           };
         });
-        setMovies(moviesFromApi);
+        setMovies(moviesApi);
       })
       .catch((error) => {
         console.error("Error fetching movies:", error);
@@ -45,14 +43,25 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <NavigationBar
-        user={user}
-        onLoggedOut={() => {
-          setUser(null);
-        }}
-      />
+    <NavigationBar user={user} onLoggedOut={onLoggedOut} />
       <Row className="justify-content-md-center">
         <Routes>
+          <Route
+            path="/login"
+            element={
+                <>
+                {user ? (
+                  <Navigate to="/"/>
+              ) : (
+                  <Col md={5}>
+                      <LoginView 
+                        onLoggedIn={onLoggedIn} 
+                    />
+                  </Col>
+              )}
+          </>
+        }
+          />
           <Route
             path="/signup"
             element={
@@ -61,26 +70,31 @@ export const MainView = () => {
                   <Navigate to="/" />
                 ) : (
                   <Col md={5}>
-                    <SignupView />
+                    <SignupView /> 
                   </Col>
                 )}
               </>
             }
           />
-          <Route
-            path="/login"
+          <Route 
+            path="users/:Username"
             element={
               <>
-                {user ? (
-                  <Navigate to="/" />
+                {!user ? (
+                  <Navigate to="/login" replace />
                 ) : (
                   <Col md={5}>
-                    <LoginView onLoggedIn={(user) => setUser(user)} />
+                    <ProfileView
+                        User={user}
+                        token={token}
+                        updatedUser={udatedUser}
+                        onLoggedOut={onLoggedOut}
+                        />
                   </Col>
                 )}
               </>
             }
-          />
+           /> 
           <Route
             path="/movies/:movieId"
             element={
@@ -91,13 +105,17 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <Col md={8}>
-                    <MovieView movies={movies} />
+                    <MovieView 
+                    movies={movies} 
+                    user={user}
+                    token={token}
+                    setUser={setUser}
+                    />
                   </Col>
                 )}
               </>
             }
           />
-
           <Route
             path="/"
             element={
