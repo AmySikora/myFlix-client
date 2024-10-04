@@ -10,52 +10,26 @@ import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 export const MainView = () => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedToken = localStorage.getItem("token");
-  const [user, setUser] = useState(storedUser ? storedUser : null);
-  const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    if (!token) return;
-  
-    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/users", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/users")
       .then((response) => response.json())
       .then((movies) => {
-        const moviesFromApi = movies.map((movie) => ({
+        const moviesFromApi = movies.map((movie) => {
+          return{
           id: movie._id,
           title: movie.title,
-          image: movie.imageurl,
+          image: movie.imageURL,
           directors: movie.directors?.[0]?.name, 
           genre: movie.genre?.name, 
-          description: movie.description,
-          featured: movie.featured,
-        }));
+        };
+      });
+
         setMovies(moviesFromApi);
-      })
-   }).catch((e) => {
-                console.log(e);
-            });
-    }, [token];
-
-
-  const onLoggedIn = (user, token) => {
-    setUser(user);
-    setToken(token);
-    localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", token);
-}
-const onLoggedOut = () => {
-    setUser(null);
-    setToken(null);
-    localStorage.clear();
-}
-const updatedUser = user => {
-    setUser(user);
-    localStorage.setItem('user', JSON.stringify(user));
-}
+      });
+    }, []);
 
   return (
     <BrowserRouter>
@@ -90,7 +64,7 @@ const updatedUser = user => {
             }
           />
           <Route
-            path="/movies/:movieId"
+            path="/movies/:movie_ID"
             element={
               <>
                 {!user ? (
@@ -129,5 +103,5 @@ const updatedUser = user => {
         </Routes>
       </Row>
     </BrowserRouter>
-  );
-};
+     );
+    };
