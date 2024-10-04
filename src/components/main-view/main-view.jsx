@@ -18,11 +18,11 @@ export const MainView = () => {
       .then((data) => {
         const moviesFromApi = data.map((movie) => {
           return{
-          id: movie._id,
-          title: movie.title,
-          image: movie.imageURL,
-          directors: movie.directors,
-          genre: movie.genre.name, 
+          id: movie._ID,
+          title: movie.Title,
+          image: movie.ImageURL,
+          directors: movie.Directors,
+          genre: movie.Genre 
         };
       });
 
