@@ -12,9 +12,9 @@ export const SignupView = () => {
     event.preventDefault();
 
     const data = {
-      Name: name,
       Username: username,
       Password: password,
+      Email: email,
       Birthday: birthday,
     };
 
@@ -47,7 +47,7 @@ export const SignupView = () => {
           />
         </Form.Group>
 
-        <Form.Group controlId="formName" className="form-group">
+        <Form.Group controlId="formEmail" className="form-group">
           <Form.Label className="form-label">Email:</Form.Label>
           <Form.Control
             type="email"

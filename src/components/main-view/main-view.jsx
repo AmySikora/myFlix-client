@@ -19,30 +19,43 @@ export const MainView = () => {
   useEffect(() => {
     if (!token) return;
   
-    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
+    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/users", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
-      .then((data) => {
-        const moviesApi = data.movies.map((movie) => {
-          return {
-            id: movie._id,
-            title: movie.Title,
-            image: movie.ImagePath,
-            director: movie.Director,
-            description: movie.Description,
-            genre: movie.Genre
-          };
-        });
-
-        setMovies(moviesApi);
+      .then((movies) => {
+        const moviesFromApi = movies.map((movie) => ({
+          id: movie._id,
+          title: movie.title,
+          image: movie.imageurl,
+          directors: movie.directors?.[0]?.name, 
+          genre: movie.genre?.name, 
+          description: movie.description,
+          featured: movie.featured,
+        }));
+        setMovies(moviesFromApi);
       })
+   }).catch((e) => {
+                console.log(e);
+            });
+    }, [token];
 
-      .catch((error) => {
-        console.error("Error fetching movies:", error);
-      });
 
-  }, [token]);
+  const onLoggedIn = (user, token) => {
+    setUser(user);
+    setToken(token);
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("token", token);
+}
+const onLoggedOut = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.clear();
+}
+const updatedUser = user => {
+    setUser(user);
+    localStorage.setItem('user', JSON.stringify(user));
+}
 
   return (
     <BrowserRouter>

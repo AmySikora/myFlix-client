@@ -28590,9 +28590,9 @@ const SignupView = ()=>{
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
-            Name: name,
             Username: username,
             Password: password,
+            Email: email,
             Birthday: birthday
         };
     // Fetch call for signup logic here...
@@ -28668,7 +28668,7 @@ const SignupView = ()=>{
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                    controlId: "formName",
+                    controlId: "formEmail",
                     className: "form-group",
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
