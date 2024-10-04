@@ -14,23 +14,32 @@ export const LoginView = ({ onLoggedIn }) => {
       Password: password,
     };
 
-    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/", {
+    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/login", {
       method: "POST",
       body: JSON.stringify(data),
-    }).then((response) => {
-      if (response.ok) {
-        onLoggedIn(username);
-      } else {
-        alert("Login failed");
-      }
-    });
-  };
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Login response: ", data);
+        if (data.user) {
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("token", data.token);
+          onLoggedIn(data.user, data.token);
+        } 
+        else {
+          alert("No such user");
+        }
+      })
+      .catch((e) => {
+        console.error("Login error: ", e, username, password);
+        alert("Something went wrong");
+      });
+    };
 
   return (
     <div className="login-view-container"> 
     <Form onSubmit={handleSubmit} className="login-form"> 
       <h1 className="form-title">Log in to MyFlix</h1> 
-      
       <Form.Group controlId="formUsername" className="form-group"> 
         <Form.Label className="form-label">Username:</Form.Label> 
         <Form.Control
@@ -39,7 +48,6 @@ export const LoginView = ({ onLoggedIn }) => {
           onChange={(e) => setUsername(e.target.value)}
           required
           minLength="3"
-          className="form-input" 
         />
       </Form.Group>
 
@@ -50,7 +58,6 @@ export const LoginView = ({ onLoggedIn }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="form-input"
         />
       </Form.Group>
 
