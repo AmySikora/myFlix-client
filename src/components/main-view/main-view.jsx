@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { MovieCard } from "../movie-card/movie-card"; // Correct import
-import { MovieView } from "../movie-view/movie-view";
+import { MovieCard } from "../movie-card/movie-card.jsx";
+import { MovieView } from "../movie-view/movie-view.jsx";
+import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
-import { LoginView } from "../login-view/login-view"; 
-import { NavigationBar } from '../navigation-bar/navigation-bar'
+import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { ProfileView } from "../profile-view/profile-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Form from "react-bootstrap/Form"; 
 
 export const MainView = () => {
   // Retrieve stored user and token from localStorage
