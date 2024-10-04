@@ -24,8 +24,6 @@ export const SignupView = () => {
   return (
     <div className="signup-view-container">
       <Form onSubmit={handleSubmit}>
-        <h1 className="form-title">Sign Up for MyFlix</h1>
-
         <Form.Group controlId="formUsername" className="form-group">
           <Form.Label className="form-label">Username:</Form.Label>
           <Form.Control
