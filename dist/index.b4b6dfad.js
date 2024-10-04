@@ -42582,24 +42582,6 @@ _s(MovieView, "w0h9wMDh9jzNcw8FK6u9ncgOVnU=", false, function() {
     ];
 });
 _c = MovieView;
-MovieView.propTypes = {
-    movies: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        Title: PropTypes.string.isRequired,
-        Genre: PropTypes.shape({
-            Name: PropTypes.string.isRequired
-        }).isRequired,
-        Director: PropTypes.shape({
-            Name: PropTypes.string.isRequired
-        }).isRequired,
-        ImageURL: PropTypes.string
-    })).isRequired,
-    user: PropTypes.shape({
-        FavoriteMovies: PropTypes.arrayOf(PropTypes.string)
-    }),
-    token: PropTypes.string,
-    setUser: PropTypes.func
-};
 var _c;
 $RefreshReg$(_c, "MovieView");
 

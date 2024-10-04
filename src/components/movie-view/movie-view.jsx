@@ -40,23 +40,3 @@ export const MovieView = ({ movies, user, token, setUser }) => {
   );
 };
 
-MovieView.propTypes = {
-  movies: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      Title: PropTypes.string.isRequired,
-      Genre: PropTypes.shape({
-        Name: PropTypes.string.isRequired,
-      }).isRequired,
-      Director: PropTypes.shape({
-        Name: PropTypes.string.isRequired,
-      }).isRequired,
-      ImageURL: PropTypes.string,
-    })
-  ).isRequired,
-  user: PropTypes.shape({
-    FavoriteMovies: PropTypes.arrayOf(PropTypes.string),
-  }),
-  token: PropTypes.string,
-  setUser: PropTypes.func,
-};
