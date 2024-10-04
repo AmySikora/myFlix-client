@@ -41,7 +41,7 @@ export const SignupView = () => {
       <Form.Label>Name:</Form.Label>
       <Form.Control
           type="text"
-          value={name}
+          value={username}
           onChange={(e) => setName(e.target.value)}
           required
           minLength="3"
