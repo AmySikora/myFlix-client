@@ -1,7 +1,7 @@
 // ProfileView.jsx
 import React, { useEffect, useState } from 'react';
 import { Row, Column, Button, Form } from 'react-bootstrap';
-import { MovieCard } from './MovieCard';
+import { MovieCard } from '../movie-card/movie-card';
 
 export const ProfileView = ({ user, movies, setUser }) => {
   const [username, setUsername] = useState(user.Username);
