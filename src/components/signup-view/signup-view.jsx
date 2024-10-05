@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-export const SignupView = () => {
+export const SignupView = ({ onSignedUp }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -18,8 +19,28 @@ export const SignupView = () => {
       Birthday: birthday,
     };
 
-    // Fetch call for signup logic here...
-  };
+    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Signup failed");
+        }
+      })
+          .then((user) => {
+            alert("Signup successful! Please login.");
+            onSignedUp(); // Optionally navigate the user after successful signup
+          })
+          .catch((error) => {
+            setErrorMessage(error.message);
+          });
+      };
 
   return (
     <div className="signup-view-container">
@@ -64,6 +85,8 @@ export const SignupView = () => {
             required
           />
         </Form.Group>
+
+        {errorMessage && <div className="text-danger">{errorMessage}</div>}
 
         <Button variant="primary" className="btn-submit mt-3" type="submit">
           Submit
