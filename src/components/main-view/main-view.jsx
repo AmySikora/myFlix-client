@@ -4,48 +4,37 @@ import { MovieView } from "../movie-view/movie-view.jsx";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
-import { ProfileView } from "../profile-view/profile-view";
+import { ProfileView } from '../profile-view/profile-view'
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 export const MainView = () => {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
-  const [token, setToken] = useState(localStorage.getItem("token") || null);
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
+  const [user, setUser] = useState(storedUser || null);
   const [movies, setMovies] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    if (!token) return;
-
-    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies")
       .then((response) => response.json())
       .then((data) => {
-        const movieList = data.map((movie) => ({
-          id: movie._id,
+        const moviesFromApi = data.map((movie) => ({
+          ID: movie.ID,
           title: movie.Title,
-          image: movie.ImageURL || "https://via.placeholder.com/150",
+          image: movie.ImageURL,
           directors: movie.Directors,
           genre: movie.Genre,
-          description: movie.Description,
         }));
-        setMovies(movieList);
-      })
-      .catch((error) => console.error("Failed to fetch movies:", error));
-  }, [token]);
+        setMovies(moviesFromApi);
+      });
+  }, []);
 
   const handleLogout = () => {
     setUser(null);
-    setToken(null);
-    localStorage.clear();
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
   };
-
-  const filteredMovies = movies.filter((movie) =>
-    movie.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   return (
     <BrowserRouter>
@@ -61,52 +50,15 @@ export const MainView = () => {
           <Route
             path="/login"
             element={
-              user ? (
-                <Navigate to="/" />
-              ) : (
-                <Col md={5}>
-                  <LoginView
-                    onLoggedIn={(user, token) => {
-                      setUser(user);
-                      setToken(token);
-                      localStorage.setItem("user", JSON.stringify(user));
-                      localStorage.setItem("token", token);
-                    }}
-                  />
-                </Col>
-              )
+              user ? <Navigate to="/" /> : <Col md={5}><LoginView /></Col>
             }
           />
           <Route
-            path="/profile"
+            path="/movies/:movieID"
             element={
-              user ? (
+              !user ? <Navigate to="/login" replace /> : (
                 <Col md={8}>
-                  <ProfileView
-                    user={user}
-                    token={token}
-                    movies={movies}
-                    setUser={setUser}
-                  />
-                </Col>
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          />
-          <Route
-            path="/movies/:movieId"
-            element={
-              !movies.length ? (
-                <p>Loading movies...</p>
-              ) : (
-                <Col md={8}>
-                  <MovieView
-                    movies={movies}
-                    user={user}
-                    token={token}
-                    setUser={setUser}
-                  />
+                  <MovieView movies={movies} />
                 </Col>
               )
             }
@@ -114,33 +66,18 @@ export const MainView = () => {
           <Route
             path="/"
             element={
-              user ? (
+              !user ? <Navigate to="/login" replace /> : (
                 <>
-                  <Row className="justify-content-md-center">
-                    <Col md={6}>
-                      <Form.Control
-                        type="text"
-                        placeholder="Search for a movie"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="mb-4"
-                      />
-                    </Col>
-                  </Row>
-                  {filteredMovies.length ? (
-                    <Row>
-                      {filteredMovies.map((movie) => (
-                        <Col key={movie.id} md={3} className="mb-4">
-                          <MovieCard movie={movie} />
-                        </Col>
-                      ))}
-                    </Row>
+                  {movies.length === 0 ? (
+                    <Col>The list is empty!</Col>
                   ) : (
-                    <p>No matching movies found</p>
+                    movies.map((movie) => (
+                      <Col className="mb-4" key={movie.id} md={3}>
+                        <MovieCard movie={movie} />
+                      </Col>
+                    ))
                   )}
                 </>
-              ) : (
-                <Navigate to="/login" />
               )
             }
           />
