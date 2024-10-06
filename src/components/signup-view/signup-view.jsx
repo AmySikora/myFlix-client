@@ -9,39 +9,43 @@ export const SignupView = ({ onSignedUp }) => {
   const [birthday, setBirthday] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const data = {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  
+    const newUser = {
       Username: username,
       Password: password,
       Email: email,
       Birthday: birthday,
     };
-
-    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/users", {
-      method: "POST",
+  
+    fetch('https://myflixmovies123-d3669f5b95da.herokuapp.com/users', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(newUser),
     })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Signup failed");
+    .then((response) => {
+      // Log the raw response for debugging
+      return response.text().then(text => {
+        console.log("Response text:", text); // Log the response text
+        if (!response.ok) {
+          throw new Error(text); // Throw the raw response text if not okay
         }
-      })
-          .then((users) => {
-            alert("Signup successful! Please login.");
-            onSignedUp(); // Optionally navigate the user after successful signup
-          })
-          .catch((error) => {
-            setErrorMessage(error.message);
-          });
-      };
-
+        return JSON.parse(text); // Try to parse the response as JSON
+      });
+    })
+    .then((data) => {
+      alert('User created successfully');
+      // Handle successful signup
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert(error.message);
+    });
+  };
+  
   return (
     <div className="signup-view-container">
       <Form onSubmit={handleSubmit}>
