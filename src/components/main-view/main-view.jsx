@@ -1,22 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { MovieCard } from "../movie-card/movie-card.jsx";
-import { MovieView } from "../movie-view/movie-view.jsx";
-import { LoginView } from "../login-view/login-view";
-import { SignupView } from "../signup-view/signup-view";
-import { NavigationBar } from "../navigation-bar/navigation-bar";
-import { ProfileView } from '../profile-view/profile-view';
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
+  
+  // Define states for user, token, and movies
   const [user, setUser] = useState(storedUser || null);
+  const [token, setToken] = useState(storedToken || null);
   const [movies, setMovies] = useState([]);
+  const [filter, setFilter] = useState(""); // Assuming filter state is needed for the search functionality
 
   useEffect(() => {
-    if (!token) return;
+    if (!token) return;  // Exit early if no token is available
 
     fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
@@ -38,7 +31,7 @@ export const MainView = () => {
       .catch((error) => {
         console.error("Error fetching movies:", error);
       });
-  }, [token]);
+  }, [token]);  // Add token as a dependency
 
   const handleLoggedOut = () => {
     setUser(null);
@@ -50,7 +43,7 @@ export const MainView = () => {
     movie.title.toLowerCase().includes(filter.toLowerCase())
   );
 
-  rreturn (
+  return (
     <BrowserRouter>
       <NavigationBar user={user} onLoggedOut={handleLoggedOut} />
       <Row className="justify-content-md-center">
@@ -130,17 +123,17 @@ export const MainView = () => {
                   ) : (
                     <>
                       <Row className="justify-content-md-center">
-  <Col md={6}> {}
-    <Form.Control
-      type="text"
-      placeholder="Search for a movie"
-      value={filter}
-      onChange={(e) => setFilter(e.target.value)}
-      className="mb-4"
-      style={{ width: '100%', marginTop: '20px' }} 
-    />
-  </Col>
-</Row>
+                        <Col md={6}>
+                          <Form.Control
+                            type="text"
+                            placeholder="Search for a movie"
+                            value={filter}
+                            onChange={(e) => setFilter(e.target.value)}
+                            className="mb-4"
+                            style={{ width: "100%", marginTop: "20px" }}
+                          />
+                        </Col>
+                      </Row>
 
                       {filteredMovies.length === 0 ? (
                         <p>No movies found</p>
