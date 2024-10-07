@@ -14,73 +14,108 @@ export const MainView = () => {
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser || null);
   const [movies, setMovies] = useState([]);
-  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    if (storedToken) {  // Check if the token exists
-      fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
-        headers: {
-          Authorization: `Bearer ${storedToken}` // Include the token in the header
-        }
-      })
-        .then((response) => {
-          if (!response.ok) {
-            return response.text().then((text) => {
-              // Handle errors as before
-              throw new Error(text);
-            });
-          }
-          return response.json();
-        })
-        .then((data) => {
-          const moviesFromApi = data.map((movie) => ({
-            ID: movie.ID,
-            title: movie.Title,
-            image: movie.ImageURL,
-            directors: movie.Directors,
-            genre: movie.Genre,
-          }));
-          setMovies(moviesFromApi);
-        })
-        .catch((error) => {
-          setErrorMessage(`Error fetching movies: ${error.message}`);
-          console.error('Error fetching movies:', error);
-        });
-    } else {
-      setErrorMessage('You must be logged in to view movies.');
-    }
-  }, [storedToken]);
+    if (!token) return;
 
-  const handleLogout = () => {
+    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const moviesFromApi = data.map((movie) => {
+          return {
+            id: movie._id,
+            title: movie.Title,
+            image: movie.URL || "https://via.placeholder.com/150",
+            director: movie.Director || "Unknown Director",
+            description: movie.Description || "No description available",
+            genre: movie.Genre || "Unknown genre"
+          };
+        });
+        setMovies(moviesFromApi);
+      })
+      .catch((error) => {
+        console.error("Error fetching movies:", error);
+      });
+  }, [token]);
+
+  const handleLoggedOut = () => {
     setUser(null);
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
+    setToken(null);
+    localStorage.clear();
   };
 
-  return (
+  const filteredMovies = movies.filter((movie) =>
+    movie.title.toLowerCase().includes(filter.toLowerCase())
+  );
+
+  rreturn (
     <BrowserRouter>
-      <NavigationBar user={user} onLoggedOut={handleLogout} />
+      <NavigationBar user={user} onLoggedOut={handleLoggedOut} />
       <Row className="justify-content-md-center">
-        {errorMessage && <Col className="text-danger">{errorMessage}</Col>} {/* Display error message */}
         <Routes>
           <Route
             path="/signup"
             element={
-              user ? <Navigate to="/" /> : <Col md={5}><SignupView /></Col>
+              user ? (
+                <Navigate to="/" />
+              ) : (
+                <Col md={5}>
+                  <SignupView />
+                </Col>
+              )
             }
           />
           <Route
             path="/login"
             element={
-              user ? <Navigate to="/" /> : <Col md={5}><LoginView /></Col>
+              user ? (
+                <Navigate to="/" />
+              ) : (
+                <Col md={5}>
+                  <LoginView
+                    onLoggedIn={(user, token) => {
+                      setUser(user);
+                      setToken(token);
+                      localStorage.setItem("user", JSON.stringify(user));
+                      localStorage.setItem("token", token);
+                    }}
+                  />
+                </Col>
+              )
             }
           />
           <Route
-            path="/movies/:movieID"
+            path="/profile"
             element={
-              !user ? <Navigate to="/login" replace /> : (
+              user ? (
                 <Col md={8}>
-                  <MovieView movies={movies} />
+                  <ProfileView
+                    user={user}
+                    token={token}
+                    movies={movies}
+                    setUser={setUser}
+                  />
+                </Col>
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+          <Route
+            path="/movies/:movieId"
+            element={
+              movies.length === 0 ? (
+                <p>Loading movies...</p>
+              ) : (
+                <Col md={8}>
+                  <MovieView
+                    movies={movies}
+                    user={user}
+                    token={token}
+                    setUser={setUser}
+                  />
                 </Col>
               )
             }
@@ -88,18 +123,41 @@ export const MainView = () => {
           <Route
             path="/"
             element={
-              !user ? <Navigate to="/login" replace /> : (
+              user ? (
                 <>
                   {movies.length === 0 ? (
-                    <Col>The list is empty!</Col>
+                    <p>Loading movies...</p>
                   ) : (
-                    movies.map((movie) => (
-                      <Col className="mb-4" key={movie._id} md={3}>
-                        <MovieCard movie={movie} />
-                      </Col>
-                    ))
+                    <>
+                      <Row className="justify-content-md-center">
+  <Col md={6}> {}
+    <Form.Control
+      type="text"
+      placeholder="Search for a movie"
+      value={filter}
+      onChange={(e) => setFilter(e.target.value)}
+      className="mb-4"
+      style={{ width: '100%', marginTop: '20px' }} 
+    />
+  </Col>
+</Row>
+
+                      {filteredMovies.length === 0 ? (
+                        <p>No movies found</p>
+                      ) : (
+                        <Row>
+                          {filteredMovies.map((movie) => (
+                            <Col className="mb-5" key={movie.id} md={3}>
+                              <MovieCard movie={movie} />
+                            </Col>
+                          ))}
+                        </Row>
+                      )}
+                    </>
                   )}
                 </>
+              ) : (
+                <Navigate to="/login" />
               )
             }
           />
