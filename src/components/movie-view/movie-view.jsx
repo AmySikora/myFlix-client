@@ -12,11 +12,9 @@ export const MovieView = ({ movies, user, token, setUser }) => {
     return <p>User is not logged in or data is incomplete.</p>;
   }
 
-
   const movie = movies.find((b) => b.id === movieId);
-
   if (!movie) {
-    return <p>Movie not found or loading...</p>;
+    return <p>Movie not found</p>;
   }
 
   console.log("Found movie: ", movie);

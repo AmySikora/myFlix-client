@@ -1,15 +1,28 @@
+import React, { useState, useEffect } from "react";
+import { MovieCard } from "../movie-card/movie-card.jsx";
+import { MovieView } from "../movie-view/movie-view.jsx";
+import { LoginView } from "../login-view/login-view";
+import { SignupView } from "../signup-view/signup-view";
+import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { ProfileView } from "../profile-view/profile-view";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Form from "react-bootstrap/Form"; 
+
 export const MainView = () => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedToken = localStorage.getItem("token");
-  
-  // Define states for user, token, and movies
-  const [user, setUser] = useState(storedUser || null);
-  const [token, setToken] = useState(storedToken || null);
+  const storedUser = localStorage.getItem("user") 
+    ? JSON.parse(localStorage.getItem("user")) 
+    : null;
+
+  const storedToken = localStorage.getItem("token") || null;
+  const [user, setUser] = useState(storedUser); 
+  const [token, setToken] = useState(storedToken);
   const [movies, setMovies] = useState([]);
-  const [filter, setFilter] = useState(""); // Assuming filter state is needed for the search functionality
+  const [filter, setFilter] = useState(""); 
 
   useEffect(() => {
-    if (!token) return;  // Exit early if no token is available
+    if (!token) return;
 
     fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
@@ -20,7 +33,7 @@ export const MainView = () => {
           return {
             id: movie._id,
             title: movie.Title,
-            image: movie.URL || "https://via.placeholder.com/150",
+            image: movie.ImageURL || "https://via.placeholder.com/150",
             director: movie.Director || "Unknown Director",
             description: movie.Description || "No description available",
             genre: movie.Genre || "Unknown genre"
@@ -31,7 +44,7 @@ export const MainView = () => {
       .catch((error) => {
         console.error("Error fetching movies:", error);
       });
-  }, [token]);  // Add token as a dependency
+  }, [token]);
 
   const handleLoggedOut = () => {
     setUser(null);
