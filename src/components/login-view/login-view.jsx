@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
@@ -9,53 +10,63 @@ export const LoginView = ({ onLoggedIn }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    fetch('https://your-api-url/login', {
+    const data = {
+      Username: username,
+      Password: password,
+    };
+
+    fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/login`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
     })
-      .then((response) => {
-        // Check if the response is OK (status code 200-299)
-        if (!response.ok) {
-          return response.text().then((text) => {
-            // Handle error messages sent as plain text
-            throw new Error(text);
-          });
-        }
-        return response.json(); // Otherwise, parse the response as JSON
-      })
-      .then((data) => {
-        if (data.token) {
-          // Call the onLoggedIn function with user data and token
-          onLoggedIn(data.user, data.token);
-        } else {
-          setErrorMessage('Login failed: Invalid response from server.');
-        }
-      })
-      .catch((error) => {
-        setErrorMessage(`Login failed: ${error.message}`);
-        console.error('Error during login:', error);
-      });
+    .then(response => {
+      if (!response.ok) {
+        setErrorMessage('Invalid username or password');
+        throw new Error('Login failed');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        onLoggedIn(data.user, data.token);
+      }
+    })
+    .catch((e) => {
+      console.error('Error during login:', e);
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-      </label>
-      <label>
-        Password:
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      </label>
-      <button type="submit">Login</button>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-    </form>
-  );
-};
+    <Form onSubmit={handleSubmit}>
+      <Form.Group controlId="formUsername">
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+          minLength="3" 
+        />
+      </Form.Group>
 
-LoginView.propTypes = {
-  onLoggedIn: PropTypes.func.isRequired,
+      <Form.Group controlId="formPassword">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </Form.Group>
+
+      {errorMessage && <p className="text-danger">{errorMessage}</p>}
+
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
+  );
 };
