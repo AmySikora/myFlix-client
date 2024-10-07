@@ -105,7 +105,7 @@ export const MainView = () => {
                   />
                 </Col>
               ) : (
-                <Navigate to="/login" />
+                <Navigate to="/login" />  // Redirect to login if the user is not authenticated
               )
             }
           />

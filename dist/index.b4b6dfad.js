@@ -27394,7 +27394,7 @@ const MainView = ()=>{
                                 fileName: "src/components/main-view/main-view.jsx",
                                 lineNumber: 108,
                                 columnNumber: 17
-                            }, void 0)
+                            }, void 0) // Redirect to login if the user is not authenticated
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
                             lineNumber: 95,
