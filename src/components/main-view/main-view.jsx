@@ -96,16 +96,9 @@ export const MainView = () => {
             path="/profile"
             element={
               user ? (
-                <Col md={8}>
-                  <ProfileView
-                    user={user}
-                    token={token}
-                    movies={movies}
-                    setUser={setUser}
-                  />
-                </Col>
+                <ProfileView user={user} token={token} movies={movies} setUser={setUser} />
               ) : (
-                <Navigate to="/login" />  // Redirect to login if the user is not authenticated
+                <Navigate to="/login" /> 
               )
             }
           />

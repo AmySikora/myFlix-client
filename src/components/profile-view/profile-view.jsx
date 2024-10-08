@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import { MovieCard } from '../movie-card/movie-card';
 
-export const ProfileView = ({ user, token, movies, setUser }) => {
+  const ProfileView = ({ user, token, movies, setUser }) => {
   const [username, setUsername] = useState(user.Username);
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday);
