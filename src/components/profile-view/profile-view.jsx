@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, Row, Col } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+import { Button, Form, Row, Col, Card } from 'react-bootstrap';
 import { MovieCard } from '../movie-card/movie-card';
 
-  const ProfileView = ({ user, token, movies, setUser }) => {
-  const [username, setUsername] = useState(user.Username);
+export const ProfileView = ({ user, token, movies, setUser }) => {
+  const { username } = useParams();
+  const [userUsername, setUserUsername] = useState(user.Username);
   const [email, setEmail] = useState(user.Email);
-  const [birthday, setBirthday] = useState(user.Birthday);
+  const [birthday, setBirthday] = useState(user.Birthday.split("T")[0]); // Display in YYYY-MM-DD format
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-
-  console.log("User object: ", user);
 
   useEffect(() => {
     const favoriteMovies = movies.filter(m => user.FavoriteMovies.includes(m.id));
@@ -17,107 +17,96 @@ import { MovieCard } from '../movie-card/movie-card';
 
   const handleUpdate = (e) => {
     e.preventDefault();
-
     const updatedUser = {
-      Username: username,
+      Username: userUsername,
       Email: email,
-      Birthday: birthday
+      Birthday: birthday,
     };
 
+    fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${username}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedUser)
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert('Profile updated successfully');
+      setUser(data);
+      localStorage.setItem('user', JSON.stringify(data));
+    })
+    .catch(err => console.error(err));
+  };
 
-  fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${user.Username}`, {
-    method: 'PUT',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(updatedUser)
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to update user');
-    }
-    return response.json();
-  })
-  .then(data => {
-    alert('Profile updated successfully');
-    setUser(data);
-    localStorage.setItem('user', JSON.stringify(data));
-  })
-  .catch(err => console.error(err));
-};
+  const handleDeregister = () => {
+    fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${username}`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    .then(response => response.ok ? alert('User deleted') : Promise.reject('Failed to delete user'))
+    .catch(err => console.error(err));
+  };
 
-const handleDeregister = () => {
-  fetch(`https://movies-flix-hartung-46febebee5c5.herokuapp.com/users/${user.Username}`, {
-    method: 'DELETE',
-    headers: { Authorization: `Bearer ${token}` }
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to delete user');
-    }
-    alert('User deleted');
-    localStorage.clear();
-    window.location.reload();
-  })
-  .catch(err => console.error(err));
-};
+  return (
+    <Row>
+      <Col md={6}>
+        <h3>User Profile</h3>
+        <Form onSubmit={handleUpdate}>
+          <Form.Group controlId="formUsername" className="mb-3">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              type="text"
+              value={userUsername}
+              onChange={e => setUserUsername(e.target.value)}
+              required
+            />
+          </Form.Group>
 
-return (
-  <Row>
-    <Col md={6}>
-      <h3>Profile</h3>
-      <Form onSubmit={handleUpdate}>
-        <Form.Group controlId="formUsername">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-            required
-          />
-        </Form.Group>
+          <Form.Group controlId="formEmail" className="mb-3">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+          </Form.Group>
 
-        <Form.Group controlId="formEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-        </Form.Group>
+          <Form.Group controlId="formBirthday" className="mb-3">
+            <Form.Label>Birthday</Form.Label>
+            <Form.Control
+              type="date"
+              value={birthday}
+              onChange={e => setBirthday(e.target.value)}
+            />
+          </Form.Group>
 
-        <Form.Group controlId="formBirthday">
-          <Form.Label>Birthday</Form.Label>
-          <Form.Control
-            type="date"
-            value={birthday ? birthday.split('T')[0] : ''}
-            onChange={e => setBirthday(e.target.value)}
-            required
-          />
-        </Form.Group>
+          <Button variant="primary" type="submit">
+            Update Profile
+          </Button>
+        </Form>
 
-        <Button variant="primary" type="submit">Update Profile</Button>
-      </Form>
+        <Button variant="danger" onClick={handleDeregister} className="mt-3">
+          Delete Account
+        </Button>
+      </Col>
 
-      <Button variant="danger" onClick={handleDeregister} className="mt-3">Delete Account</Button>
-    </Col>
-
-    <Col md={6}>
-      <h3>Favorite Movies</h3>
-      <Row>
+      <Col md={6}>
+        <h3>Favorite Movies</h3>
         {favoriteMovies.length === 0 ? (
-          <p>You have no favorite movies yet.</p>
+          <p>No favorite movies added yet.</p>
         ) : (
-          favoriteMovies.map(movie => (
-            <Col md={4} key={movie.id}>
-              <MovieCard movie={movie} />
-            </Col>
-          ))
+          <Row>
+            {favoriteMovies.map((movie) => (
+              <Col key={movie.id} md={4} className="mb-4">
+                <MovieCard movie={movie} />
+              </Col>
+            ))}
+          </Row>
         )}
-      </Row>
-    </Col>
-  </Row>
-);
+      </Col>
+    </Row>
+  );
 };

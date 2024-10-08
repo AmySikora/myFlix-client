@@ -93,12 +93,12 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/profile"
+            path="/users/:username" 
             element={
               user ? (
                 <ProfileView user={user} token={token} movies={movies} setUser={setUser} />
               ) : (
-                <Navigate to="/login" /> 
+                <Navigate to="/login" />
               )
             }
           />

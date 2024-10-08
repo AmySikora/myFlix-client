@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom"; // Corrected import
 import { Link } from "react-router-dom";
 import "./movie-view.scss";
 
@@ -22,20 +22,38 @@ export const MovieView = ({ movies, user, token, setUser }) => {
   const isFavorite = user?.FavoriteMovies?.includes(movieId) || false;
 
   const handleFavorite = () => {
+    if (!token) {
+      console.error("Token is missing. Please log in again.");
+      alert("You are not authorized. Please log in again.");
+      return;
+    }
+
     const method = isFavorite ? 'DELETE' : 'POST'; 
-    fetch(`https://movies-flix-hartung-46febebee5c5.herokuapp.com/users/${user.Username}/movies/${movie.id}`, {
+    console.log("Token being sent:", token);
+
+    fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${user.Username}/movies/${movie.id}`, {
       method,
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       }
     })
-      .then(response => response.json())
-      .then(updatedUser => {
-        setUser(updatedUser);
-        localStorage.setItem('user', JSON.stringify(updatedUser));
-      })
-      .catch(err => console.error('Error updating favorite movies:', err));
+    .then(response => {
+      if (response.status === 401) {
+        console.error("Unauthorized: Token might be invalid or expired.");
+        alert("Your session has expired. Please log in again.");
+        return;
+      }
+      if (!response.ok) {
+        throw new Error("Failed to update favorite movies");
+      }
+      return response.json();
+    })
+    .then(updatedUser => {
+      setUser(updatedUser);
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+    })
+    .catch(err => console.error('Error updating favorite movies:', err));
   };
 
   return (
