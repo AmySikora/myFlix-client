@@ -20,6 +20,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken);
   const [movies, setMovies] = useState([]);
   const [filter, setFilter] = useState(""); 
+  const similarMovies = movies.filter(m => m.genre.Name === movie.genre.Name && m._id !== movieId);
 
   useEffect(() => {
     if (!token) return;

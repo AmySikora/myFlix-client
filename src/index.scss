@@ -78,3 +78,8 @@ $input-text-color: #333;
       border-color: $border-color;
     }
   }
+  .similar-movies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }

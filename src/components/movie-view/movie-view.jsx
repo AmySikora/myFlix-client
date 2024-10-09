@@ -1,9 +1,9 @@
-import { useParams } from "react-router-dom"; // Corrected import
+import { useParams } from "react-router-dom"; 
 import { Link } from "react-router-dom";
+import { MovieCard } from "../movie-card/movie-card"; 
 import "./movie-view.scss";
 
-export const MovieView = ({ movies, user, token, setUser }) => {
-  const { movieId } = useParams(); 
+export const MovieView = ({ movies, user, token, setUser, similarMovies }) => {
 
   console.log("User object: ", user);
 
@@ -80,6 +80,8 @@ export const MovieView = ({ movies, user, token, setUser }) => {
       <div>
         <span>Actors: </span>
         <span>{Array.isArray(movie.actors) ? movie.actors.join(", ") : "N/A"}</span>
+      </div>
+      <div>   
       </div>
 
       <button onClick={handleFavorite} className="btn btn-primary mt-3">
