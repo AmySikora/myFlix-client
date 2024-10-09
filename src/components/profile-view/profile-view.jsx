@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Button, Form, Row, Col, Card } from 'react-bootstrap';
 import { MovieCard } from '../movie-card/movie-card';
 
 export const ProfileView = ({ user, token, movies, setUser }) => {
   const { username } = useParams();
-  const [userUsername, setUserUsername] = useState(user.Username);
-  const [email, setEmail] = useState(user.Email);
-  const [birthday, setBirthday] = useState(user.Birthday.split("T")[0]); // Display in YYYY-MM-DD format
+  const navigate = useNavigate(); 
+
+  const [userUsername, setUserUsername] = useState(user.Username || "");
+  const [email, setEmail] = useState(user.Email || "");
+  const [birthday, setBirthday] = useState(user.Birthday ? user.Birthday.split("T")[0] : "");
   const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
-    const favoriteMovies = movies.filter(m => user.FavoriteMovies.includes(m.id));
-    setFavoriteMovies(favoriteMovies);
+    if (user && movies && user.FavoriteMovies) {
+      const favoriteMoviesList = movies.filter(m => user.FavoriteMovies.includes(m.id));
+      setFavoriteMovies(favoriteMoviesList);
+    }
   }, [user, movies]);
 
   const handleUpdate = (e) => {
@@ -27,26 +31,34 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(updatedUser)
+      body: JSON.stringify(updatedUser),
     })
     .then(response => response.json())
     .then(data => {
       alert('Profile updated successfully');
-      setUser(data);
-      localStorage.setItem('user', JSON.stringify(data));
+      setUser(data); 
+      localStorage.setItem('user', JSON.stringify(data)); 
     })
-    .catch(err => console.error(err));
+    .catch(err => console.error('Error updating profile:', err));
   };
 
   const handleDeregister = () => {
     fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${username}`, {
       method: 'DELETE',
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
     })
-    .then(response => response.ok ? alert('User deleted') : Promise.reject('Failed to delete user'))
-    .catch(err => console.error(err));
+    .then(response => {
+      if (response.ok) {
+        alert('User deleted');
+        localStorage.clear(); 
+        navigate('/login'); 
+      } else {
+        alert('Failed to delete user');
+      }
+    })
+    .catch(err => console.error('Error deleting user:', err));
   };
 
   return (
