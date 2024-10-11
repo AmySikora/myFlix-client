@@ -77,10 +77,6 @@ export const MovieView = ({ movies, user, token, setUser }) => {
         <span>Genre: </span>
         <span>{movie.genre?.Name || "Unknown Genre"}</span> {}
       </div>
-      <div>
-        <span>Actors: </span>
-        <span>{Array.isArray(movie.actors) ? movie.actors.join(", ") : "N/A"}</span>
-      </div>
 
       <button onClick={handleFavorite} className="btn btn-primary mt-3">
         {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}

@@ -4,6 +4,8 @@ import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const MovieCard = ({ movie }) => {
+  const directorName = typeof movie.director === "object" ? movie.director?.Name : movie.director;
+
   return (
     <Card className="h-100">
       {}
@@ -12,6 +14,7 @@ export const MovieCard = ({ movie }) => {
         <Card.Body>
           <Card.Title>{movie.title}</Card.Title>
           <Card.Text>{movie.description}</Card.Text>
+          {directorName && <Card.Text><strong>Director:</strong> {directorName}</Card.Text>}
         </Card.Body>
         <Button variant="link">Open</Button>
         </Link>
@@ -25,7 +28,12 @@ MovieCard.propTypes = {
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    director: PropTypes.string,
+    director: PropTypes.oneOfType([
+      PropTypes.string, 
+      PropTypes.shape({
+        Name: PropTypes.string,
+      }),
+    ]),
     genre: PropTypes.string,
   }).isRequired,
 };
