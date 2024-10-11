@@ -7224,55 +7224,80 @@ button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disab
   }
 }
 
-body {
-  color: #191970;
-  background-color: #faebd7;
+.form-group {
+  margin-bottom: 15px;
 }
 
-input, textarea, select {
+.form-label {
+  color: #191970;
+  font-size: 1rem;
+}
+
+.form-input {
   color: #333;
   background-color: #f0f0f0;
   border: 1px solid tomato;
   border-radius: 5px;
-  padding: .5rem;
-  transition: background-color .3s, border-color .3s, color .3s;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 
-input:hover, input:focus, textarea:hover, textarea:focus, select:hover, select:focus {
-  color: #fff;
-  background-color: #7a6ec0;
+.form-input:hover, .form-input:focus {
+  color: #191970;
+  background-color: #9b92cf;
   border-color: #483d8b;
+  outline: none;
+  box-shadow: 0 0 5px #483d8b80;
 }
 
-input::placeholder, textarea::placeholder, select::placeholder {
-  color: gray;
-}
-
-input button, textarea button, select button {
+.btn-submit {
   color: #fff;
+  cursor: pointer;
   background-color: #483d8b;
   border: none;
   border-radius: 5px;
-  padding: .5rem 1rem;
-  transition: background-color .3s, color .3s;
+  width: 100%;
+  padding: 10px;
 }
 
-input button:hover, input button:focus, textarea button:hover, textarea button:focus, select button:hover, select button:focus {
+.btn-submit:hover {
+  background-color: #362d68;
+}
+
+.navbar {
+  background-color: #483d8b;
+  border-bottom: 2px solid tomato;
+}
+
+.navbar .navbar-brand {
   color: #fff;
-  background-color: #7a6ec0;
+  font-size: 1.5rem;
 }
 
-input button.btn-danger, textarea button.btn-danger, select button.btn-danger {
-  background-color: tomato;
+.navbar .navbar-brand:hover {
+  color: #5a4dae;
 }
 
-input button.btn-danger:hover, input button.btn-danger:focus, textarea button.btn-danger:hover, textarea button.btn-danger:focus, select button.btn-danger:hover, select button.btn-danger:focus {
-  background-color: #ff8e7a;
+.navbar .nav-link {
+  color: #fff;
+  margin-left: 10px;
 }
 
-input label, textarea label, select label {
-  color: #483d8b;
-  font-weight: bold;
+.navbar .nav-link:hover {
+  color: #191970;
+  background-color: #9b92cf;
+  border-radius: 5px;
+}
+
+.navbar .navbar-toggler {
+  border-color: tomato;
+}
+
+.similar-movies {
+  flex-wrap: wrap;
+  gap: 1rem;
+  display: flex;
 }
 
 :root, [data-bs-theme="light"] {
