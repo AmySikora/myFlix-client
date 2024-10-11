@@ -11,8 +11,8 @@ export const LoginView = ({ onLoggedIn }) => {
     event.preventDefault();
 
     const data = {
-      Username: username,
-      Password: password,
+      access: username,
+      secret: password,
     };
 
     fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/login`, {
@@ -59,6 +59,7 @@ export const LoginView = ({ onLoggedIn }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className="form-input"
         />
       </Form.Group>
 
