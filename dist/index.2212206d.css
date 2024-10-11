@@ -7224,78 +7224,55 @@ button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disab
   }
 }
 
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-label {
+body {
   color: #191970;
-  font-size: 1rem;
+  background-color: #faebd7;
 }
 
-.form-input {
+input, textarea, select {
   color: #333;
   background-color: #f0f0f0;
   border: 1px solid tomato;
   border-radius: 5px;
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 10px;
+  padding: .5rem;
+  transition: background-color .3s, border-color .3s, color .3s;
 }
 
-.form-input:focus {
-  border-color: #483d8b;
-  outline: none;
-  box-shadow: 0 0 5px #483d8b80;
-}
-
-.btn-submit {
+input:hover, input:focus, textarea:hover, textarea:focus, select:hover, select:focus {
   color: #fff;
-  cursor: pointer;
+  background-color: #7a6ec0;
+  border-color: #483d8b;
+}
+
+input::placeholder, textarea::placeholder, select::placeholder {
+  color: gray;
+}
+
+input button, textarea button, select button {
+  color: #fff;
   background-color: #483d8b;
   border: none;
   border-radius: 5px;
-  width: 100%;
-  padding: 10px;
+  padding: .5rem 1rem;
+  transition: background-color .3s, color .3s;
 }
 
-.btn-submit:hover {
-  background-color: #362d68;
+input button:hover, input button:focus, textarea button:hover, textarea button:focus, select button:hover, select button:focus {
+  color: #fff;
+  background-color: #7a6ec0;
 }
 
-.navbar {
-  background-color: #483d8b;
-  border-bottom: 2px solid tomato;
+input button.btn-danger, textarea button.btn-danger, select button.btn-danger {
+  background-color: tomato;
 }
 
-.navbar .navbar-brand {
+input button.btn-danger:hover, input button.btn-danger:focus, textarea button.btn-danger:hover, textarea button.btn-danger:focus, select button.btn-danger:hover, select button.btn-danger:focus {
+  background-color: #ff8e7a;
+}
+
+input label, textarea label, select label {
   color: #483d8b;
-  font-size: 1.5rem;
-}
-
-.navbar .navbar-brand:hover {
-  color: #efca86;
-}
-
-.navbar .nav-link {
-  color: #191970;
-  margin-left: 10px;
-}
-
-.navbar .nav-link:hover {
-  color: wheat;
-  background-color: #fbf2e0;
-  border-radius: 5px;
-}
-
-.navbar .navbar-toggler {
-  border-color: tomato;
-}
-
-.similar-movies {
-  flex-wrap: wrap;
-  gap: 1rem;
-  display: flex;
+  font-weight: bold;
 }
 
 :root, [data-bs-theme="light"] {

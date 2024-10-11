@@ -1,85 +1,60 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
 // SCSS variables
-$primary-color: DarkSlateBlue;
-$secondary-color: Wheat;
-$text-color: MidnightBlue;
-$background-color: wheat;
+$primary: DarkSlateBlue;
+$primary-light: lighten($primary, 20%); 
+$body-bg: AntiqueWhite;
+$input-bg: #f0f0f0;
+$input-text: #333;
 $border-color: Tomato;
-$input-background-color: #f0f0f0;
-$input-text-color: #333;
 
+body {
+  background-color: $body-bg;
+  color: MidnightBlue;
+}
 
-  // Form groups and labels
-  .form-group {
-    margin-bottom: 15px;
+input, textarea, select {
+  background-color: $input-bg;
+  color: $input-text;
+  border: 1px solid $border-color;
+  border-radius: 5px;
+  padding: 0.5rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+
+  &:hover, &:focus {
+    background-color: $primary-light; 
+    border-color: $primary; 
+    color: #fff; 
   }
-  
-  .form-label {
-    font-size: 1rem;
-    color: $text-color;
+
+  &::placeholder {
+    color: lighten($input-text, 30%); 
+}
+
+button {
+  background-color: $primary;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover, &:focus {
+    background-color: $primary-light; 
+    color: #fff;
   }
-  
-  // Form input fields
-  .form-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid $border-color;
-    border-radius: 5px;
-    background-color: $input-background-color;
-    color: $input-text-color;
-  
-    &:focus {
-      border-color: $primary-color;
-      outline: none;
-      box-shadow: 0px 0px 5px rgba($primary-color, 0.5);
+
+  &.btn-danger {
+    background-color: $border-color; 
+    &:hover, &:focus {
+      background-color: lighten($border-color, 10%);
     }
   }
-  
-  // Submit button
-  .btn-submit {
-    width: 100%;
-    padding: 10px;
-    background-color: $primary-color;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    
-    &:hover {
-      background-color: darken($primary-color, 10%);
-    }
-  }
-// Navbar Styling
-.navbar {
-    background-color: $primary-color;
-    border-bottom: 2px solid $border-color;
-  
-    .navbar-brand {
-      font-size: 1.5rem;
-      color: $primary-color;
-      &:hover {
-        color: darken($secondary-color, 10%);
-      }
-    }
-  
-    .nav-link {
-      color: $text-color;
-      margin-left: 10px;
-      &:hover {
-        color: $secondary-color;
-        background-color: lighten($background-color, 10%);
-        border-radius: 5px;
-      }
-    }
-  
-    .navbar-toggler {
-      border-color: $border-color;
-    }
-  }
-  .similar-movies {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
+}
+
+label {
+  font-weight: bold;
+  color: $primary; 
+}
+
+}

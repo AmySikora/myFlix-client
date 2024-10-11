@@ -43021,7 +43021,7 @@ const ProfileView = ({ user, token, movies, setUser })=>{
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Text, {
                                         className: "text-muted",
-                                        children: "You must enter your password to update your profile."
+                                        children: "Please enter your password to update your profile"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
                                         lineNumber: 139,

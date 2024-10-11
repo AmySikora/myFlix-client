@@ -137,7 +137,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
               required
             />
             <Form.Text className="text-muted">
-              You must enter your password to update your profile.
+              Please enter your password to update your profile
             </Form.Text>
           </Form.Group>
 
