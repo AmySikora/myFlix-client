@@ -7243,9 +7243,7 @@ button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disab
   padding: 10px;
 }
 
-.form-input:hover, .form-input:focus {
-  color: #191970;
-  background-color: #9b92cf;
+.form-input:focus {
   border-color: #483d8b;
   outline: none;
   box-shadow: 0 0 5px #483d8b80;
@@ -7271,22 +7269,22 @@ button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disab
 }
 
 .navbar .navbar-brand {
-  color: #fff;
+  color: #483d8b;
   font-size: 1.5rem;
 }
 
 .navbar .navbar-brand:hover {
-  color: #5a4dae;
+  color: #04043c;
 }
 
 .navbar .nav-link {
-  color: #fff;
+  color: #191970;
   margin-left: 10px;
 }
 
 .navbar .nav-link:hover {
-  color: #191970;
-  background-color: #9b92cf;
+  color: #07076c;
+  background-color: #fbf2e0;
   border-radius: 5px;
 }
 
