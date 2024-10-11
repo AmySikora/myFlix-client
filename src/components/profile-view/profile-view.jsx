@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Button, Form, Row, Col, Card } from 'react-bootstrap';
+import { Button, Form, Row, Col } from 'react-bootstrap';
 import { MovieCard } from '../movie-card/movie-card';
+import { MovieView } from '../movie-view/movie-view';
 
 export const ProfileView = ({ user, token, movies, setUser }) => {
   const { username } = useParams();
@@ -10,7 +11,9 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
   const [userUsername, setUserUsername] = useState(user.Username || "");
   const [email, setEmail] = useState(user.Email || "");
   const [birthday, setBirthday] = useState(user.Birthday ? user.Birthday.split("T")[0] : "");
+  const [password, setPassword] = useState("");
   const [favoriteMovies, setFavoriteMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
     if (user && movies && user.FavoriteMovies) {
@@ -21,11 +24,20 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
+
+    if (!password) {
+      alert("Please enter your password to update your profile");
+      return;
+    }
+
     const updatedUser = {
       Username: userUsername,
       Email: email,
       Birthday: birthday,
+      Password: password,
     };
+
+    console.log('Updated user data:', updatedUser);
 
     fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${username}`, {
       method: 'PUT',
@@ -35,9 +47,16 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
       },
       body: JSON.stringify(updatedUser),
     })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          throw new Error(`Update failed: ${error.message}`);
+        });
+      }
+      return response.json();
+    })
     .then(data => {
-      alert('Profile updated successfully');
+      alert('Your profile was updated');
       setUser(data); 
       localStorage.setItem('user', JSON.stringify(data)); 
     })
@@ -60,6 +79,19 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
     })
     .catch(err => console.error('Error deleting user:', err));
   };
+
+  if (selectedMovie) {
+    return (
+      <MovieView
+        movies={movies}
+        user={user}
+        token={token}
+        setUser={setUser}
+        movieId={selectedMovie.id} 
+        onBackClick={() => setSelectedMovie(null)} 
+      />
+    );
+  }
 
   return (
     <Row>
@@ -93,6 +125,20 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
               value={birthday}
               onChange={e => setBirthday(e.target.value)}
             />
+          </Form.Group>
+
+          <Form.Group controlId="formPassword" className="mb-3">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              placeholder="Enter your current password"
+              required
+            />
+            <Form.Text className="text-muted">
+              You must enter your password to update your profile.
+            </Form.Text>
           </Form.Group>
 
           <Button variant="primary" type="submit">
