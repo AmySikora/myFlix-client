@@ -3,19 +3,12 @@ import { MovieCard } from "../movie-card/movie-card.jsx";
 import { MovieView } from "../movie-view/movie-view.jsx";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
-<<<<<<< HEAD
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Form from "react-bootstrap/Form"; 
-=======
-import { LoginView } from "../login-view/login-view"; // Ensure this import is correct
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
->>>>>>> 87482d09d0b44a502c25b3468f885588474ef679
 
 export const MainView = () => {
   const storedUser = localStorage.getItem("user") 
@@ -53,7 +46,6 @@ export const MainView = () => {
       });
   }, [token]);
 
-<<<<<<< HEAD
   const handleLoggedOut = () => {
     setUser(null);
     setToken(null);
@@ -173,7 +165,6 @@ export const MainView = () => {
     </BrowserRouter>
   );
 };
-=======
   if (!user) {
     return (
      <Container className="mt-5">
@@ -233,5 +224,4 @@ export const MainView = () => {
                 }}>Logout</button>
             </div>
           );
-        };
->>>>>>> 87482d09d0b44a502c25b3468f885588474ef679
+        
