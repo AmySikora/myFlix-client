@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -93,4 +91,3 @@ export const SignupView = () => {
       </div>
     );
   };
->>>>>>> 87482d09d0b44a502c25b3468f885588474ef679
