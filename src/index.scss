@@ -1,30 +1,14 @@
+@import "~bootstrap/scss/bootstrap.scss";
+
 // SCSS variables
 $primary-color: DarkSlateBlue;
-$secondary-color: Wheat;
+$secondary-color: rgb(7, 7, 108);
 $text-color: MidnightBlue;
-$background-color: AntiqueWhite;
+$background-color: wheat;
 $border-color: Tomato;
 $input-background-color: #f0f0f0;
 $input-text-color: #333;
 
-// Main form container
-.login-view-container, .signup-view-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: $background-color;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  // Form title
-  .form-title {
-    text-align: center;
-    font-size: 2rem;
-    color: $primary-color;
-    margin-bottom: 20px;
-  }
-  
   // Form groups and labels
   .form-group {
     margin-bottom: 15px;
@@ -66,5 +50,35 @@ $input-text-color: #333;
       background-color: darken($primary-color, 10%);
     }
   }
-
-@import "~bootstrap/scss/bootstrap.scss";
+// Navbar Styling
+.navbar {
+    background-color: $primary-color;
+    border-bottom: 2px solid $border-color;
+  
+    .navbar-brand {
+      font-size: 1.5rem;
+      color: $primary-color;
+      &:hover {
+        color: darken($secondary-color, 10%);
+      }
+    }
+  
+    .nav-link {
+      color: $text-color;
+      margin-left: 10px;
+      &:hover {
+        color: $secondary-color;
+        background-color: lighten($background-color, 10%);
+        border-radius: 5px;
+      }
+    }
+  
+    .navbar-toggler {
+      border-color: $border-color;
+    }
+  }
+  .similar-movies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
