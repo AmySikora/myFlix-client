@@ -20,6 +20,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken);
   const [movies, setMovies] = useState([]);
   const [filter, setFilter] = useState(""); 
+  const [searchBy, setSearchBy] = useState("title");
 
   useEffect(() => {
     if (!token) return;
@@ -34,9 +35,9 @@ export const MainView = () => {
             id: movie._id,
             title: movie.Title,
             image: movie.ImageURL || "https://via.placeholder.com/150",
-            director: movie.Director || "Unknown Director",
+            director: movie.Director.Name || "Unknown Director",
             description: movie.Description || "No description available",
-            genre: movie.Genre || "Unknown genre"
+            genre: movie.Genre.Name || "Unknown genre"
           };
         });
         setMovies(moviesFromApi);
