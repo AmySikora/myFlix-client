@@ -35,11 +35,11 @@ export const SignupView = () => {
   };
 
   return (
-      <div className="signup-view-container"> {/* Main container class */}
-        <Form onSubmit={handleSubmit} className="signup-form"> {/* Form class */}
-          <h1 className="form-title">Sign up for MyFlix</h1> {/* Title class */}
+      <div className="signup-view-container"> {}
+        <Form onSubmit={handleSubmit} className="signup-form"> {}
+          
   
-          <Form.Group controlId="signUpFormUsername" className="form-group"> {/* Group class */}
+          <Form.Group controlId="signUpFormUsername" className="form-group"> {}
             <Form.Label className="form-label">Username:</Form.Label>
             <Form.Control
               type="text"
