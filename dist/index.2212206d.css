@@ -7224,7 +7224,6 @@ button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disab
   }
 }
 
-<<<<<<< HEAD
 .form-group {
   margin-bottom: 15px;
 }
@@ -7299,8 +7298,6 @@ button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disab
   display: flex;
 }
 
-=======
->>>>>>> 87482d09d0b44a502c25b3468f885588474ef679
 :root, [data-bs-theme="light"] {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
