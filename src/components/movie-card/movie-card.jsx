@@ -1,21 +1,39 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
+import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-export const MovieCard = ({ movie, onMovieClick }) => {
-  const imageURL = movie.ImageURL || 'default_image_url_here'; // Provide a fallback URL
+export const MovieCard = ({ movie }) => {
+  const directorName = typeof movie.director === "object" ? movie.director?.Name : movie.director;
 
   return (
-    <div onClick={() => onMovieClick(movie)}>
-      <img src={imageURL} alt={`${movie.Title} poster`} />
-      <h3>{movie.Title}</h3>
-    </div>
+    <Card className="h-100">
+      {}
+      <Link to={`/movies/${movie.id}`} className="text-decoration-none">
+        <Card.Img variant="top" src={movie.image} className="w-100" />
+        <Card.Body>
+          <Card.Title>{movie.title}</Card.Title>
+          <Card.Text>{movie.description}</Card.Text>
+          {directorName && <Card.Text><strong>Director:</strong> {directorName}</Card.Text>}
+        </Card.Body>
+        <Button variant="link">Open</Button>
+        </Link>
+    </Card>
   );
 };
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    ImageURL: PropTypes.string, // No longer required
-    Title: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.oneOfType([
+      PropTypes.string, 
+      PropTypes.shape({
+        Name: PropTypes.string,
+      }),
+    ]),
+    genre: PropTypes.string,
   }).isRequired,
-  onMovieClick: PropTypes.func.isRequired,
 };
