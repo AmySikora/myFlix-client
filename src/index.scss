@@ -212,3 +212,55 @@ $input-text-color: #333;
   }
 }
 
+.movie-card-container {
+  margin-bottom: 20px;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-img-top {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    width: 100%; 
+    height: auto;  // Ensure the height scales with the width
+    max-height: 300px; // Limit the height but allow scaling
+    object-fit: contain;  // Prevent cropping and show the full image
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    color: $primary-color;
+    margin-bottom: 10px;
+  }
+
+  .card-text {
+    font-size: 1rem;
+    color: $text-color;
+    margin-bottom: 15px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 10px;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
