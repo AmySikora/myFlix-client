@@ -58,33 +58,35 @@ export const MovieView = ({ movies, user, token, setUser }) => {
 
   return (
     <div>
-      <div>
-        <img className="w-100" src={movie.image} alt={movie.title} />
-      </div>
-      <div>
-        <span>Title: </span>
-        <span>{movie.title}</span>
-      </div>
-      <div>
-        <span>Description: </span>
-        <p>{movie.description}</p>
-      </div>
-      <div>
-        <span>Director: </span>
-        <span>{movie.director?.Name || "Unknown Director"}</span> {}
-      </div>
-      <div>
-        <span>Genre: </span>
-        <span>{movie.genre?.Name || "Unknown Genre"}</span> {}
-      </div>
+      <div className="movie-view-container">
+  <div>
+    <img className="w-100" src={movie.image} alt={movie.title} />
+  </div>
+  <div>
+    <span>Title: </span>
+    <span>{movie.title}</span>
+  </div>
+  <div>
+    <span>Description: </span>
+    <p>{movie.description}</p>
+  </div>
+  <div>
+    <span>Director: </span>
+    <span>{movie.director?.Name || "Unknown Director"}</span>
+  </div>
+  <div>
+    <span>Genre: </span>
+    <span>{movie.genre?.Name || "Unknown Genre"}</span>
+  </div>
 
-      <button onClick={handleFavorite} className="btn btn-primary mt-3">
-        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-      </button>
+  <button onClick={handleFavorite} className="btn btn-primary">
+    {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+  </button>
 
-      <Link to="/">
-        <button className="btn btn-secondary mt-3">Back</button>
-      </Link>
+  <Link to="/">
+    <button className="btn btn-secondary">Back</button>
+  </Link>
+</div>
     </div>
   );
 };
