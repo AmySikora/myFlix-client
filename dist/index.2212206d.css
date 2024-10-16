@@ -20563,11 +20563,11 @@ textarea.form-control-lg {
 .navbar {
   background-color: #483d8b;
   border-bottom: 2px solid tomato;
+  font-size: 1.5rem;
 }
 
 .navbar .navbar-brand {
   color: #483d8b;
-  font-size: 1.5rem;
 }
 
 .navbar .navbar-brand:hover {
@@ -20581,7 +20581,7 @@ textarea.form-control-lg {
 
 .navbar .nav-link:hover {
   color: #07076c;
-  background-color: #fbf2e0;
+  background-color: #fff;
   border-radius: 5px;
 }
 
