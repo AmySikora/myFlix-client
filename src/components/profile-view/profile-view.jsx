@@ -94,77 +94,81 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
   }
 
   return (
-    <Row>
-      <Col md={6}>
-        <h3>User Profile</h3>
-        <Form onSubmit={handleUpdate}>
-          <Form.Group controlId="formUsername" className="mb-3">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              type="text"
-              value={userUsername}
-              onChange={e => setUserUsername(e.target.value)}
-              required
-            />
-          </Form.Group>
+    <div className="profile-view-container">
+      <Row>
+        {/* Profile Form Section */}
+        <Col md={6}>
+          <h3>User Profile</h3>
+          <Form onSubmit={handleUpdate}>
+            <Form.Group controlId="formUsername" className="form-group">
+              <Form.Label className="form-label">Username</Form.Label>
+              <Form.Control
+                type="text"
+                value={userUsername}
+                onChange={e => setUserUsername(e.target.value)}
+                required
+                className="form-input"
+              />
+            </Form.Group>
 
-          <Form.Group controlId="formEmail" className="mb-3">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              required
-            />
-          </Form.Group>
+            <Form.Group controlId="formEmail" className="form-group">
+              <Form.Label className="form-label">Email</Form.Label>
+              <Form.Control
+                type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                required
+                className="form-input"
+              />
+            </Form.Group>
 
-          <Form.Group controlId="formBirthday" className="mb-3">
-            <Form.Label>Birthday</Form.Label>
-            <Form.Control
-              type="date"
-              value={birthday}
-              onChange={e => setBirthday(e.target.value)}
-            />
-          </Form.Group>
+            <Form.Group controlId="formBirthday" className="form-group">
+              <Form.Label className="form-label">Birthday</Form.Label>
+              <Form.Control
+                type="date"
+                value={birthday}
+                onChange={e => setBirthday(e.target.value)}
+                className="form-input"
+              />
+            </Form.Group>
 
-          <Form.Group controlId="formPassword" className="mb-3">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              placeholder="Enter your current password"
-              required
-            />
-            <Form.Text className="text-muted">
-              Please enter your password to update your profile
-            </Form.Text>
-          </Form.Group>
+            <Form.Group controlId="formPassword" className="form-group">
+              <Form.Label className="form-label">Password</Form.Label>
+              <Form.Control
+                type="password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                placeholder="Enter your current password"
+                required
+                className="form-input"
+              />
+              <Form.Text className="text-muted">
+                Please enter your password to update your profile
+              </Form.Text>
+            </Form.Group>
 
-          <Button variant="primary" type="submit">
-            Update Profile
-          </Button>
-        </Form>
+            <Button className="btn-submit" type="submit">Update Profile</Button>
+          </Form>
 
-        <Button variant="danger" onClick={handleDeregister} className="mt-3">
-          Delete Account
-        </Button>
-      </Col>
+          <Button className="btn-danger mt-3" onClick={handleDeregister}>Delete Account</Button>
+        </Col>
 
-      <Col md={6}>
-        <h3>Favorite Movies</h3>
-        {favoriteMovies.length === 0 ? (
-          <p>No favorite movies added yet.</p>
-        ) : (
-          <Row>
-            {favoriteMovies.map((movie) => (
-              <Col key={movie.id} md={4} className="mb-4">
-                <MovieCard movie={movie} />
-              </Col>
-            ))}
-          </Row>
-        )}
-      </Col>
-    </Row>
+        {/* Favorite Movies Section */}
+        <Col md={6}>
+          <h3>Favorite Movies</h3>
+          {favoriteMovies.length === 0 ? (
+            <p>No favorite movies added yet.</p>
+          ) : (
+            <Row>
+              {favoriteMovies.map((movie) => (
+                <Col key={movie.id} md={4} className="mb-4">
+                  <MovieCard movie={movie} />
+                </Col>
+              ))}
+            </Row>
+          )}
+        </Col>
+      </Row>
+    </div>
   );
 };
