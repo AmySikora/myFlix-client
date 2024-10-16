@@ -8,19 +8,19 @@ import { ProfileView } from "../profile-view/profile-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Form from "react-bootstrap/Form";
+import Form from "react-bootstrap/Form"; 
 
 export const MainView = () => {
-  const storedUser = localStorage.getItem("user")
-    ? JSON.parse(localStorage.getItem("user"))
+  const storedUser = localStorage.getItem("user") 
+    ? JSON.parse(localStorage.getItem("user")) 
     : null;
-  
+
   const storedToken = localStorage.getItem("token") || null;
-  const [user, setUser] = useState(storedUser);
+  const [user, setUser] = useState(storedUser); 
   const [token, setToken] = useState(storedToken);
   const [movies, setMovies] = useState([]);
   const [filter, setFilter] = useState(""); 
-  const [searchBy, setSearchBy] = useState("title"); 
+  const [searchBy, setSearchBy] = useState("title");
 
   useEffect(() => {
     if (!token) return;
@@ -30,14 +30,16 @@ export const MainView = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        const moviesFromApi = data.map((movie) => ({
-          id: movie.id,
-          title: movie.Title,
-          image: movie.ImageURL || "https://via.placeholder.com/150",
-          director: movie.Director.Name || "Unknown Director", 
-          genre: movie.Genre.Name || "Unknown Genre", 
-          description: movie.Description || "No description available"
-        }));
+        const moviesFromApi = data.map((movie) => {
+          return {
+            id: movie._id,
+            title: movie.Title,
+            image: movie.ImageURL || "https://via.placeholder.com/150",
+            director: movie.Director.Name || "Unknown Director",
+            description: movie.Description || "No description available",
+            genre: movie.Genre.Name || "Unknown genre"
+          };
+        });
         setMovies(moviesFromApi);
       })
       .catch((error) => {
@@ -51,16 +53,9 @@ export const MainView = () => {
     localStorage.clear();
   };
 
-  const filteredMovies = movies.filter((movie) => {
-    if (searchBy === "title") {
-      return movie.title.toLowerCase().includes(filter.toLowerCase());
-    } else if (searchBy === "director") {
-      return movie.director.toLowerCase().includes(filter.toLowerCase());
-    } else if (searchBy === "genre") {
-      return movie.genre.toLowerCase().includes(filter.toLowerCase());
-    }
-    return true; 
-  });
+  const filteredMovies = movies.filter((movie) =>
+    movie.title.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <BrowserRouter>
@@ -99,7 +94,7 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/users/:username"
+            path="/users/:username" 
             element={
               user ? (
                 <ProfileView user={user} token={token} movies={movies} setUser={setUser} />
@@ -136,21 +131,9 @@ export const MainView = () => {
                     <>
                       <Row className="justify-content-md-center">
                         <Col md={6}>
-                          {}
-                          <Form.Select
-                            aria-label="Search by"
-                            value={searchBy}
-                            onChange={(e) => setSearchBy(e.target.value)}
-                            className="mb-4"
-                          >
-                            <option value="title">Search by Title</option>
-                            <option value="director">Search by Director</option>
-                            <option value="genre">Search by Genre</option>
-                          </Form.Select>
-                          {}
                           <Form.Control
                             type="text"
-                            placeholder={`Search for a movie by ${searchBy}`}
+                            placeholder="Search for a movie"
                             value={filter}
                             onChange={(e) => setFilter(e.target.value)}
                             className="mb-4"
