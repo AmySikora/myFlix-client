@@ -8,7 +8,7 @@ import { ProfileView } from "../profile-view/profile-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Form from "react-bootstrap/Form"; 
+import Form from "react-bootstrap/Form";
 
 export const MainView = () => {
   const storedUser = localStorage.getItem("user") 
@@ -20,7 +20,8 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken);
   const [movies, setMovies] = useState([]);
   const [filter, setFilter] = useState(""); 
-  const [searchBy, setSearchBy] = useState("title");
+  const [directorFilter, setDirectorFilter] = useState("");
+  const [genreFilter, setGenreFilter] = useState("");
 
   useEffect(() => {
     if (!token) return;
@@ -35,9 +36,9 @@ export const MainView = () => {
             id: movie._id,
             title: movie.Title,
             image: movie.ImageURL || "https://via.placeholder.com/150",
-            director: movie.Director.Name || "Unknown Director",
+            director: movie.Director?.Name || "Unknown Director",
             description: movie.Description || "No description available",
-            genre: movie.Genre.Name || "Unknown genre"
+            genre: movie.Genre?.Name || "Unknown genre",
           };
         });
         setMovies(moviesFromApi);
@@ -53,9 +54,13 @@ export const MainView = () => {
     localStorage.clear();
   };
 
-  const filteredMovies = movies.filter((movie) =>
-    movie.title.toLowerCase().includes(filter.toLowerCase())
-  );
+  const filteredMovies = movies.filter((movie) => {
+    const titleMatch = movie.title.toLowerCase().includes(filter.toLowerCase());
+    const directorMatch = movie.director.toLowerCase().includes(directorFilter.toLowerCase());
+    const genreMatch = movie.genre.toLowerCase().includes(genreFilter.toLowerCase());
+
+    return titleMatch && directorMatch && genreMatch;
+  });
 
   return (
     <BrowserRouter>
@@ -130,14 +135,31 @@ export const MainView = () => {
                   ) : (
                     <>
                       <Row className="justify-content-md-center">
-                        <Col md={6}>
+                        <Col md={4}>
                           <Form.Control
                             type="text"
-                            placeholder="Search for a movie"
+                            placeholder="Search for a movie by title"
                             value={filter}
                             onChange={(e) => setFilter(e.target.value)}
                             className="mb-4"
-                            style={{ width: "100%", marginTop: "20px" }}
+                          />
+                        </Col>
+                        <Col md={4}>
+                          <Form.Control
+                            type="text"
+                            placeholder="Search for a movie by director"
+                            value={directorFilter}
+                            onChange={(e) => setDirectorFilter(e.target.value)}
+                            className="mb-4"
+                          />
+                        </Col>
+                        <Col md={4}>
+                          <Form.Control
+                            type="text"
+                            placeholder="Search for a movie by genre"
+                            value={genreFilter}
+                            onChange={(e) => setGenreFilter(e.target.value)}
+                            className="mb-4"
                           />
                         </Col>
                       </Row>
@@ -166,3 +188,4 @@ export const MainView = () => {
     </BrowserRouter>
   );
 };
+
