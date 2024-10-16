@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import "./movie-view.scss"; // Make sure to import the SCSS
+import "./movie-view.scss"; 
 
 export const MovieView = ({ movies, user, token, setUser }) => {
   const { movieId } = useParams(); 
