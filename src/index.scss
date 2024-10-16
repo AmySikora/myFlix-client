@@ -4,7 +4,7 @@
 $primary-color: DarkSlateBlue;
 $secondary-color: rgb(7, 7, 108);
 $text-color: MidnightBlue;
-$background-color: rgb(242, 242, 247);
+$background-color: rgb(247, 160, 147);
 $border-color: Tomato;
 $input-background-color: #f0f0f0;
 $input-text-color: #333;
@@ -53,14 +53,17 @@ $input-text-color: #333;
 
 // Navbar Styling
 .navbar {
-  background-color: $primary-color;
+  background-color: white;
   border-bottom: 2px solid $border-color;
-  
-  font-size: 1.5rem; 
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   
   .navbar-brand {
+    font-size: 2rem; // Increase font size for "MyFlix App"
     color: $primary-color;
-    
+    font-weight: bold;
     &:hover {
       color: darken($secondary-color, 10%);
     }
@@ -68,8 +71,8 @@ $input-text-color: #333;
 
   .nav-link {
     color: $text-color;
-    margin-left: 10px;
-
+    font-size: 1rem; // Smaller font size for "Login" and "Signup"
+    padding: 10px;
     &:hover {
       color: $secondary-color;
       background-color: lighten($background-color, 10%);
@@ -79,5 +82,90 @@ $input-text-color: #333;
 
   .navbar-toggler {
     border-color: $border-color;
+  }
+}
+// ProfileView form styling
+.profile-view-container {
+  margin: 20px auto; // Center the profile form on the page
+  max-width: 600px;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+
+  h3 {
+    font-size: 1.5rem; // Consistent heading size
+    color: $primary-color;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-label {
+    font-size: 1rem;
+    color: $text-color;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    background-color: $input-background-color;
+    color: $input-text-color;
+
+    &:focus {
+      border-color: $primary-color;
+      outline: none;
+      box-shadow: 0px 0px 5px rgba($primary-color, 0.5);
+    }
+  }
+
+  .btn-submit, .btn-danger {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .btn-submit {
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+
+  .btn-danger {
+    background-color: rgb(92, 3, 3);
+    border: none;
+    &:hover {
+      background-color: darken(red, 10%);
+    }
+  }
+}
+// Favorite movies section styling
+.favorite-movies-container {
+  margin-top: 20px;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+
+  h3 {
+    font-size: 1.5rem;
+    color: $primary-color;
+    margin-bottom: 20px;
+  }
+
+  .movie-card {
+    margin-bottom: 15px;
   }
 }

@@ -20561,13 +20561,18 @@ textarea.form-control-lg {
 }
 
 .navbar {
-  background-color: #483d8b;
+  background-color: #fff;
   border-bottom: 2px solid tomato;
-  font-size: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  display: flex;
 }
 
 .navbar .navbar-brand {
   color: #483d8b;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .navbar .navbar-brand:hover {
@@ -20576,16 +20581,104 @@ textarea.form-control-lg {
 
 .navbar .nav-link {
   color: #191970;
-  margin-left: 10px;
+  padding: 10px;
+  font-size: 1rem;
 }
 
 .navbar .nav-link:hover {
   color: #07076c;
-  background-color: #fff;
+  background-color: #fbcac2;
   border-radius: 5px;
 }
 
 .navbar .navbar-toggler {
   border-color: tomato;
+}
+
+.profile-view-container {
+  background-color: #fff;
+  border: 1px solid tomato;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 2px 10px #0000001a;
+}
+
+.profile-view-container h3, .profile-view-container .h3 {
+  color: #483d8b;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.profile-view-container .form-group {
+  margin-bottom: 15px;
+}
+
+.profile-view-container .form-label {
+  color: #191970;
+  font-size: 1rem;
+}
+
+.profile-view-container .form-input {
+  color: #333;
+  background-color: #f0f0f0;
+  border: 1px solid tomato;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.profile-view-container .form-input:focus {
+  border-color: #483d8b;
+  outline: none;
+  box-shadow: 0 0 5px #483d8b80;
+}
+
+.profile-view-container .btn-submit, .profile-view-container .btn-danger {
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.profile-view-container .btn-submit {
+  color: #fff;
+  background-color: #483d8b;
+  border: none;
+}
+
+.profile-view-container .btn-submit:hover {
+  background-color: #362d68;
+}
+
+.profile-view-container .btn-danger {
+  background-color: #5c0303;
+  border: none;
+}
+
+.profile-view-container .btn-danger:hover {
+  background-color: #c00;
+}
+
+.favorite-movies-container {
+  background-color: #fff;
+  border: 1px solid tomato;
+  border-radius: 8px;
+  margin-top: 20px;
+  padding: 20px;
+  box-shadow: 0 2px 10px #0000001a;
+}
+
+.favorite-movies-container h3, .favorite-movies-container .h3 {
+  color: #483d8b;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.favorite-movies-container .movie-card {
+  margin-bottom: 15px;
 }
 /*# sourceMappingURL=index.2212206d.css.map */
