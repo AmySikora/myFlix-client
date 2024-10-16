@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"; // Corrected import
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./movie-view.scss";
 

@@ -31,7 +31,7 @@ export const MainView = () => {
       .then((response) => response.json())
       .then((data) => {
         const moviesFromApi = data.map((movie) => ({
-          id: movie._id,
+          id: movie.id,
           title: movie.Title,
           image: movie.ImageURL || "https://via.placeholder.com/150",
           director: movie.Director.Name || "Unknown Director", 
