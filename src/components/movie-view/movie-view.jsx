@@ -1,14 +1,11 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import "./movie-view.scss";
+import "./movie-view.scss"; // Make sure to import the SCSS
 
 export const MovieView = ({ movies, user, token, setUser }) => {
   const { movieId } = useParams(); 
 
-  console.log("User object: ", user);
-
   if (!user || !user.Username) {
-    console.error("User object or Username is undefined");
     return <p>User is not logged in or data is incomplete.</p>;
   }
 
@@ -17,19 +14,15 @@ export const MovieView = ({ movies, user, token, setUser }) => {
     return <p>Movie not found</p>;
   }
 
-  console.log("Found movie: ", movie);
-
   const isFavorite = user?.FavoriteMovies?.includes(movieId) || false;
 
   const handleFavorite = () => {
     if (!token) {
-      console.error("Token is missing. Please log in again.");
       alert("You are not authorized. Please log in again.");
       return;
     }
 
-    const method = isFavorite ? 'DELETE' : 'POST'; 
-    console.log("Token being sent:", token);
+    const method = isFavorite ? 'DELETE' : 'POST';
 
     fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${user.Username}/movies/${movie.id}`, {
       method,
@@ -39,11 +32,6 @@ export const MovieView = ({ movies, user, token, setUser }) => {
       }
     })
     .then(response => {
-      if (response.status === 401) {
-        console.error("Unauthorized: Token might be invalid or expired.");
-        alert("Your session has expired. Please log in again.");
-        return;
-      }
       if (!response.ok) {
         throw new Error("Failed to update favorite movies");
       }
@@ -57,36 +45,32 @@ export const MovieView = ({ movies, user, token, setUser }) => {
   };
 
   return (
-    <div>
-      <div className="movie-view-container">
-  <div>
-    <img className="w-100" src={movie.image} alt={movie.title} />
-  </div>
-  <div>
-    <span>Title: </span>
-    <span>{movie.title}</span>
-  </div>
-  <div>
-    <span>Description: </span>
-    <p>{movie.description}</p>
-  </div>
-  <div>
-    <span>Director: </span>
-    <span>{movie.director?.Name || "Unknown Director"}</span>
-  </div>
-  <div>
-    <span>Genre: </span>
-    <span>{movie.genre?.Name || "Unknown Genre"}</span>
-  </div>
+    <div className="movie-view-container">
+      <img src={movie.image} alt={movie.title} />
+      <div>
+        <span>Title: </span>
+        <span>{movie.title}</span>
+      </div>
+      <div>
+        <span>Description: </span>
+        <p>{movie.description}</p>
+      </div>
+      <div>
+        <span>Director: </span>
+        <span>{movie.director || "Unknown Director"}</span>
+      </div>
+      <div>
+        <span>Genre: </span>
+        <span>{movie.genre || "Unknown Genre"}</span>
+      </div>
 
-  <button onClick={handleFavorite} className="btn btn-primary">
-    {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-  </button>
+      <button onClick={handleFavorite} className="btn btn-primary mt-3">
+        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+      </button>
 
-  <Link to="/">
-    <button className="btn btn-secondary">Back</button>
-  </Link>
-</div>
+      <Link to="/">
+        <button className="btn btn-secondary mt-3">Back</button>
+      </Link>
     </div>
   );
 };
