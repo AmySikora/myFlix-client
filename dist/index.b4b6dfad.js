@@ -27240,1090 +27240,171 @@ $parcel$ReactRefreshHelpers$f7a6.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "AbortedDeferredError", ()=>(0, _reactRouter.AbortedDeferredError));
-parcelHelpers.export(exports, "Await", ()=>(0, _reactRouter.Await));
-parcelHelpers.export(exports, "MemoryRouter", ()=>(0, _reactRouter.MemoryRouter));
-parcelHelpers.export(exports, "Navigate", ()=>(0, _reactRouter.Navigate));
-parcelHelpers.export(exports, "NavigationType", ()=>(0, _reactRouter.NavigationType));
-parcelHelpers.export(exports, "Outlet", ()=>(0, _reactRouter.Outlet));
-parcelHelpers.export(exports, "Route", ()=>(0, _reactRouter.Route));
-parcelHelpers.export(exports, "Router", ()=>(0, _reactRouter.Router));
-parcelHelpers.export(exports, "Routes", ()=>(0, _reactRouter.Routes));
-parcelHelpers.export(exports, "UNSAFE_DataRouterContext", ()=>(0, _reactRouter.UNSAFE_DataRouterContext));
-parcelHelpers.export(exports, "UNSAFE_DataRouterStateContext", ()=>(0, _reactRouter.UNSAFE_DataRouterStateContext));
-parcelHelpers.export(exports, "UNSAFE_LocationContext", ()=>(0, _reactRouter.UNSAFE_LocationContext));
-parcelHelpers.export(exports, "UNSAFE_NavigationContext", ()=>(0, _reactRouter.UNSAFE_NavigationContext));
-parcelHelpers.export(exports, "UNSAFE_RouteContext", ()=>(0, _reactRouter.UNSAFE_RouteContext));
-parcelHelpers.export(exports, "UNSAFE_useRouteId", ()=>(0, _reactRouter.UNSAFE_useRouteId));
-parcelHelpers.export(exports, "createMemoryRouter", ()=>(0, _reactRouter.createMemoryRouter));
-parcelHelpers.export(exports, "createPath", ()=>(0, _reactRouter.createPath));
-parcelHelpers.export(exports, "createRoutesFromChildren", ()=>(0, _reactRouter.createRoutesFromChildren));
-parcelHelpers.export(exports, "createRoutesFromElements", ()=>(0, _reactRouter.createRoutesFromElements));
-parcelHelpers.export(exports, "defer", ()=>(0, _reactRouter.defer));
-parcelHelpers.export(exports, "generatePath", ()=>(0, _reactRouter.generatePath));
-parcelHelpers.export(exports, "isRouteErrorResponse", ()=>(0, _reactRouter.isRouteErrorResponse));
-parcelHelpers.export(exports, "json", ()=>(0, _reactRouter.json));
-parcelHelpers.export(exports, "matchPath", ()=>(0, _reactRouter.matchPath));
-parcelHelpers.export(exports, "matchRoutes", ()=>(0, _reactRouter.matchRoutes));
-parcelHelpers.export(exports, "parsePath", ()=>(0, _reactRouter.parsePath));
-parcelHelpers.export(exports, "redirect", ()=>(0, _reactRouter.redirect));
-parcelHelpers.export(exports, "redirectDocument", ()=>(0, _reactRouter.redirectDocument));
-parcelHelpers.export(exports, "renderMatches", ()=>(0, _reactRouter.renderMatches));
-parcelHelpers.export(exports, "replace", ()=>(0, _reactRouter.replace));
-parcelHelpers.export(exports, "resolvePath", ()=>(0, _reactRouter.resolvePath));
-parcelHelpers.export(exports, "useActionData", ()=>(0, _reactRouter.useActionData));
-parcelHelpers.export(exports, "useAsyncError", ()=>(0, _reactRouter.useAsyncError));
-parcelHelpers.export(exports, "useAsyncValue", ()=>(0, _reactRouter.useAsyncValue));
-parcelHelpers.export(exports, "useBlocker", ()=>(0, _reactRouter.useBlocker));
-parcelHelpers.export(exports, "useHref", ()=>(0, _reactRouter.useHref));
-parcelHelpers.export(exports, "useInRouterContext", ()=>(0, _reactRouter.useInRouterContext));
-parcelHelpers.export(exports, "useLoaderData", ()=>(0, _reactRouter.useLoaderData));
-parcelHelpers.export(exports, "useLocation", ()=>(0, _reactRouter.useLocation));
-parcelHelpers.export(exports, "useMatch", ()=>(0, _reactRouter.useMatch));
-parcelHelpers.export(exports, "useMatches", ()=>(0, _reactRouter.useMatches));
-parcelHelpers.export(exports, "useNavigate", ()=>(0, _reactRouter.useNavigate));
-parcelHelpers.export(exports, "useNavigation", ()=>(0, _reactRouter.useNavigation));
-parcelHelpers.export(exports, "useNavigationType", ()=>(0, _reactRouter.useNavigationType));
-parcelHelpers.export(exports, "useOutlet", ()=>(0, _reactRouter.useOutlet));
-parcelHelpers.export(exports, "useOutletContext", ()=>(0, _reactRouter.useOutletContext));
-parcelHelpers.export(exports, "useParams", ()=>(0, _reactRouter.useParams));
-parcelHelpers.export(exports, "useResolvedPath", ()=>(0, _reactRouter.useResolvedPath));
-parcelHelpers.export(exports, "useRevalidator", ()=>(0, _reactRouter.useRevalidator));
-parcelHelpers.export(exports, "useRouteError", ()=>(0, _reactRouter.useRouteError));
-parcelHelpers.export(exports, "useRouteLoaderData", ()=>(0, _reactRouter.useRouteLoaderData));
-parcelHelpers.export(exports, "useRoutes", ()=>(0, _reactRouter.useRoutes));
-parcelHelpers.export(exports, "UNSAFE_ErrorResponseImpl", ()=>(0, _router.UNSAFE_ErrorResponseImpl));
-//#endregion
-parcelHelpers.export(exports, "BrowserRouter", ()=>BrowserRouter);
-parcelHelpers.export(exports, "Form", ()=>Form);
-parcelHelpers.export(exports, "HashRouter", ()=>HashRouter);
-parcelHelpers.export(exports, "Link", ()=>Link);
-parcelHelpers.export(exports, "NavLink", ()=>NavLink);
-parcelHelpers.export(exports, "RouterProvider", ()=>RouterProvider);
-parcelHelpers.export(exports, "ScrollRestoration", ()=>ScrollRestoration);
-parcelHelpers.export(exports, "UNSAFE_FetchersContext", ()=>FetchersContext);
-parcelHelpers.export(exports, "UNSAFE_ViewTransitionContext", ()=>ViewTransitionContext);
-parcelHelpers.export(exports, "UNSAFE_useScrollRestoration", ()=>useScrollRestoration);
-parcelHelpers.export(exports, "createBrowserRouter", ()=>createBrowserRouter);
-parcelHelpers.export(exports, "createHashRouter", ()=>createHashRouter);
-parcelHelpers.export(exports, "createSearchParams", ()=>createSearchParams);
-parcelHelpers.export(exports, "unstable_HistoryRouter", ()=>HistoryRouter);
-parcelHelpers.export(exports, "unstable_usePrompt", ()=>usePrompt);
-parcelHelpers.export(exports, "unstable_useViewTransitionState", ()=>useViewTransitionState);
-parcelHelpers.export(exports, "useBeforeUnload", ()=>useBeforeUnload);
-parcelHelpers.export(exports, "useFetcher", ()=>useFetcher);
-parcelHelpers.export(exports, "useFetchers", ()=>useFetchers);
-parcelHelpers.export(exports, "useFormAction", ()=>useFormAction);
-parcelHelpers.export(exports, "useLinkClickHandler", ()=>useLinkClickHandler);
-parcelHelpers.export(exports, "useSearchParams", ()=>useSearchParams);
-parcelHelpers.export(exports, "useSubmit", ()=>useSubmit);
+parcelHelpers.export(exports, "MainView", ()=>MainView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
-var _reactDom = require("react-dom");
-var _reactRouter = require("react-router");
-var _router = require("@remix-run/router");
-function _extends() {
-    _extends = Object.assign ? Object.assign.bind() : function(target) {
-        for(var i = 1; i < arguments.length; i++){
-            var source = arguments[i];
-            for(var key in source)if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
-        }
-        return target;
-    };
-    return _extends.apply(this, arguments);
-}
-function _objectWithoutPropertiesLoose(source, excluded) {
-    if (source == null) return {};
-    var target = {};
-    var sourceKeys = Object.keys(source);
-    var key, i;
-    for(i = 0; i < sourceKeys.length; i++){
-        key = sourceKeys[i];
-        if (excluded.indexOf(key) >= 0) continue;
-        target[key] = source[key];
-    }
-    return target;
-}
-const defaultMethod = "get";
-const defaultEncType = "application/x-www-form-urlencoded";
-function isHtmlElement(object) {
-    return object != null && typeof object.tagName === "string";
-}
-function isButtonElement(object) {
-    return isHtmlElement(object) && object.tagName.toLowerCase() === "button";
-}
-function isFormElement(object) {
-    return isHtmlElement(object) && object.tagName.toLowerCase() === "form";
-}
-function isInputElement(object) {
-    return isHtmlElement(object) && object.tagName.toLowerCase() === "input";
-}
-function isModifiedEvent(event) {
-    return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-}
-function shouldProcessLinkClick(event, target) {
-    return event.button === 0 && // Ignore everything but left clicks
-    (!target || target === "_self") && // Let browser handle "target=_blank" etc.
-    !isModifiedEvent(event) // Ignore clicks with modifier keys
-    ;
-}
-/**
- * Creates a URLSearchParams object using the given initializer.
- *
- * This is identical to `new URLSearchParams(init)` except it also
- * supports arrays as values in the object form of the initializer
- * instead of just strings. This is convenient when you need multiple
- * values for a given key, but don't want to use an array initializer.
- *
- * For example, instead of:
- *
- *   let searchParams = new URLSearchParams([
- *     ['sort', 'name'],
- *     ['sort', 'price']
- *   ]);
- *
- * you can do:
- *
- *   let searchParams = createSearchParams({
- *     sort: ['name', 'price']
- *   });
- */ function createSearchParams(init) {
-    if (init === void 0) init = "";
-    return new URLSearchParams(typeof init === "string" || Array.isArray(init) || init instanceof URLSearchParams ? init : Object.keys(init).reduce((memo, key)=>{
-        let value = init[key];
-        return memo.concat(Array.isArray(value) ? value.map((v)=>[
-                key,
-                v
-            ]) : [
-            [
-                key,
-                value
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _movieCard = require("../movie-card/movie-card"); // Correct import
+var _movieView = require("../movie-view/movie-view");
+var _signupView = require("../signup-view/signup-view");
+var _loginView = require("../login-view/login-view"); // Ensure this import is correct
+var _row = require("react-bootstrap/Row");
+var _rowDefault = parcelHelpers.interopDefault(_row);
+var _col = require("react-bootstrap/Col");
+var _colDefault = parcelHelpers.interopDefault(_col);
+var _container = require("react-bootstrap/Container");
+var _containerDefault = parcelHelpers.interopDefault(_container);
+var _s = $RefreshSig$();
+const MainView = ()=>{
+    _s();
+    // Retrieve stored user and token from localStorage
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
+    const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
+    const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
+    const [movies, setMovies] = (0, _react.useState)([]);
+    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    (0, _react.useEffect)(()=>{
+        if (!token) return;
+        fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>response.json()).then((data)=>{
+            setMovies(data);
+        }).catch((error)=>{
+            console.error("Error fetching movies:", error);
+        });
+    }, [
+        token
+    ]);
+    if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _containerDefault.default), {
+        className: "mt-5",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
+            className: "justify-content-md-center",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                    md: 5,
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
+                        onLoggedIn: (user, token)=>{
+                            setUser(user);
+                            setToken(token);
+                            // Save user and token to localStorage
+                            localStorage.setItem("user", JSON.stringify(user));
+                            localStorage.setItem("token", token);
+                        }
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 41,
+                        columnNumber: 11
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 40,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                    md: 12,
+                    className: "text-center my-3",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: "or"
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 52,
+                        columnNumber: 13
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 51,
+                    columnNumber: 11
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                    md: 5,
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 55,
+                        columnNumber: 13
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 54,
+                    columnNumber: 11
+                }, undefined)
             ]
-        ]);
-    }, []));
-}
-function getSearchParamsForLocation(locationSearch, defaultSearchParams) {
-    let searchParams = createSearchParams(locationSearch);
-    if (defaultSearchParams) // Use `defaultSearchParams.forEach(...)` here instead of iterating of
-    // `defaultSearchParams.keys()` to work-around a bug in Firefox related to
-    // web extensions. Relevant Bugzilla tickets:
-    // https://bugzilla.mozilla.org/show_bug.cgi?id=1414602
-    // https://bugzilla.mozilla.org/show_bug.cgi?id=1023984
-    defaultSearchParams.forEach((_, key)=>{
-        if (!searchParams.has(key)) defaultSearchParams.getAll(key).forEach((value)=>{
-            searchParams.append(key, value);
-        });
-    });
-    return searchParams;
-}
-// One-time check for submitter support
-let _formDataSupportsSubmitter = null;
-function isFormDataSubmitterSupported() {
-    if (_formDataSupportsSubmitter === null) try {
-        new FormData(document.createElement("form"), // @ts-expect-error if FormData supports the submitter parameter, this will throw
-        0);
-        _formDataSupportsSubmitter = false;
-    } catch (e) {
-        _formDataSupportsSubmitter = true;
-    }
-    return _formDataSupportsSubmitter;
-}
-const supportedFormEncTypes = new Set([
-    "application/x-www-form-urlencoded",
-    "multipart/form-data",
-    "text/plain"
-]);
-function getFormEncType(encType) {
-    if (encType != null && !supportedFormEncTypes.has(encType)) {
-        (0, _router.UNSAFE_warning)(false, '"' + encType + '" is not a valid `encType` for `<Form>`/`<fetcher.Form>` ' + ('and will default to "' + defaultEncType + '"'));
-        return null;
-    }
-    return encType;
-}
-function getFormSubmissionInfo(target, basename) {
-    let method;
-    let action;
-    let encType;
-    let formData;
-    let body;
-    if (isFormElement(target)) {
-        // When grabbing the action from the element, it will have had the basename
-        // prefixed to ensure non-JS scenarios work, so strip it since we'll
-        // re-prefix in the router
-        let attr = target.getAttribute("action");
-        action = attr ? (0, _router.stripBasename)(attr, basename) : null;
-        method = target.getAttribute("method") || defaultMethod;
-        encType = getFormEncType(target.getAttribute("enctype")) || defaultEncType;
-        formData = new FormData(target);
-    } else if (isButtonElement(target) || isInputElement(target) && (target.type === "submit" || target.type === "image")) {
-        let form = target.form;
-        if (form == null) throw new Error('Cannot submit a <button> or <input type="submit"> without a <form>');
-        // <button>/<input type="submit"> may override attributes of <form>
-        // When grabbing the action from the element, it will have had the basename
-        // prefixed to ensure non-JS scenarios work, so strip it since we'll
-        // re-prefix in the router
-        let attr = target.getAttribute("formaction") || form.getAttribute("action");
-        action = attr ? (0, _router.stripBasename)(attr, basename) : null;
-        method = target.getAttribute("formmethod") || form.getAttribute("method") || defaultMethod;
-        encType = getFormEncType(target.getAttribute("formenctype")) || getFormEncType(form.getAttribute("enctype")) || defaultEncType;
-        // Build a FormData object populated from a form and submitter
-        formData = new FormData(form, target);
-        // If this browser doesn't support the `FormData(el, submitter)` format,
-        // then tack on the submitter value at the end.  This is a lightweight
-        // solution that is not 100% spec compliant.  For complete support in older
-        // browsers, consider using the `formdata-submitter-polyfill` package
-        if (!isFormDataSubmitterSupported()) {
-            let { name, type, value } = target;
-            if (type === "image") {
-                let prefix = name ? name + "." : "";
-                formData.append(prefix + "x", "0");
-                formData.append(prefix + "y", "0");
-            } else if (name) formData.append(name, value);
-        }
-    } else if (isHtmlElement(target)) throw new Error('Cannot submit element that is not <form>, <button>, or <input type="submit|image">');
-    else {
-        method = defaultMethod;
-        action = null;
-        encType = defaultEncType;
-        body = target;
-    }
-    // Send body for <Form encType="text/plain" so we encode it into text
-    if (formData && encType === "text/plain") {
-        body = formData;
-        formData = undefined;
-    }
-    return {
-        action,
-        method: method.toLowerCase(),
-        encType,
-        formData,
-        body
-    };
-}
-const _excluded = [
-    "onClick",
-    "relative",
-    "reloadDocument",
-    "replace",
-    "state",
-    "target",
-    "to",
-    "preventScrollReset",
-    "unstable_viewTransition"
-], _excluded2 = [
-    "aria-current",
-    "caseSensitive",
-    "className",
-    "end",
-    "style",
-    "to",
-    "unstable_viewTransition",
-    "children"
-], _excluded3 = [
-    "fetcherKey",
-    "navigate",
-    "reloadDocument",
-    "replace",
-    "state",
-    "method",
-    "action",
-    "onSubmit",
-    "relative",
-    "preventScrollReset",
-    "unstable_viewTransition"
-];
-// HEY YOU! DON'T TOUCH THIS VARIABLE!
-//
-// It is replaced with the proper version at build time via a babel plugin in
-// the rollup config.
-//
-// Export a global property onto the window for React Router detection by the
-// Core Web Vitals Technology Report.  This way they can configure the `wappalyzer`
-// to detect and properly classify live websites as being built with React Router:
-// https://github.com/HTTPArchive/wappalyzer/blob/main/src/technologies/r.json
-const REACT_ROUTER_VERSION = "6";
-try {
-    window.__reactRouterVersion = REACT_ROUTER_VERSION;
-} catch (e) {
-// no-op
-}
-function createBrowserRouter(routes, opts) {
-    return (0, _router.createRouter)({
-        basename: opts == null ? void 0 : opts.basename,
-        future: _extends({}, opts == null ? void 0 : opts.future, {
-            v7_prependBasename: true
-        }),
-        history: (0, _router.createBrowserHistory)({
-            window: opts == null ? void 0 : opts.window
-        }),
-        hydrationData: (opts == null ? void 0 : opts.hydrationData) || parseHydrationData(),
-        routes,
-        mapRouteProperties: (0, _reactRouter.UNSAFE_mapRouteProperties),
-        unstable_dataStrategy: opts == null ? void 0 : opts.unstable_dataStrategy,
-        unstable_patchRoutesOnNavigation: opts == null ? void 0 : opts.unstable_patchRoutesOnNavigation,
-        window: opts == null ? void 0 : opts.window
-    }).initialize();
-}
-function createHashRouter(routes, opts) {
-    return (0, _router.createRouter)({
-        basename: opts == null ? void 0 : opts.basename,
-        future: _extends({}, opts == null ? void 0 : opts.future, {
-            v7_prependBasename: true
-        }),
-        history: (0, _router.createHashHistory)({
-            window: opts == null ? void 0 : opts.window
-        }),
-        hydrationData: (opts == null ? void 0 : opts.hydrationData) || parseHydrationData(),
-        routes,
-        mapRouteProperties: (0, _reactRouter.UNSAFE_mapRouteProperties),
-        unstable_dataStrategy: opts == null ? void 0 : opts.unstable_dataStrategy,
-        unstable_patchRoutesOnNavigation: opts == null ? void 0 : opts.unstable_patchRoutesOnNavigation,
-        window: opts == null ? void 0 : opts.window
-    }).initialize();
-}
-function parseHydrationData() {
-    var _window;
-    let state = (_window = window) == null ? void 0 : _window.__staticRouterHydrationData;
-    if (state && state.errors) state = _extends({}, state, {
-        errors: deserializeErrors(state.errors)
-    });
-    return state;
-}
-function deserializeErrors(errors) {
-    if (!errors) return null;
-    let entries = Object.entries(errors);
-    let serialized = {};
-    for (let [key, val] of entries){
-        // Hey you!  If you change this, please change the corresponding logic in
-        // serializeErrors in react-router-dom/server.tsx :)
-        if (val && val.__type === "RouteErrorResponse") serialized[key] = new (0, _router.UNSAFE_ErrorResponseImpl)(val.status, val.statusText, val.data, val.internal === true);
-        else if (val && val.__type === "Error") {
-            // Attempt to reconstruct the right type of Error (i.e., ReferenceError)
-            if (val.__subType) {
-                let ErrorConstructor = window[val.__subType];
-                if (typeof ErrorConstructor === "function") try {
-                    // @ts-expect-error
-                    let error = new ErrorConstructor(val.message);
-                    // Wipe away the client-side stack trace.  Nothing to fill it in with
-                    // because we don't serialize SSR stack traces for security reasons
-                    error.stack = "";
-                    serialized[key] = error;
-                } catch (e) {
-                // no-op - fall through and create a normal Error
-                }
-            }
-            if (serialized[key] == null) {
-                let error = new Error(val.message);
-                // Wipe away the client-side stack trace.  Nothing to fill it in with
-                // because we don't serialize SSR stack traces for security reasons
-                error.stack = "";
-                serialized[key] = error;
-            }
-        } else serialized[key] = val;
-    }
-    return serialized;
-}
-const ViewTransitionContext = /*#__PURE__*/ _react.createContext({
-    isTransitioning: false
-});
-ViewTransitionContext.displayName = "ViewTransition";
-const FetchersContext = /*#__PURE__*/ _react.createContext(new Map());
-FetchersContext.displayName = "Fetchers";
-//#endregion
-////////////////////////////////////////////////////////////////////////////////
-//#region Components
-////////////////////////////////////////////////////////////////////////////////
-/**
-  Webpack + React 17 fails to compile on any of the following because webpack
-  complains that `startTransition` doesn't exist in `React`:
-  * import { startTransition } from "react"
-  * import * as React from from "react";
-    "startTransition" in React ? React.startTransition(() => setState()) : setState()
-  * import * as React from from "react";
-    "startTransition" in React ? React["startTransition"](() => setState()) : setState()
+        }, void 0, true, {
+            fileName: "src/components/main-view/main-view.jsx",
+            lineNumber: 39,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 38,
+        columnNumber: 6
+    }, undefined);
+    if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+        md: 8,
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
+            movie: selectedMovie,
+            onBackClick: ()=>setSelectedMovie(null)
+        }, void 0, false, {
+            fileName: "src/components/main-view/main-view.jsx",
+            lineNumber: 64,
+            columnNumber: 19
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 63,
+        columnNumber: 17
+    }, undefined);
+    if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: "The list is empty!"
+    }, void 0, false, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 73,
+        columnNumber: 20
+    }, undefined);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: [
+            movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                    movie: movie,
+                    onMovieClick: (newSelectedMovie)=>{
+                        setSelectedMovie(newSelectedMovie);
+                    }
+                }, _id.movie, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 79,
+                    columnNumber: 17
+                }, undefined)),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: ()=>{
+                    setUser(null);
+                    setToken(null);
+                    localStorage.clear();
+                },
+                children: "Logout"
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 87,
+                columnNumber: 15
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 77,
+        columnNumber: 13
+    }, undefined);
+};
+_s(MainView, "9wJBvfUyU2IigbyWC+M5y3EH9h4=");
+_c = MainView;
+var _c;
+$RefreshReg$(_c, "MainView");
 
-  Moving it to a constant such as the following solves the Webpack/React 17 issue:
-  * import * as React from from "react";
-    const START_TRANSITION = "startTransition";
-    START_TRANSITION in React ? React[START_TRANSITION](() => setState()) : setState()
-
-  However, that introduces webpack/terser minification issues in production builds
-  in React 18 where minification/obfuscation ends up removing the call of
-  React.startTransition entirely from the first half of the ternary.  Grabbing
-  this exported reference once up front resolves that issue.
-
-  See https://github.com/remix-run/react-router/issues/10579
-*/ const START_TRANSITION = "startTransition";
-const startTransitionImpl = _react[START_TRANSITION];
-const FLUSH_SYNC = "flushSync";
-const flushSyncImpl = _reactDom[FLUSH_SYNC];
-const USE_ID = "useId";
-const useIdImpl = _react[USE_ID];
-function startTransitionSafe(cb) {
-    if (startTransitionImpl) startTransitionImpl(cb);
-    else cb();
+  $parcel$ReactRefreshHelpers$f7a6.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
 }
-function flushSyncSafe(cb) {
-    if (flushSyncImpl) flushSyncImpl(cb);
-    else cb();
-}
-class Deferred {
-    constructor(){
-        this.status = "pending";
-        this.promise = new Promise((resolve, reject)=>{
-            this.resolve = (value)=>{
-                if (this.status === "pending") {
-                    this.status = "resolved";
-                    resolve(value);
-                }
-            };
-            this.reject = (reason)=>{
-                if (this.status === "pending") {
-                    this.status = "rejected";
-                    reject(reason);
-                }
-            };
-        });
-    }
-}
-/**
- * Given a Remix Router instance, render the appropriate UI
- */ function RouterProvider(_ref) {
-    let { fallbackElement, router, future } = _ref;
-    let [state, setStateImpl] = _react.useState(router.state);
-    let [pendingState, setPendingState] = _react.useState();
-    let [vtContext, setVtContext] = _react.useState({
-        isTransitioning: false
-    });
-    let [renderDfd, setRenderDfd] = _react.useState();
-    let [transition, setTransition] = _react.useState();
-    let [interruption, setInterruption] = _react.useState();
-    let fetcherData = _react.useRef(new Map());
-    let { v7_startTransition } = future || {};
-    let optInStartTransition = _react.useCallback((cb)=>{
-        if (v7_startTransition) startTransitionSafe(cb);
-        else cb();
-    }, [
-        v7_startTransition
-    ]);
-    let setState = _react.useCallback((newState, _ref2)=>{
-        let { deletedFetchers, unstable_flushSync: flushSync, unstable_viewTransitionOpts: viewTransitionOpts } = _ref2;
-        deletedFetchers.forEach((key)=>fetcherData.current.delete(key));
-        newState.fetchers.forEach((fetcher, key)=>{
-            if (fetcher.data !== undefined) fetcherData.current.set(key, fetcher.data);
-        });
-        let isViewTransitionUnavailable = router.window == null || router.window.document == null || typeof router.window.document.startViewTransition !== "function";
-        // If this isn't a view transition or it's not available in this browser,
-        // just update and be done with it
-        if (!viewTransitionOpts || isViewTransitionUnavailable) {
-            if (flushSync) flushSyncSafe(()=>setStateImpl(newState));
-            else optInStartTransition(()=>setStateImpl(newState));
-            return;
-        }
-        // flushSync + startViewTransition
-        if (flushSync) {
-            // Flush through the context to mark DOM elements as transition=ing
-            flushSyncSafe(()=>{
-                // Cancel any pending transitions
-                if (transition) {
-                    renderDfd && renderDfd.resolve();
-                    transition.skipTransition();
-                }
-                setVtContext({
-                    isTransitioning: true,
-                    flushSync: true,
-                    currentLocation: viewTransitionOpts.currentLocation,
-                    nextLocation: viewTransitionOpts.nextLocation
-                });
-            });
-            // Update the DOM
-            let t = router.window.document.startViewTransition(()=>{
-                flushSyncSafe(()=>setStateImpl(newState));
-            });
-            // Clean up after the animation completes
-            t.finished.finally(()=>{
-                flushSyncSafe(()=>{
-                    setRenderDfd(undefined);
-                    setTransition(undefined);
-                    setPendingState(undefined);
-                    setVtContext({
-                        isTransitioning: false
-                    });
-                });
-            });
-            flushSyncSafe(()=>setTransition(t));
-            return;
-        }
-        // startTransition + startViewTransition
-        if (transition) {
-            // Interrupting an in-progress transition, cancel and let everything flush
-            // out, and then kick off a new transition from the interruption state
-            renderDfd && renderDfd.resolve();
-            transition.skipTransition();
-            setInterruption({
-                state: newState,
-                currentLocation: viewTransitionOpts.currentLocation,
-                nextLocation: viewTransitionOpts.nextLocation
-            });
-        } else {
-            // Completed navigation update with opted-in view transitions, let 'er rip
-            setPendingState(newState);
-            setVtContext({
-                isTransitioning: true,
-                flushSync: false,
-                currentLocation: viewTransitionOpts.currentLocation,
-                nextLocation: viewTransitionOpts.nextLocation
-            });
-        }
-    }, [
-        router.window,
-        transition,
-        renderDfd,
-        fetcherData,
-        optInStartTransition
-    ]);
-    // Need to use a layout effect here so we are subscribed early enough to
-    // pick up on any render-driven redirects/navigations (useEffect/<Navigate>)
-    _react.useLayoutEffect(()=>router.subscribe(setState), [
-        router,
-        setState
-    ]);
-    // When we start a view transition, create a Deferred we can use for the
-    // eventual "completed" render
-    _react.useEffect(()=>{
-        if (vtContext.isTransitioning && !vtContext.flushSync) setRenderDfd(new Deferred());
-    }, [
-        vtContext
-    ]);
-    // Once the deferred is created, kick off startViewTransition() to update the
-    // DOM and then wait on the Deferred to resolve (indicating the DOM update has
-    // happened)
-    _react.useEffect(()=>{
-        if (renderDfd && pendingState && router.window) {
-            let newState = pendingState;
-            let renderPromise = renderDfd.promise;
-            let transition = router.window.document.startViewTransition(async ()=>{
-                optInStartTransition(()=>setStateImpl(newState));
-                await renderPromise;
-            });
-            transition.finished.finally(()=>{
-                setRenderDfd(undefined);
-                setTransition(undefined);
-                setPendingState(undefined);
-                setVtContext({
-                    isTransitioning: false
-                });
-            });
-            setTransition(transition);
-        }
-    }, [
-        optInStartTransition,
-        pendingState,
-        renderDfd,
-        router.window
-    ]);
-    // When the new location finally renders and is committed to the DOM, this
-    // effect will run to resolve the transition
-    _react.useEffect(()=>{
-        if (renderDfd && pendingState && state.location.key === pendingState.location.key) renderDfd.resolve();
-    }, [
-        renderDfd,
-        transition,
-        state.location,
-        pendingState
-    ]);
-    // If we get interrupted with a new navigation during a transition, we skip
-    // the active transition, let it cleanup, then kick it off again here
-    _react.useEffect(()=>{
-        if (!vtContext.isTransitioning && interruption) {
-            setPendingState(interruption.state);
-            setVtContext({
-                isTransitioning: true,
-                flushSync: false,
-                currentLocation: interruption.currentLocation,
-                nextLocation: interruption.nextLocation
-            });
-            setInterruption(undefined);
-        }
-    }, [
-        vtContext.isTransitioning,
-        interruption
-    ]);
-    _react.useEffect(()=>{
-        (0, _router.UNSAFE_warning)(fallbackElement == null || !router.future.v7_partialHydration, "`<RouterProvider fallbackElement>` is deprecated when using `v7_partialHydration`, use a `HydrateFallback` component instead");
-    // Only log this once on initial mount
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    let navigator = _react.useMemo(()=>{
-        return {
-            createHref: router.createHref,
-            encodeLocation: router.encodeLocation,
-            go: (n)=>router.navigate(n),
-            push: (to, state, opts)=>router.navigate(to, {
-                    state,
-                    preventScrollReset: opts == null ? void 0 : opts.preventScrollReset
-                }),
-            replace: (to, state, opts)=>router.navigate(to, {
-                    replace: true,
-                    state,
-                    preventScrollReset: opts == null ? void 0 : opts.preventScrollReset
-                })
-        };
-    }, [
-        router
-    ]);
-    let basename = router.basename || "/";
-    let dataRouterContext = _react.useMemo(()=>({
-            router,
-            navigator,
-            static: false,
-            basename
-        }), [
-        router,
-        navigator,
-        basename
-    ]);
-    let routerFuture = _react.useMemo(()=>({
-            v7_relativeSplatPath: router.future.v7_relativeSplatPath
-        }), [
-        router.future.v7_relativeSplatPath
-    ]);
-    // The fragment and {null} here are important!  We need them to keep React 18's
-    // useId happy when we are server-rendering since we may have a <script> here
-    // containing the hydrated server-side staticContext (from StaticRouterProvider).
-    // useId relies on the component tree structure to generate deterministic id's
-    // so we need to ensure it remains the same on the client even though
-    // we don't need the <script> tag
-    return /*#__PURE__*/ _react.createElement(_react.Fragment, null, /*#__PURE__*/ _react.createElement((0, _reactRouter.UNSAFE_DataRouterContext).Provider, {
-        value: dataRouterContext
-    }, /*#__PURE__*/ _react.createElement((0, _reactRouter.UNSAFE_DataRouterStateContext).Provider, {
-        value: state
-    }, /*#__PURE__*/ _react.createElement(FetchersContext.Provider, {
-        value: fetcherData.current
-    }, /*#__PURE__*/ _react.createElement(ViewTransitionContext.Provider, {
-        value: vtContext
-    }, /*#__PURE__*/ _react.createElement((0, _reactRouter.Router), {
-        basename: basename,
-        location: state.location,
-        navigationType: state.historyAction,
-        navigator: navigator,
-        future: routerFuture
-    }, state.initialized || router.future.v7_partialHydration ? /*#__PURE__*/ _react.createElement(MemoizedDataRoutes, {
-        routes: router.routes,
-        future: router.future,
-        state: state
-    }) : fallbackElement))))), null);
-}
-// Memoize to avoid re-renders when updating `ViewTransitionContext`
-const MemoizedDataRoutes = /*#__PURE__*/ _react.memo(DataRoutes);
-function DataRoutes(_ref3) {
-    let { routes, future, state } = _ref3;
-    return (0, _reactRouter.UNSAFE_useRoutesImpl)(routes, undefined, state, future);
-}
-/**
- * A `<Router>` for use in web browsers. Provides the cleanest URLs.
- */ function BrowserRouter(_ref4) {
-    let { basename, children, future, window: window1 } = _ref4;
-    let historyRef = _react.useRef();
-    if (historyRef.current == null) historyRef.current = (0, _router.createBrowserHistory)({
-        window: window1,
-        v5Compat: true
-    });
-    let history = historyRef.current;
-    let [state, setStateImpl] = _react.useState({
-        action: history.action,
-        location: history.location
-    });
-    let { v7_startTransition } = future || {};
-    let setState = _react.useCallback((newState)=>{
-        v7_startTransition && startTransitionImpl ? startTransitionImpl(()=>setStateImpl(newState)) : setStateImpl(newState);
-    }, [
-        setStateImpl,
-        v7_startTransition
-    ]);
-    _react.useLayoutEffect(()=>history.listen(setState), [
-        history,
-        setState
-    ]);
-    return /*#__PURE__*/ _react.createElement((0, _reactRouter.Router), {
-        basename: basename,
-        children: children,
-        location: state.location,
-        navigationType: state.action,
-        navigator: history,
-        future: future
-    });
-}
-/**
- * A `<Router>` for use in web browsers. Stores the location in the hash
- * portion of the URL so it is not sent to the server.
- */ function HashRouter(_ref5) {
-    let { basename, children, future, window: window1 } = _ref5;
-    let historyRef = _react.useRef();
-    if (historyRef.current == null) historyRef.current = (0, _router.createHashHistory)({
-        window: window1,
-        v5Compat: true
-    });
-    let history = historyRef.current;
-    let [state, setStateImpl] = _react.useState({
-        action: history.action,
-        location: history.location
-    });
-    let { v7_startTransition } = future || {};
-    let setState = _react.useCallback((newState)=>{
-        v7_startTransition && startTransitionImpl ? startTransitionImpl(()=>setStateImpl(newState)) : setStateImpl(newState);
-    }, [
-        setStateImpl,
-        v7_startTransition
-    ]);
-    _react.useLayoutEffect(()=>history.listen(setState), [
-        history,
-        setState
-    ]);
-    return /*#__PURE__*/ _react.createElement((0, _reactRouter.Router), {
-        basename: basename,
-        children: children,
-        location: state.location,
-        navigationType: state.action,
-        navigator: history,
-        future: future
-    });
-}
-/**
- * A `<Router>` that accepts a pre-instantiated history object. It's important
- * to note that using your own history object is highly discouraged and may add
- * two versions of the history library to your bundles unless you use the same
- * version of the history library that React Router uses internally.
- */ function HistoryRouter(_ref6) {
-    let { basename, children, future, history } = _ref6;
-    let [state, setStateImpl] = _react.useState({
-        action: history.action,
-        location: history.location
-    });
-    let { v7_startTransition } = future || {};
-    let setState = _react.useCallback((newState)=>{
-        v7_startTransition && startTransitionImpl ? startTransitionImpl(()=>setStateImpl(newState)) : setStateImpl(newState);
-    }, [
-        setStateImpl,
-        v7_startTransition
-    ]);
-    _react.useLayoutEffect(()=>history.listen(setState), [
-        history,
-        setState
-    ]);
-    return /*#__PURE__*/ _react.createElement((0, _reactRouter.Router), {
-        basename: basename,
-        children: children,
-        location: state.location,
-        navigationType: state.action,
-        navigator: history,
-        future: future
-    });
-}
-HistoryRouter.displayName = "unstable_HistoryRouter";
-const isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
-const ABSOLUTE_URL_REGEX = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
-/**
- * The public API for rendering a history-aware `<a>`.
- */ const Link = /*#__PURE__*/ _react.forwardRef(function LinkWithRef(_ref7, ref) {
-    let { onClick, relative, reloadDocument, replace, state, target, to, preventScrollReset, unstable_viewTransition } = _ref7, rest = _objectWithoutPropertiesLoose(_ref7, _excluded);
-    let { basename } = _react.useContext((0, _reactRouter.UNSAFE_NavigationContext));
-    // Rendered into <a href> for absolute URLs
-    let absoluteHref;
-    let isExternal = false;
-    if (typeof to === "string" && ABSOLUTE_URL_REGEX.test(to)) {
-        // Render the absolute href server- and client-side
-        absoluteHref = to;
-        // Only check for external origins client-side
-        if (isBrowser) try {
-            let currentUrl = new URL(window.location.href);
-            let targetUrl = to.startsWith("//") ? new URL(currentUrl.protocol + to) : new URL(to);
-            let path = (0, _router.stripBasename)(targetUrl.pathname, basename);
-            if (targetUrl.origin === currentUrl.origin && path != null) // Strip the protocol/origin/basename for same-origin absolute URLs
-            to = path + targetUrl.search + targetUrl.hash;
-            else isExternal = true;
-        } catch (e) {
-            // We can't do external URL detection without a valid URL
-            (0, _router.UNSAFE_warning)(false, '<Link to="' + to + '"> contains an invalid URL which will probably break ' + "when clicked - please update to a valid URL path.");
-        }
-    }
-    // Rendered into <a href> for relative URLs
-    let href = (0, _reactRouter.useHref)(to, {
-        relative
-    });
-    let internalOnClick = useLinkClickHandler(to, {
-        replace,
-        state,
-        target,
-        preventScrollReset,
-        relative,
-        unstable_viewTransition
-    });
-    function handleClick(event) {
-        if (onClick) onClick(event);
-        if (!event.defaultPrevented) internalOnClick(event);
-    }
-    return(/*#__PURE__*/ // eslint-disable-next-line jsx-a11y/anchor-has-content
-    _react.createElement("a", _extends({}, rest, {
-        href: absoluteHref || href,
-        onClick: isExternal || reloadDocument ? onClick : handleClick,
-        ref: ref,
-        target: target
-    })));
-});
-Link.displayName = "Link";
-/**
- * A `<Link>` wrapper that knows if it's "active" or not.
- */ const NavLink = /*#__PURE__*/ _react.forwardRef(function NavLinkWithRef(_ref8, ref) {
-    let { "aria-current": ariaCurrentProp = "page", caseSensitive = false, className: classNameProp = "", end = false, style: styleProp, to, unstable_viewTransition, children } = _ref8, rest = _objectWithoutPropertiesLoose(_ref8, _excluded2);
-    let path = (0, _reactRouter.useResolvedPath)(to, {
-        relative: rest.relative
-    });
-    let location = (0, _reactRouter.useLocation)();
-    let routerState = _react.useContext((0, _reactRouter.UNSAFE_DataRouterStateContext));
-    let { navigator, basename } = _react.useContext((0, _reactRouter.UNSAFE_NavigationContext));
-    let isTransitioning = routerState != null && // Conditional usage is OK here because the usage of a data router is static
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useViewTransitionState(path) && unstable_viewTransition === true;
-    let toPathname = navigator.encodeLocation ? navigator.encodeLocation(path).pathname : path.pathname;
-    let locationPathname = location.pathname;
-    let nextLocationPathname = routerState && routerState.navigation && routerState.navigation.location ? routerState.navigation.location.pathname : null;
-    if (!caseSensitive) {
-        locationPathname = locationPathname.toLowerCase();
-        nextLocationPathname = nextLocationPathname ? nextLocationPathname.toLowerCase() : null;
-        toPathname = toPathname.toLowerCase();
-    }
-    if (nextLocationPathname && basename) nextLocationPathname = (0, _router.stripBasename)(nextLocationPathname, basename) || nextLocationPathname;
-    // If the `to` has a trailing slash, look at that exact spot.  Otherwise,
-    // we're looking for a slash _after_ what's in `to`.  For example:
-    //
-    // <NavLink to="/users"> and <NavLink to="/users/">
-    // both want to look for a / at index 6 to match URL `/users/matt`
-    const endSlashPosition = toPathname !== "/" && toPathname.endsWith("/") ? toPathname.length - 1 : toPathname.length;
-    let isActive = locationPathname === toPathname || !end && locationPathname.startsWith(toPathname) && locationPathname.charAt(endSlashPosition) === "/";
-    let isPending = nextLocationPathname != null && (nextLocationPathname === toPathname || !end && nextLocationPathname.startsWith(toPathname) && nextLocationPathname.charAt(toPathname.length) === "/");
-    let renderProps = {
-        isActive,
-        isPending,
-        isTransitioning
-    };
-    let ariaCurrent = isActive ? ariaCurrentProp : undefined;
-    let className;
-    if (typeof classNameProp === "function") className = classNameProp(renderProps);
-    else // If the className prop is not a function, we use a default `active`
-    // class for <NavLink />s that are active. In v5 `active` was the default
-    // value for `activeClassName`, but we are removing that API and can still
-    // use the old default behavior for a cleaner upgrade path and keep the
-    // simple styling rules working as they currently do.
-    className = [
-        classNameProp,
-        isActive ? "active" : null,
-        isPending ? "pending" : null,
-        isTransitioning ? "transitioning" : null
-    ].filter(Boolean).join(" ");
-    let style = typeof styleProp === "function" ? styleProp(renderProps) : styleProp;
-    return /*#__PURE__*/ _react.createElement(Link, _extends({}, rest, {
-        "aria-current": ariaCurrent,
-        className: className,
-        ref: ref,
-        style: style,
-        to: to,
-        unstable_viewTransition: unstable_viewTransition
-    }), typeof children === "function" ? children(renderProps) : children);
-});
-NavLink.displayName = "NavLink";
-/**
- * A `@remix-run/router`-aware `<form>`. It behaves like a normal form except
- * that the interaction with the server is with `fetch` instead of new document
- * requests, allowing components to add nicer UX to the page as the form is
- * submitted and returns with data.
- */ const Form = /*#__PURE__*/ _react.forwardRef((_ref9, forwardedRef)=>{
-    let { fetcherKey, navigate, reloadDocument, replace, state, method = defaultMethod, action, onSubmit, relative, preventScrollReset, unstable_viewTransition } = _ref9, props = _objectWithoutPropertiesLoose(_ref9, _excluded3);
-    let submit = useSubmit();
-    let formAction = useFormAction(action, {
-        relative
-    });
-    let formMethod = method.toLowerCase() === "get" ? "get" : "post";
-    let submitHandler = (event)=>{
-        onSubmit && onSubmit(event);
-        if (event.defaultPrevented) return;
-        event.preventDefault();
-        let submitter = event.nativeEvent.submitter;
-        let submitMethod = (submitter == null ? void 0 : submitter.getAttribute("formmethod")) || method;
-        submit(submitter || event.currentTarget, {
-            fetcherKey,
-            method: submitMethod,
-            navigate,
-            replace,
-            state,
-            relative,
-            preventScrollReset,
-            unstable_viewTransition
-        });
-    };
-    return /*#__PURE__*/ _react.createElement("form", _extends({
-        ref: forwardedRef,
-        method: formMethod,
-        action: formAction,
-        onSubmit: reloadDocument ? onSubmit : submitHandler
-    }, props));
-});
-Form.displayName = "Form";
-/**
- * This component will emulate the browser's scroll restoration on location
- * changes.
- */ function ScrollRestoration(_ref10) {
-    let { getKey, storageKey } = _ref10;
-    useScrollRestoration({
-        getKey,
-        storageKey
-    });
-    return null;
-}
-ScrollRestoration.displayName = "ScrollRestoration";
-//#endregion
-////////////////////////////////////////////////////////////////////////////////
-//#region Hooks
-////////////////////////////////////////////////////////////////////////////////
-var DataRouterHook;
-(function(DataRouterHook) {
-    DataRouterHook["UseScrollRestoration"] = "useScrollRestoration";
-    DataRouterHook["UseSubmit"] = "useSubmit";
-    DataRouterHook["UseSubmitFetcher"] = "useSubmitFetcher";
-    DataRouterHook["UseFetcher"] = "useFetcher";
-    DataRouterHook["useViewTransitionState"] = "useViewTransitionState";
-})(DataRouterHook || (DataRouterHook = {}));
-var DataRouterStateHook;
-(function(DataRouterStateHook) {
-    DataRouterStateHook["UseFetcher"] = "useFetcher";
-    DataRouterStateHook["UseFetchers"] = "useFetchers";
-    DataRouterStateHook["UseScrollRestoration"] = "useScrollRestoration";
-})(DataRouterStateHook || (DataRouterStateHook = {}));
-// Internal hooks
-function getDataRouterConsoleError(hookName) {
-    return hookName + " must be used within a data router.  See https://reactrouter.com/routers/picking-a-router.";
-}
-function useDataRouterContext(hookName) {
-    let ctx = _react.useContext((0, _reactRouter.UNSAFE_DataRouterContext));
-    !ctx && (0, _router.UNSAFE_invariant)(false, getDataRouterConsoleError(hookName));
-    return ctx;
-}
-function useDataRouterState(hookName) {
-    let state = _react.useContext((0, _reactRouter.UNSAFE_DataRouterStateContext));
-    !state && (0, _router.UNSAFE_invariant)(false, getDataRouterConsoleError(hookName));
-    return state;
-}
-// External hooks
-/**
- * Handles the click behavior for router `<Link>` components. This is useful if
- * you need to create custom `<Link>` components with the same click behavior we
- * use in our exported `<Link>`.
- */ function useLinkClickHandler(to, _temp) {
-    let { target, replace: replaceProp, state, preventScrollReset, relative, unstable_viewTransition } = _temp === void 0 ? {} : _temp;
-    let navigate = (0, _reactRouter.useNavigate)();
-    let location = (0, _reactRouter.useLocation)();
-    let path = (0, _reactRouter.useResolvedPath)(to, {
-        relative
-    });
-    return _react.useCallback((event)=>{
-        if (shouldProcessLinkClick(event, target)) {
-            event.preventDefault();
-            // If the URL hasn't changed, a regular <a> will do a replace instead of
-            // a push, so do the same here unless the replace prop is explicitly set
-            let replace = replaceProp !== undefined ? replaceProp : (0, _reactRouter.createPath)(location) === (0, _reactRouter.createPath)(path);
-            navigate(to, {
-                replace,
-                state,
-                preventScrollReset,
-                relative,
-                unstable_viewTransition
-            });
-        }
-    }, [
-        location,
-        navigate,
-        path,
-        replaceProp,
-        state,
-        target,
-        to,
-        preventScrollReset,
-        relative,
-        unstable_viewTransition
-    ]);
-}
-/**
- * A convenient wrapper for reading and writing search parameters via the
- * URLSearchParams interface.
- */ function useSearchParams(defaultInit) {
-    (0, _router.UNSAFE_warning)(typeof URLSearchParams !== "undefined", "You cannot use the `useSearchParams` hook in a browser that does not support the URLSearchParams API. If you need to support Internet Explorer 11, we recommend you load a polyfill such as https://github.com/ungap/url-search-params.");
-    let defaultSearchParamsRef = _react.useRef(createSearchParams(defaultInit));
-    let hasSetSearchParamsRef = _react.useRef(false);
-    let location = (0, _reactRouter.useLocation)();
-    let searchParams = _react.useMemo(()=>// Only merge in the defaults if we haven't yet called setSearchParams.
-        // Once we call that we want those to take precedence, otherwise you can't
-        // remove a param with setSearchParams({}) if it has an initial value
-        getSearchParamsForLocation(location.search, hasSetSearchParamsRef.current ? null : defaultSearchParamsRef.current), [
-        location.search
-    ]);
-    let navigate = (0, _reactRouter.useNavigate)();
-    let setSearchParams = _react.useCallback((nextInit, navigateOptions)=>{
-        const newSearchParams = createSearchParams(typeof nextInit === "function" ? nextInit(searchParams) : nextInit);
-        hasSetSearchParamsRef.current = true;
-        navigate("?" + newSearchParams, navigateOptions);
-    }, [
-        navigate,
-        searchParams
-    ]);
-    return [
-        searchParams,
-        setSearchParams
-    ];
-}
-function validateClientSideSubmission() {
-    if (typeof document === "undefined") throw new Error("You are calling submit during the server render. Try calling submit within a `useEffect` or callback instead.");
-}
-let fetcherId = 0;
-let getUniqueFetcherId = ()=>"__" + String(++fetcherId) + "__";
-/**
- * Returns a function that may be used to programmatically submit a form (or
- * some arbitrary data) to the server.
- */ function useSubmit() {
-    let { router } = useDataRouterContext(DataRouterHook.UseSubmit);
-    let { basename } = _react.useContext((0, _reactRouter.UNSAFE_NavigationContext));
-    let currentRouteId = (0, _reactRouter.UNSAFE_useRouteId)();
-    return _react.useCallback(function(target, options) {
-        if (options === void 0) options = {};
-        validateClientSideSubmission();
-        let { action, method, encType, formData, body } = getFormSubmissionInfo(target, basename);
-        if (options.navigate === false) {
-            let key = options.fetcherKey || getUniqueFetcherId();
-            router.fetch(key, currentRouteId, options.action || action, {
-                preventScrollReset: options.preventScrollReset,
-                formData,
-                body,
-                formMethod: options.method || method,
-                formEncType: options.encType || encType,
-                unstable_flushSync: options.unstable_flushSync
-            });
-        } else router.navigate(options.action || action, {
-            preventScrollReset: options.preventScrollReset,
-            formData,
-            body,
-            formMethod: options.method || method,
-            formEncType: options.encType || encType,
-            replace: options.replace,
-            state: options.state,
-            fromRouteId: currentRouteId,
-            unstable_flushSync: options.unstable_flushSync,
-            unstable_viewTransition: options.unstable_viewTransition
-        });
-    }, [
-        router,
-        basename,
-        currentRouteId
-    ]);
-}
-} finally {"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","react-bootstrap/Container":"hEdsw"}],"gkKU3":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","react-bootstrap/Container":"hEdsw"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -28344,207 +27425,14 @@ exports.exportAll = function(source, dest) {
             }
         });
     });
-}
-const SCROLL_RESTORATION_STORAGE_KEY = "react-router-scroll-positions";
-let savedScrollPositions = {};
-/**
- * When rendered inside a RouterProvider, will restore scroll positions on navigations
- */ function useScrollRestoration(_temp4) {
-    let { getKey, storageKey } = _temp4 === void 0 ? {} : _temp4;
-    let { router } = useDataRouterContext(DataRouterHook.UseScrollRestoration);
-    let { restoreScrollPosition, preventScrollReset } = useDataRouterState(DataRouterStateHook.UseScrollRestoration);
-    let { basename } = _react.useContext((0, _reactRouter.UNSAFE_NavigationContext));
-    let location = (0, _reactRouter.useLocation)();
-    let matches = (0, _reactRouter.useMatches)();
-    let navigation = (0, _reactRouter.useNavigation)();
-    // Trigger manual scroll restoration while we're active
-    _react.useEffect(()=>{
-        window.history.scrollRestoration = "manual";
-        return ()=>{
-            window.history.scrollRestoration = "auto";
-        };
-    }, []);
-    // Save positions on pagehide
-    usePageHide(_react.useCallback(()=>{
-        if (navigation.state === "idle") {
-            let key = (getKey ? getKey(location, matches) : null) || location.key;
-            savedScrollPositions[key] = window.scrollY;
-        }
-        try {
-            sessionStorage.setItem(storageKey || SCROLL_RESTORATION_STORAGE_KEY, JSON.stringify(savedScrollPositions));
-        } catch (error) {
-            (0, _router.UNSAFE_warning)(false, "Failed to save scroll positions in sessionStorage, <ScrollRestoration /> will not work properly (" + error + ").");
-        }
-        window.history.scrollRestoration = "auto";
-    }, [
-        storageKey,
-        getKey,
-        navigation.state,
-        location,
-        matches
-    ]));
-    // Read in any saved scroll locations
-    if (typeof document !== "undefined") {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        _react.useLayoutEffect(()=>{
-            try {
-                let sessionPositions = sessionStorage.getItem(storageKey || SCROLL_RESTORATION_STORAGE_KEY);
-                if (sessionPositions) savedScrollPositions = JSON.parse(sessionPositions);
-            } catch (e) {
-            // no-op, use default empty object
-            }
-        }, [
-            storageKey
-        ]);
-        // Enable scroll restoration in the router
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        _react.useLayoutEffect(()=>{
-            let getKeyWithoutBasename = getKey && basename !== "/" ? (location, matches)=>getKey(_extends({}, location, {
-                    pathname: (0, _router.stripBasename)(location.pathname, basename) || location.pathname
-                }), matches) : getKey;
-            let disableScrollRestoration = router == null ? void 0 : router.enableScrollRestoration(savedScrollPositions, ()=>window.scrollY, getKeyWithoutBasename);
-            return ()=>disableScrollRestoration && disableScrollRestoration();
-        }, [
-            router,
-            basename,
-            getKey
-        ]);
-        // Restore scrolling when state.restoreScrollPosition changes
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        _react.useLayoutEffect(()=>{
-            // Explicit false means don't do anything (used for submissions)
-            if (restoreScrollPosition === false) return;
-            // been here before, scroll to it
-            if (typeof restoreScrollPosition === "number") {
-                window.scrollTo(0, restoreScrollPosition);
-                return;
-            }
-            // try to scroll to the hash
-            if (location.hash) {
-                let el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
-                if (el) {
-                    el.scrollIntoView();
-                    return;
-                }
-            }
-            // Don't reset if this navigation opted out
-            if (preventScrollReset === true) return;
-            // otherwise go to the top on new locations
-            window.scrollTo(0, 0);
-        }, [
-            location,
-            restoreScrollPosition,
-            preventScrollReset
-        ]);
-    }
-}
-/**
- * Setup a callback to be fired on the window's `beforeunload` event. This is
- * useful for saving some data to `window.localStorage` just before the page
- * refreshes.
- *
- * Note: The `callback` argument should be a function created with
- * `React.useCallback()`.
- */ function useBeforeUnload(callback, options) {
-    let { capture } = options || {};
-    _react.useEffect(()=>{
-        let opts = capture != null ? {
-            capture
-        } : undefined;
-        window.addEventListener("beforeunload", callback, opts);
-        return ()=>{
-            window.removeEventListener("beforeunload", callback, opts);
-        };
-    }, [
-        callback,
-        capture
-    ]);
-}
-/**
- * Setup a callback to be fired on the window's `pagehide` event. This is
- * useful for saving some data to `window.localStorage` just before the page
- * refreshes.  This event is better supported than beforeunload across browsers.
- *
- * Note: The `callback` argument should be a function created with
- * `React.useCallback()`.
- */ function usePageHide(callback, options) {
-    let { capture } = options || {};
-    _react.useEffect(()=>{
-        let opts = capture != null ? {
-            capture
-        } : undefined;
-        window.addEventListener("pagehide", callback, opts);
-        return ()=>{
-            window.removeEventListener("pagehide", callback, opts);
-        };
-    }, [
-        callback,
-        capture
-    ]);
-}
-/**
- * Wrapper around useBlocker to show a window.confirm prompt to users instead
- * of building a custom UI with useBlocker.
- *
- * Warning: This has *a lot of rough edges* and behaves very differently (and
- * very incorrectly in some cases) across browsers if user click addition
- * back/forward navigations while the confirm is open.  Use at your own risk.
- */ function usePrompt(_ref12) {
-    let { when, message } = _ref12;
-    let blocker = (0, _reactRouter.useBlocker)(when);
-    _react.useEffect(()=>{
-        if (blocker.state === "blocked") {
-            let proceed = window.confirm(message);
-            if (proceed) // This timeout is needed to avoid a weird "race" on POP navigations
-            // between the `window.history` revert navigation and the result of
-            // `window.confirm`
-            setTimeout(blocker.proceed, 0);
-            else blocker.reset();
-        }
-    }, [
-        blocker,
-        message
-    ]);
-    _react.useEffect(()=>{
-        if (blocker.state === "blocked" && !when) blocker.reset();
-    }, [
-        blocker,
-        when
-    ]);
-}
-/**
- * Return a boolean indicating if there is an active view transition to the
- * given href.  You can use this value to render CSS classes or viewTransitionName
- * styles onto your elements
- *
- * @param href The destination href
- * @param [opts.relative] Relative routing type ("route" | "path")
- */ function useViewTransitionState(to, opts) {
-    if (opts === void 0) opts = {};
-    let vtContext = _react.useContext(ViewTransitionContext);
-    !(vtContext != null) && (0, _router.UNSAFE_invariant)(false, "`unstable_useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?");
-    let { basename } = useDataRouterContext(DataRouterHook.useViewTransitionState);
-    let path = (0, _reactRouter.useResolvedPath)(to, {
-        relative: opts.relative
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
     });
-    if (!vtContext.isTransitioning) return false;
-    let currentPath = (0, _router.stripBasename)(vtContext.currentLocation.pathname, basename) || vtContext.currentLocation.pathname;
-    let nextPath = (0, _router.stripBasename)(vtContext.nextLocation.pathname, basename) || vtContext.nextLocation.pathname;
-    // Transition is active if we're going to or coming from the indicated
-    // destination.  This ensures that other PUSH navigations that reverse
-    // an indicated transition apply.  I.e., on the list view you have:
-    //
-    //   <NavLink to="/details/1" unstable_viewTransition>
-    //
-    // If you click the breadcrumb back to the list view:
-    //
-    //   <NavLink to="/list" unstable_viewTransition>
-    //
-    // We should apply the transition because it's indicated as active going
-    // from /list -> /details/1 and therefore should be active on the reverse
-    // (even though this isn't strictly a POP reverse)
-    return (0, _router.matchPath)(path.pathname, nextPath) != null || (0, _router.matchPath)(path.pathname, currentPath) != null;
-}
+};
 
 },{}],"km3Ru":[function(require,module,exports) {
 "use strict";
@@ -31693,171 +30581,172 @@ const SignupView = ()=>{
                 "Content-Type": "application/json"
             }
         }).then((response)=>{
-            if (!response.ok) return response.json().then((error)=>{
-                throw new Error(error.message);
-            });
-            alert("Signup successful");
-            window.location.reload();
-        }).catch((error)=>{
-            console.error("Signup failed:", error);
-            setErrorMessage("Signup failed. Please try again.");
+            if (response.ok) {
+                alert("Signup successful");
+                window.location.reload();
+            } else alert("Signup failed");
         });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "signup-view-container",
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
-            onSubmit: handleSubmit,
-            className: "signup-form",
-            children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                    controlId: "signUpFormUsername",
-                    className: "form-group",
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                            className: "form-label",
-                            children: "Username:"
-                        }, void 0, false, {
-                            fileName: "src/components/signup-view/signup-view.jsx",
-                            lineNumber: 48,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                            type: "text",
-                            value: username,
-                            onChange: (e)=>setUsername(e.target.value),
-                            required: true,
-                            minLength: "5",
-                            className: "form-input"
-                        }, void 0, false, {
-                            fileName: "src/components/signup-view/signup-view.jsx",
-                            lineNumber: 49,
-                            columnNumber: 11
-                        }, undefined)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/signup-view/signup-view.jsx",
-                    lineNumber: 47,
-                    columnNumber: 9
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                    controlId: "signUpFormPassword",
-                    className: "form-group",
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                            className: "form-label",
-                            children: "Password:"
-                        }, void 0, false, {
-                            fileName: "src/components/signup-view/signup-view.jsx",
-                            lineNumber: 60,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                            type: "password",
-                            value: password,
-                            onChange: (e)=>setPassword(e.target.value),
-                            required: true,
-                            minLength: "8",
-                            className: "form-input"
-                        }, void 0, false, {
-                            fileName: "src/components/signup-view/signup-view.jsx",
-                            lineNumber: 61,
-                            columnNumber: 11
-                        }, undefined)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/signup-view/signup-view.jsx",
-                    lineNumber: 59,
-                    columnNumber: 9
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                    controlId: "signUpFormEmail",
-                    className: "form-group",
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                            className: "form-label",
-                            children: "Email:"
-                        }, void 0, false, {
-                            fileName: "src/components/signup-view/signup-view.jsx",
-                            lineNumber: 72,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                            type: "email",
-                            value: email,
-                            onChange: (e)=>setEmail(e.target.value),
-                            required: true,
-                            className: "form-input"
-                        }, void 0, false, {
-                            fileName: "src/components/signup-view/signup-view.jsx",
-                            lineNumber: 73,
-                            columnNumber: 11
-                        }, undefined)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/signup-view/signup-view.jsx",
-                    lineNumber: 71,
-                    columnNumber: 9
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                    controlId: "signUpFormBirthday",
-                    className: "form-group",
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                            className: "form-label",
-                            children: "Birthday:"
-                        }, void 0, false, {
-                            fileName: "src/components/signup-view/signup-view.jsx",
-                            lineNumber: 83,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                            type: "date",
-                            value: birthday,
-                            onChange: (e)=>setBirthday(e.target.value),
-                            required: true,
-                            className: "form-input"
-                        }, void 0, false, {
-                            fileName: "src/components/signup-view/signup-view.jsx",
-                            lineNumber: 84,
-                            columnNumber: 11
-                        }, undefined)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/signup-view/signup-view.jsx",
-                    lineNumber: 82,
-                    columnNumber: 9
-                }, undefined),
-                errorMessage && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                    className: "text-danger",
-                    children: errorMessage
-                }, void 0, false, {
-                    fileName: "src/components/signup-view/signup-view.jsx",
-                    lineNumber: 93,
-                    columnNumber: 26
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                    variant: "primary",
-                    className: "btn-submit mt-3",
-                    type: "submit",
-                    children: "Submit"
-                }, void 0, false, {
-                    fileName: "src/components/signup-view/signup-view.jsx",
-                    lineNumber: 95,
-                    columnNumber: 9
-                }, undefined)
-            ]
-        }, void 0, true, {
-            fileName: "src/components/signup-view/signup-view.jsx",
-            lineNumber: 46,
-            columnNumber: 7
-        }, undefined)
-    }, void 0, false, {
+        children: [
+            " ",
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
+                onSubmit: handleSubmit,
+                className: "signup-form",
+                children: [
+                    " ",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                        className: "form-title",
+                        children: "Sign up for MyFlix"
+                    }, void 0, false, {
+                        fileName: "src/components/signup-view/signup-view.jsx",
+                        lineNumber: 40,
+                        columnNumber: 11
+                    }, undefined),
+                    " ",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                        controlId: "signUpFormUsername",
+                        className: "form-group",
+                        children: [
+                            " ",
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                className: "form-label",
+                                children: "Username:"
+                            }, void 0, false, {
+                                fileName: "src/components/signup-view/signup-view.jsx",
+                                lineNumber: 43,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                type: "text",
+                                value: username,
+                                onChange: (e)=>setUsername(e.target.value),
+                                required: true,
+                                minLength: "3",
+                                className: "form-input"
+                            }, void 0, false, {
+                                fileName: "src/components/signup-view/signup-view.jsx",
+                                lineNumber: 44,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/signup-view/signup-view.jsx",
+                        lineNumber: 42,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                        controlId: "signUpFormPassword",
+                        className: "form-group",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                className: "form-label",
+                                children: "Password:"
+                            }, void 0, false, {
+                                fileName: "src/components/signup-view/signup-view.jsx",
+                                lineNumber: 55,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                type: "password",
+                                value: password,
+                                onChange: (e)=>setPassword(e.target.value),
+                                required: true,
+                                className: "form-input"
+                            }, void 0, false, {
+                                fileName: "src/components/signup-view/signup-view.jsx",
+                                lineNumber: 56,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/signup-view/signup-view.jsx",
+                        lineNumber: 54,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                        controlId: "signUpFormEmail",
+                        className: "form-group",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                className: "form-label",
+                                children: "Email:"
+                            }, void 0, false, {
+                                fileName: "src/components/signup-view/signup-view.jsx",
+                                lineNumber: 66,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                type: "email",
+                                value: email,
+                                onChange: (e)=>setEmail(e.target.value),
+                                required: true,
+                                className: "form-input"
+                            }, void 0, false, {
+                                fileName: "src/components/signup-view/signup-view.jsx",
+                                lineNumber: 67,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/signup-view/signup-view.jsx",
+                        lineNumber: 65,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                        controlId: "signUpFormBirthday",
+                        className: "form-group",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                className: "form-label",
+                                children: "Birthday:"
+                            }, void 0, false, {
+                                fileName: "src/components/signup-view/signup-view.jsx",
+                                lineNumber: 77,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                type: "date",
+                                value: birthday,
+                                onChange: (e)=>setBirthday(e.target.value),
+                                required: true,
+                                className: "form-input"
+                            }, void 0, false, {
+                                fileName: "src/components/signup-view/signup-view.jsx",
+                                lineNumber: 78,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/signup-view/signup-view.jsx",
+                        lineNumber: 76,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                        variant: "primary",
+                        className: "btn-submit mt-3",
+                        type: "submit",
+                        children: "Submit"
+                    }, void 0, false, {
+                        fileName: "src/components/signup-view/signup-view.jsx",
+                        lineNumber: 87,
+                        columnNumber: 11
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/signup-view/signup-view.jsx",
+                lineNumber: 39,
+                columnNumber: 9
+            }, undefined)
+        ]
+    }, void 0, true, {
         fileName: "src/components/signup-view/signup-view.jsx",
-        lineNumber: 45,
-        columnNumber: 5
+        lineNumber: 38,
+        columnNumber: 7
     }, undefined);
 };
-_s(SignupView, "zZEzedOBIpwmq0ztEm2LYnSebL4=");
+_s(SignupView, "jsOQN3GC2XlBG9ITlzCdpyJOnso=");
 _c = SignupView;
 var _c;
 $RefreshReg$(_c, "SignupView");
@@ -31867,451 +30756,198 @@ $RefreshReg$(_c, "SignupView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bsPVM":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$abf5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bwuIu":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$abf5.prelude(module);
+$parcel$ReactRefreshHelpers$67b2.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "NavigationBar", ()=>NavigationBar);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _reactBootstrap = require("react-bootstrap");
-var _reactRouterDom = require("react-router-dom");
-const NavigationBar = ({ user, onLoggedOut })=>{
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar), {
-        bg: "light",
-        expand: "lg",
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
-            children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Brand, {
-                    as: (0, _reactRouterDom.Link),
-                    to: "/",
-                    children: "MyFlix App"
-                }, void 0, false, {
-                    fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                    lineNumber: 9,
-                    columnNumber: 9
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Toggle, {
-                    "aria-controls": "basic-navbar-nav"
-                }, void 0, false, {
-                    fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                    lineNumber: 12,
-                    columnNumber: 9
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Collapse, {
-                    id: "basic-navbar-nav",
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav), {
-                        className: "me-auto",
-                        children: [
-                            !user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
-                                        as: (0, _reactRouterDom.Link),
-                                        to: "/login",
-                                        children: "Login"
-                                    }, void 0, false, {
-                                        fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 17,
-                                        columnNumber: 17
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
-                                        as: (0, _reactRouterDom.Link),
-                                        to: "/signup",
-                                        children: "Signup"
-                                    }, void 0, false, {
-                                        fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 20,
-                                        columnNumber: 17
-                                    }, undefined)
-                                ]
-                            }, void 0, true),
-                            user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
-                                        as: (0, _reactRouterDom.Link),
-                                        to: "/",
-                                        children: "Home"
-                                    }, void 0, false, {
-                                        fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 27,
-                                        columnNumber: 17
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
-                                        as: (0, _reactRouterDom.Link),
-                                        to: `/users/${user.Username}`,
-                                        children: "Profile"
-                                    }, void 0, false, {
-                                        fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 30,
-                                        columnNumber: 17
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
-                                        onClick: onLoggedOut,
-                                        children: "Logout"
-                                    }, void 0, false, {
-                                        fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 33,
-                                        columnNumber: 17
-                                    }, undefined)
-                                ]
-                            }, void 0, true)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                        lineNumber: 14,
-                        columnNumber: 11
-                    }, undefined)
-                }, void 0, false, {
-                    fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                    lineNumber: 13,
-                    columnNumber: 9
-                }, undefined)
-            ]
-        }, void 0, true, {
-            fileName: "src/components/navigation-bar/navigation-bar.jsx",
-            lineNumber: 8,
-            columnNumber: 7
-        }, undefined)
-    }, void 0, false, {
-        fileName: "src/components/navigation-bar/navigation-bar.jsx",
-        lineNumber: 7,
-        columnNumber: 5
-    }, undefined);
-};
-_c = NavigationBar;
-var _c;
-$RefreshReg$(_c, "NavigationBar");
-
-  $parcel$ReactRefreshHelpers$abf5.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"2vVqf":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$3c12 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$3c12.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ProfileView", ()=>ProfileView);
+parcelHelpers.export(exports, "MovieCard", ()=>MovieCard);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactRouterDom = require("react-router-dom");
-var _reactBootstrap = require("react-bootstrap");
-var _movieCard = require("../movie-card/movie-card");
-var _movieView = require("../movie-view/movie-view");
-var _s = $RefreshSig$();
-const ProfileView = ({ user, token, movies, setUser })=>{
-    _s();
-    const { username } = (0, _reactRouterDom.useParams)();
-    const navigate = (0, _reactRouterDom.useNavigate)();
-    const [userUsername, setUserUsername] = (0, _react.useState)(user.Username || "");
-    const [email, setEmail] = (0, _react.useState)(user.Email || "");
-    const [birthday, setBirthday] = (0, _react.useState)(user.Birthday ? user.Birthday.split("T")[0] : "");
-    const [password, setPassword] = (0, _react.useState)("");
-    const [favoriteMovies, setFavoriteMovies] = (0, _react.useState)([]);
-    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
-    (0, _react.useEffect)(()=>{
-        if (user && movies && user.FavoriteMovies) {
-            const favoriteMoviesList = movies.filter((m)=>user.FavoriteMovies.includes(m.id));
-            setFavoriteMovies(favoriteMoviesList);
-        }
-    }, [
-        user,
-        movies
-    ]);
-    const handleUpdate = (e)=>{
-        e.preventDefault();
-        if (!password) {
-            alert("Please enter your password to update your profile");
-            return;
-        }
-        const updatedUser = {
-            Username: userUsername,
-            Email: email,
-            Birthday: birthday,
-            Password: password
-        };
-        console.log("Updated user data:", updatedUser);
-        fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${username}`, {
-            method: "PUT",
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(updatedUser)
-        }).then((response)=>{
-            if (!response.ok) return response.json().then((error)=>{
-                throw new Error(`Update failed: ${error.message}`);
-            });
-            return response.json();
-        }).then((data)=>{
-            alert("Your profile was updated");
-            setUser(data);
-            localStorage.setItem("user", JSON.stringify(data));
-        }).catch((err)=>console.error("Error updating profile:", err));
-    };
-    const handleDeregister = ()=>{
-        fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${username}`, {
-            method: "DELETE",
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            if (response.ok) {
-                alert("User deleted");
-                localStorage.clear();
-                navigate("/login");
-            } else alert("Failed to delete user");
-        }).catch((err)=>console.error("Error deleting user:", err));
-    };
-    if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-        movies: movies,
-        user: user,
-        token: token,
-        setUser: setUser,
-        movieId: selectedMovie.id,
-        onBackClick: ()=>setSelectedMovie(null)
-    }, void 0, false, {
-        fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 85,
-        columnNumber: 7
-    }, undefined);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+const MovieCard = ({ movie, onMovieClick })=>{
+    const imageURL = movie.ImageURL || "default_image_url_here"; // Provide a fallback URL
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        onClick: ()=>onMovieClick(movie),
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                md: 6,
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
-                        children: "User Profile"
-                    }, void 0, false, {
-                        fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 99,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
-                        onSubmit: handleUpdate,
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
-                                controlId: "formUsername",
-                                className: "mb-3",
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Label, {
-                                        children: "Username"
-                                    }, void 0, false, {
-                                        fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 102,
-                                        columnNumber: 13
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
-                                        type: "text",
-                                        value: userUsername,
-                                        onChange: (e)=>setUserUsername(e.target.value),
-                                        required: true
-                                    }, void 0, false, {
-                                        fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 103,
-                                        columnNumber: 13
-                                    }, undefined)
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 101,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
-                                controlId: "formEmail",
-                                className: "mb-3",
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Label, {
-                                        children: "Email"
-                                    }, void 0, false, {
-                                        fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 112,
-                                        columnNumber: 13
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
-                                        type: "email",
-                                        value: email,
-                                        onChange: (e)=>setEmail(e.target.value),
-                                        required: true
-                                    }, void 0, false, {
-                                        fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 113,
-                                        columnNumber: 13
-                                    }, undefined)
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 111,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
-                                controlId: "formBirthday",
-                                className: "mb-3",
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Label, {
-                                        children: "Birthday"
-                                    }, void 0, false, {
-                                        fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 122,
-                                        columnNumber: 13
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
-                                        type: "date",
-                                        value: birthday,
-                                        onChange: (e)=>setBirthday(e.target.value)
-                                    }, void 0, false, {
-                                        fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 123,
-                                        columnNumber: 13
-                                    }, undefined)
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 121,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
-                                controlId: "formPassword",
-                                className: "mb-3",
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Label, {
-                                        children: "Password"
-                                    }, void 0, false, {
-                                        fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 131,
-                                        columnNumber: 13
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
-                                        type: "password",
-                                        value: password,
-                                        onChange: (e)=>setPassword(e.target.value),
-                                        placeholder: "Enter your current password",
-                                        required: true
-                                    }, void 0, false, {
-                                        fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 132,
-                                        columnNumber: 13
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Text, {
-                                        className: "text-muted",
-                                        children: "Please enter your password to update your profile"
-                                    }, void 0, false, {
-                                        fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 139,
-                                        columnNumber: 13
-                                    }, undefined)
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 130,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                                variant: "primary",
-                                type: "submit",
-                                children: "Update Profile"
-                            }, void 0, false, {
-                                fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 144,
-                                columnNumber: 11
-                            }, undefined)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 100,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                        variant: "danger",
-                        onClick: handleDeregister,
-                        className: "mt-3",
-                        children: "Delete Account"
-                    }, void 0, false, {
-                        fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 149,
-                        columnNumber: 9
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 98,
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                src: imageURL,
+                alt: `${movie.Title} poster`
+            }, void 0, false, {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 9,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                md: 6,
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
-                        children: "Favorite Movies"
-                    }, void 0, false, {
-                        fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 155,
-                        columnNumber: 9
-                    }, undefined),
-                    favoriteMovies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                        children: "No favorite movies added yet."
-                    }, void 0, false, {
-                        fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 157,
-                        columnNumber: 11
-                    }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                        children: favoriteMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 4,
-                                className: "mb-4",
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                    movie: movie
-                                }, void 0, false, {
-                                    fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 162,
-                                    columnNumber: 17
-                                }, undefined)
-                            }, movie.id, false, {
-                                fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 161,
-                                columnNumber: 15
-                            }, undefined))
-                    }, void 0, false, {
-                        fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 159,
-                        columnNumber: 11
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 154,
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                children: movie.Title
+            }, void 0, false, {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 10,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
-        fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 97,
+        fileName: "src/components/movie-card/movie-card.jsx",
+        lineNumber: 8,
         columnNumber: 5
     }, undefined);
 };
-_s(ProfileView, "RmwYN6i0XwK82ev5yV6C65/52s4=", false, function() {
-    return [
-        (0, _reactRouterDom.useParams),
-        (0, _reactRouterDom.useNavigate)
-    ];
-});
-_c = ProfileView;
+_c = MovieCard;
+MovieCard.propTypes = {
+    movie: (0, _propTypesDefault.default).shape({
+        ImageURL: (0, _propTypesDefault.default).string,
+        Title: (0, _propTypesDefault.default).string
+    }).isRequired,
+    onMovieClick: (0, _propTypesDefault.default).func.isRequired
+};
 var _c;
-$RefreshReg$(_c, "ProfileView");
+$RefreshReg$(_c, "MovieCard");
 
-  $parcel$ReactRefreshHelpers$3c12.postlude(module);
+  $parcel$ReactRefreshHelpers$67b2.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","react-router-dom":"9xmpe","react-bootstrap":"3AD9A","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx"}],"lJZlQ":[function() {},{}],"i5LP7":[function() {},{}]},["gjUm6","1xC6H","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"ggaUx":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$e9f6.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MovieView", ()=>MovieView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+const MovieView = ({ movie, onBackClick })=>{
+    const imageURL = movie.ImageURL || "default_image_url_here"; // Provide a fallback URL
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                    src: imageURL,
+                    alt: `${movie.Title} poster`
+                }, void 0, false, {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 9,
+                    columnNumber: 9
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 8,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: "Title: "
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 12,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: movie.Title
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 13,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 11,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: "Director: "
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 16,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: movie.Director.Name
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 17,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 15,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: "Genre: "
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 20,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: movie.Genre.Name
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 21,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 19,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: onBackClick,
+                children: "Back"
+            }, void 0, false, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 23,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/movie-view/movie-view.jsx",
+        lineNumber: 7,
+        columnNumber: 5
+    }, undefined);
+};
+_c = MovieView;
+MovieView.propTypes = {
+    movie: (0, _propTypesDefault.default).shape({
+        Title: (0, _propTypesDefault.default).string.isRequired,
+        Genre: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string.isRequired
+        }).isRequired,
+        Director: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string.isRequired
+        }).isRequired,
+        ImageURL: (0, _propTypesDefault.default).string
+    }).isRequired,
+    onBackClick: (0, _propTypesDefault.default).func.isRequired
+};
+var _c;
+$RefreshReg$(_c, "MovieView");
+
+  $parcel$ReactRefreshHelpers$e9f6.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lJZlQ":[function() {},{}],"i5LP7":[function() {},{}]},["gjUm6","1xC6H","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
