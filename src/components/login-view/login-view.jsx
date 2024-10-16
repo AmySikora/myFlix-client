@@ -42,32 +42,36 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formUsername" className="form-group">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </Form.Group>
+    <div className="login-view-container">
+      <Form onSubmit={handleSubmit} className="login-form">
+        <Form.Group controlId="formUsername" className="form-group">
+          <Form.Label className="form-label">Username:</Form.Label>
+          <Form.Control
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            className="form-input"
+          />
+        </Form.Group>
 
-      <Form.Group controlId="formPassword" className="form-group">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </Form.Group>
+        <Form.Group controlId="formPassword" className="form-group">
+          <Form.Label className="form-label">Password:</Form.Label>
+          <Form.Control
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="form-input"
+          />
+        </Form.Group>
 
-      {errorMessage && <p className="text-danger">{errorMessage}</p>}
+        {errorMessage && <p className="text-danger">{errorMessage}</p>}
 
-      <Button variant="primary" type="submit">
-        Login
-      </Button>
-    </Form>
+        <Button variant="primary" className="btn-submit mt-3" type="submit">
+          Login
+        </Button>
+      </Form>
+    </div>
   );
 };

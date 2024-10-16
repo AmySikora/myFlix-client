@@ -42364,82 +42364,95 @@ const LoginView = ({ onLoggedIn })=>{
             setErrorMessage("Login failed. Please try again.");
         });
     };
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
-        onSubmit: handleSubmit,
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                controlId: "formUsername",
-                className: "form-group",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                        children: "Username:"
-                    }, void 0, false, {
-                        fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 47,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                        type: "text",
-                        value: username,
-                        onChange: (e)=>setUsername(e.target.value),
-                        required: true
-                    }, void 0, false, {
-                        fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 48,
-                        columnNumber: 9
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 46,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                controlId: "formPassword",
-                className: "form-group",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                        children: "Password:"
-                    }, void 0, false, {
-                        fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 57,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                        type: "password",
-                        value: password,
-                        onChange: (e)=>setPassword(e.target.value),
-                        required: true
-                    }, void 0, false, {
-                        fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 58,
-                        columnNumber: 9
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 56,
-                columnNumber: 7
-            }, undefined),
-            errorMessage && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                className: "text-danger",
-                children: errorMessage
-            }, void 0, false, {
-                fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 66,
-                columnNumber: 24
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                variant: "primary",
-                type: "submit",
-                children: "Login"
-            }, void 0, false, {
-                fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 68,
-                columnNumber: 7
-            }, undefined)
-        ]
-    }, void 0, true, {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "login-view-container",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
+            onSubmit: handleSubmit,
+            className: "login-form",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                    controlId: "formUsername",
+                    className: "form-group",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                            className: "form-label",
+                            children: "Username:"
+                        }, void 0, false, {
+                            fileName: "src/components/login-view/login-view.jsx",
+                            lineNumber: 48,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                            type: "text",
+                            value: username,
+                            onChange: (e)=>setUsername(e.target.value),
+                            required: true,
+                            className: "form-input"
+                        }, void 0, false, {
+                            fileName: "src/components/login-view/login-view.jsx",
+                            lineNumber: 49,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/login-view/login-view.jsx",
+                    lineNumber: 47,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                    controlId: "formPassword",
+                    className: "form-group",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                            className: "form-label",
+                            children: "Password:"
+                        }, void 0, false, {
+                            fileName: "src/components/login-view/login-view.jsx",
+                            lineNumber: 59,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                            type: "password",
+                            value: password,
+                            onChange: (e)=>setPassword(e.target.value),
+                            required: true,
+                            className: "form-input"
+                        }, void 0, false, {
+                            fileName: "src/components/login-view/login-view.jsx",
+                            lineNumber: 60,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/login-view/login-view.jsx",
+                    lineNumber: 58,
+                    columnNumber: 9
+                }, undefined),
+                errorMessage && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                    className: "text-danger",
+                    children: errorMessage
+                }, void 0, false, {
+                    fileName: "src/components/login-view/login-view.jsx",
+                    lineNumber: 69,
+                    columnNumber: 26
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                    variant: "primary",
+                    className: "btn-submit mt-3",
+                    type: "submit",
+                    children: "Login"
+                }, void 0, false, {
+                    fileName: "src/components/login-view/login-view.jsx",
+                    lineNumber: 71,
+                    columnNumber: 9
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 46,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
         fileName: "src/components/login-view/login-view.jsx",
         lineNumber: 45,
         columnNumber: 5
