@@ -27602,7 +27602,7 @@ const MovieCard = ({ movie })=>{
                 }, void 0, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
                     lineNumber: 12,
-                    columnNumber: 7
+                    columnNumber: 5
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
                     className: "card-body",
@@ -27612,14 +27612,14 @@ const MovieCard = ({ movie })=>{
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
                             lineNumber: 14,
-                            columnNumber: 9
+                            columnNumber: 7
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                             children: movie.description
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
                             lineNumber: 15,
-                            columnNumber: 9
+                            columnNumber: 7
                         }, undefined),
                         directorName && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                             children: [
@@ -27628,7 +27628,7 @@ const MovieCard = ({ movie })=>{
                                 }, void 0, false, {
                                     fileName: "src/components/movie-card/movie-card.jsx",
                                     lineNumber: 16,
-                                    columnNumber: 37
+                                    columnNumber: 35
                                 }, undefined),
                                 " ",
                                 directorName
@@ -27636,13 +27636,13 @@ const MovieCard = ({ movie })=>{
                         }, void 0, true, {
                             fileName: "src/components/movie-card/movie-card.jsx",
                             lineNumber: 16,
-                            columnNumber: 26
+                            columnNumber: 24
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/movie-card/movie-card.jsx",
                     lineNumber: 13,
-                    columnNumber: 7
+                    columnNumber: 5
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                     className: "btn",
@@ -27650,18 +27650,18 @@ const MovieCard = ({ movie })=>{
                 }, void 0, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
                     lineNumber: 18,
-                    columnNumber: 7
+                    columnNumber: 5
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/movie-card/movie-card.jsx",
             lineNumber: 11,
-            columnNumber: 5
+            columnNumber: 3
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/movie-card/movie-card.jsx",
         lineNumber: 10,
-        columnNumber: 5
+        columnNumber: 4
     }, undefined);
 };
 _c = MovieCard;
