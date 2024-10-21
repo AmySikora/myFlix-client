@@ -31297,17 +31297,23 @@ module.exports = require("374a059340689e89");
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "setUser", ()=>setUser);
+parcelHelpers.export(exports, "clearUser", ()=>clearUser);
 var _toolkit = require("@reduxjs/toolkit");
 const userSlice = (0, _toolkit.createSlice)({
     name: "user",
-    initialState: null,
+    initialState: {
+        user: null
+    },
     reducers: {
         setUser: (state, action)=>{
             state.user = action.payload;
+        },
+        clearUser: (state)=>{
+            state.user = null;
         }
     }
 });
-const { setUser } = userSlice.actions;
+const { setUser, clearUser } = userSlice.actions;
 exports.default = userSlice.reducer;
 
 },{"@reduxjs/toolkit":"fuua8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fuua8":[function(require,module,exports) {
