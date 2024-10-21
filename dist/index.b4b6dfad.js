@@ -27471,18 +27471,33 @@ const LoginView = ({ onLoggedIn })=>{
     _s();
     const [username, setUsername] = (0, _react.useState)("");
     const [password, setPassword] = (0, _react.useState)("");
+    const [errorMessage, setErrorMessage] = (0, _react.useState)(""); // Add state for error message
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
             Username: username,
             Password: password
         };
-        fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/login`, {
+        fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/login", {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify(data)
         }).then((response)=>{
-            if (response.ok) dispatch(setUser(username));
-            else alert("Login failed");
+            if (!response.ok) throw new Error("Login failed. Please check your credentials.");
+            return response.json();
+        }).then((data)=>{
+            if (data.token) {
+                localStorage.setItem("token", data.token); // Store the token
+                localStorage.setItem("user", JSON.stringify(data.user)); // Optionally store user data
+                // Call the onLoggedIn function if it exists
+                if (typeof onLoggedIn === "function") onLoggedIn(data.user);
+                else console.error("onLoggedIn is not a function");
+            } else setErrorMessage("Login failed. Please check your credentials.");
+        }).catch((error)=>{
+            console.error("Login failed:", error.message);
+            setErrorMessage(error.message); // Set the error message if login fails
         });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27500,7 +27515,7 @@ const LoginView = ({ onLoggedIn })=>{
                             children: "Username:"
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 34,
+                            lineNumber: 56,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -27511,13 +27526,13 @@ const LoginView = ({ onLoggedIn })=>{
                             className: "form-input"
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 35,
+                            lineNumber: 57,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 33,
+                    lineNumber: 55,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -27529,7 +27544,7 @@ const LoginView = ({ onLoggedIn })=>{
                             children: "Password:"
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 45,
+                            lineNumber: 67,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -27540,23 +27555,24 @@ const LoginView = ({ onLoggedIn })=>{
                             className: "form-input"
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 46,
+                            lineNumber: 68,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 44,
+                    lineNumber: 66,
                     columnNumber: 9
                 }, undefined),
                 errorMessage && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                    className: "text-danger",
+                    className: "error-message",
                     children: errorMessage
                 }, void 0, false, {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 55,
+                    lineNumber: 77,
                     columnNumber: 26
                 }, undefined),
+                "  ",
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
                     variant: "primary",
                     className: "btn-submit mt-3",
@@ -27564,22 +27580,22 @@ const LoginView = ({ onLoggedIn })=>{
                     children: "Submit"
                 }, void 0, false, {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 57,
+                    lineNumber: 79,
                     columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 32,
+            lineNumber: 54,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/login-view/login-view.jsx",
-        lineNumber: 31,
+        lineNumber: 53,
         columnNumber: 5
     }, undefined);
 };
-_s(LoginView, "wuQOK7xaXdVz4RMrZQhWbI751Oc=");
+_s(LoginView, "q37Po17WbhPwv8Y2XJ4Bs6FUZXE=");
 _c = LoginView;
 var _c;
 $RefreshReg$(_c, "LoginView");
