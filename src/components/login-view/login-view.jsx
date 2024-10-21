@@ -52,8 +52,6 @@ export const LoginView = ({ onLoggedIn }) => {
           />
         </Form.Group>
 
-        {errorMessage && <p className="text-danger">{errorMessage}</p>}
-
         <Button variant="primary" className="btn-submit mt-3" type="submit">
           Submit
         </Button>
