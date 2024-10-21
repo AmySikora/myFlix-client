@@ -12,9 +12,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 export const MainView = () => {
-  const movies = useSelector((state) => state.movies.list || []);  // Ensure movies is an array
-  const user = useSelector((state) => state.user?.user);  // Use optional chaining to avoid null errors
-
+  const movies = useSelector((state) => state.movies.list || []);
+  const user = useSelector((state) => state.user?.user);
   const dispatch = useDispatch();
 
   const handleLoggedIn = (user) => {
@@ -26,7 +25,7 @@ export const MainView = () => {
     const token = localStorage.getItem('token');  // Get the token from localStorage
 
     if (!token) {
-      console.error("No token found, user is not logged in.");
+      console.error("No token found, redirecting to login...");
       return;
     }
 
@@ -82,7 +81,7 @@ export const MainView = () => {
                 <Navigate to="/" replace />
               ) : (
                 <Col md={5}>
-                  <LoginView onLoggedIn={handleLoggedIn} />  {/* Pass handleLoggedIn */}
+                  <LoginView onLoggedIn={handleLoggedIn} />
                 </Col>
               )
             }
@@ -107,9 +106,9 @@ export const MainView = () => {
               !user ? (
                 <Navigate to="/login" replace />
               ) : movies.length === 0 ? (
-                <Col>No movies available</Col>  // Handle case when movies list is empty
+                <Col>No movies available</Col>
               ) : (
-                <MoviesList />  // Show the movie list
+                <MoviesList />
               )
             }
           />
