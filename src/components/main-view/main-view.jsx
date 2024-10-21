@@ -2,22 +2,23 @@ import React, { useEffect } from "react";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { MovieView } from "../movie-view/movie-view";
-import { MoviesList } from "../movies-list/movies-list"; // Assuming you have this component for displaying movies
+import { MoviesList } from "../movies-list/movies-list";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setMovies } from "../../redux/reducers/movies";
+import { setUser } from "../../redux/reducers/user";
 
 export const MainView = () => {
   const movies = useSelector((state) => state.movies.list);
-  const user = useSelector((state) => state.user.user); 
+  const user = useSelector((state) => state.user?.user);  // Use optional chaining to avoid null errors
 
   const dispatch = useDispatch();
 
   const handleLoggedIn = (user) => {
-    dispatch(setUser(user)); 
+    dispatch(setUser(user));  // Update user in Redux store
     console.log("User logged in:", user);
   };
 
@@ -64,7 +65,7 @@ export const MainView = () => {
                 <Navigate to="/" replace />
               ) : (
                 <Col md={5}>
-                  <LoginView onLoggedIn={handleLoggedIn} /> {/* Pass handleLoggedIn */}
+                  <LoginView onLoggedIn={handleLoggedIn} />  {/* Pass handleLoggedIn */}
                 </Col>
               )
             }
