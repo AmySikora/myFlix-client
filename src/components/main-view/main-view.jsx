@@ -1,4 +1,8 @@
 import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setMovies } from "../../redux/reducers/movies";
+import { setUser } from "../../redux/reducers/user/user.js";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { MovieView } from "../movie-view/movie-view";
@@ -6,10 +10,6 @@ import { MoviesList } from "../movies-list/movies-list";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { setMovies } from "../../redux/reducers/movies";
-import { setUser } from "../../redux/reducers/user/user.js";
 
 export const MainView = () => {
   const movies = useSelector((state) => state.movies.list || []);  // Ensure movies is an array
@@ -23,8 +23,22 @@ export const MainView = () => {
   };
 
   useEffect(() => {
-    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies")
-      .then((response) => response.json())
+    const token = localStorage.getItem('token');  // Get the token from localStorage
+
+    if (!token) {
+      console.error("No token found, user is not logged in.");
+      return;
+    }
+
+    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
+      headers: { Authorization: `Bearer ${token}` },  // Include the token in the headers
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
         const moviesFromApi = data.map((movie) => ({
           id: movie._id,
