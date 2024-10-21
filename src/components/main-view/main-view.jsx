@@ -15,6 +15,11 @@ export const MainView = () => {
   const movies = useSelector((state) => state.movies.movies);
   const user = useSelector((state) => state.user);
 
+  const handleLoggedIn = (user) => {
+    dispatch(setUser(user));
+    console.log("User logged in:", user);
+  };
+
   useEffect(() => {
     if (token) {
       fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
@@ -84,7 +89,7 @@ export const MainView = () => {
                   <Navigate to="/" replace />
                 ) : (
                   <Col md={5}>
-                    <LoginView />
+                    <LoginView onLoggedIn={handleLoggedIn} />
                   </Col>
                 )}
               </>
