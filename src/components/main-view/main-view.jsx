@@ -10,27 +10,34 @@ import { MoviesList } from "../movies-list/movies-list";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import { createSelector } from 'reselect';
+
+// Memoized movies selector
+const selectMovies = createSelector(
+  (state) => state.movies.list,
+  (movies) => movies || []
+);
 
 export const MainView = () => {
-  const movies = useSelector((state) => state.movies.list || []);
+  const movies = useSelector(selectMovies);  // Use memoized selector
   const user = useSelector((state) => state.user?.user);
   const dispatch = useDispatch();
 
   const handleLoggedIn = (user) => {
-    dispatch(setUser(user));  // Update user in Redux store
+    dispatch(setUser(user));
     console.log("User logged in:", user);
   };
 
   useEffect(() => {
-    const token = localStorage.getItem('token');  // Get the token from localStorage
-
+    const token = localStorage.getItem('token');
+  
     if (!token) {
       console.error("No token found, redirecting to login...");
       return;
     }
-
+  
     fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
-      headers: { Authorization: `Bearer ${token}` },  // Include the token in the headers
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
         if (!response.ok) {
@@ -39,6 +46,7 @@ export const MainView = () => {
         return response.json();
       })
       .then((data) => {
+        console.log("Movies fetched from API:", data);  // Log the movie data to verify it's fetched
         const moviesFromApi = data.map((movie) => ({
           id: movie._id,
           title: movie.Title,
@@ -47,14 +55,14 @@ export const MainView = () => {
           genre: movie.Genre?.Name || "Unknown genre",
           description: movie.Description || "No description available",
         }));
-
+  
         dispatch(setMovies(moviesFromApi));  // Dispatch the fetched movies
       })
       .catch((error) => {
-        console.error("Error fetching movies:", error);  // Handle potential errors
+        console.error("Error fetching movies:", error);
       });
   }, [dispatch]);
-
+  
   return (
     <BrowserRouter>
       <Row>
