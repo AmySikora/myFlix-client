@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setMovies } from "../../redux/reducers/movies";
-import { setUser } from "../../redux/reducers/user";
+import { setUser } from "../../redux/reducers/user/user.js";
 
 export const MainView = () => {
   const movies = useSelector((state) => state.movies.list);
