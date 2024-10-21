@@ -5,7 +5,6 @@ import Form from "react-bootstrap/Form";
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,28 +15,14 @@ export const LoginView = ({ onLoggedIn }) => {
     };
 
     fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
       body: JSON.stringify(data),
-    })
-    .then(response => {
-      if (!response.ok) {
-        setErrorMessage('Invalid username or password');
-        throw new Error('Login failed');
+    }).then((response) => {
+      if (response.ok) {
+        dispatch(setUser(username));
+      } else {
+        alert("Login failed");
       }
-      return response.json();
-    })
-    .then((data) => {
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-
-        onLoggedIn(data.user, data.token);
-      }
-    })
-    .catch((e) => {
-      console.error('Error during login:', e);
-      setErrorMessage('Login failed. Please try again.');
     });
   };
 
@@ -69,7 +54,7 @@ export const LoginView = ({ onLoggedIn }) => {
         {errorMessage && <p className="text-danger">{errorMessage}</p>}
 
         <Button variant="primary" className="btn-submit mt-3" type="submit">
-          Login
+          Submit
         </Button>
       </Form>
     </div>
