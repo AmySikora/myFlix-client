@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -15,6 +14,9 @@ export const LoginView = ({ onLoggedIn }) => {
       Password: password,
     };
 
+    // Log to verify if the function is being passed correctly
+    console.log('onLoggedIn:', typeof onLoggedIn);
+
     fetch('https://myflixmovies123-d3669f5b95da.herokuapp.com/login', {
       method: 'POST',
       headers: {
@@ -25,16 +27,21 @@ export const LoginView = ({ onLoggedIn }) => {
     .then((response) => response.json())
     .then((data) => {
       if (data.token) {
-        localStorage.setItem('token', data.token);  
-        localStorage.setItem('user', JSON.stringify(data.user));  
-        onLoggedIn(data.user); 
+        localStorage.setItem('token', data.token);  // Store the token
+        localStorage.setItem('user', JSON.stringify(data.user));  // Optionally store user data
+
+        // Call the onLoggedIn function if it exists
+        if (typeof onLoggedIn === 'function') {
+          onLoggedIn(data.user);
+        } else {
+          console.error("onLoggedIn is not a function");
+        }
       } else {
         alert('Login failed. Please check your credentials.');
       }
     })
     .catch((error) => {
       console.error('Login failed:', error.message);
-      alert('Login failed. Please try again.');
     });
   };
 
