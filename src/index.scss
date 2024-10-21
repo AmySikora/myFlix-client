@@ -61,7 +61,7 @@ $input-text-color: #333;
   align-items: center;
   
   .navbar-brand {
-    font-size: 2rem; // Increase font size for "MyFlix App"
+    font-size: 2rem; 
     color: $primary-color;
     font-weight: bold;
     &:hover {
@@ -71,8 +71,7 @@ $input-text-color: #333;
 
   .nav-link {
     color: $text-color;
-    font-size: 1rem; // Smaller font size for "Login" and "Signup"
-    padding: 10px;
+    font-size: 1rem; 
     &:hover {
       color: $secondary-color;
       background-color: lighten($background-color, 10%);
@@ -88,8 +87,7 @@ $input-text-color: #333;
 .profile-container {
   display: flex;
   justify-content: space-between;
-  max-width: 100%; /* Ensure it spans the width of the navbar */
-  padding: 20px;
+  max-width: 100%; 
   box-sizing: border-box;
 }
 
@@ -184,12 +182,11 @@ $input-text-color: #333;
   }
 
   div {
-    margin-bottom: 15px; // Add spacing between movie details
+    margin-bottom: 15px; 
   }
 
   span {
-    font-size: 1.1rem; // Consistent text size with other components
-    color: $text-color;
+    font-size: 1.1rem; 
   }
 
   p {
@@ -244,9 +241,9 @@ $input-text-color: #333;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     width: 100%; 
-    height: auto;  // Ensure the height scales with the width
-    max-height: 300px; // Limit the height but allow scaling
-    object-fit: contain;  // Prevent cropping and show the full image
+    height: auto;  
+    max-height: 300px; 
+    object-fit: contain;  
   }
 
   .card-body {
@@ -279,20 +276,21 @@ $input-text-color: #333;
     }
   }
 }
-.login-container {
-  height: 100vh;
+.login-view-container {
+ 
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0; // Optional background color
+  height: 100vh;
 }
 
 .login-form {
   width: 100%;
   max-width: 400px;
-  background-color: #fff;
   padding: 2rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .form-group {

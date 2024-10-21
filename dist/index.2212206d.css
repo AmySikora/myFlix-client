@@ -20754,8 +20754,7 @@ textarea.form-control-lg {
   background-color: #362d68;
 }
 
-.login-container {
-  background-color: #f0f0f0;
+.login-view-container {
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -20764,10 +20763,11 @@ textarea.form-control-lg {
 
 .login-form {
   background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
   width: 100%;
   max-width: 400px;
   padding: 2rem;
-  box-shadow: 0 0 10px #0000001a;
 }
 
 .form-group {
