@@ -20592,10 +20592,6 @@ textarea.form-control-lg {
   padding: 10px;
 }
 
-.form-group {
-  margin-bottom: 15px;
-}
-
 .form-label {
   color: #191970;
   font-size: 1rem;
@@ -20756,5 +20752,29 @@ textarea.form-control-lg {
 
 .movie-card-container .btn:hover {
   background-color: #362d68;
+}
+
+.login-container {
+  background-color: #f0f0f0;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  display: flex;
+}
+
+.login-form {
+  background-color: #fff;
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  box-shadow: 0 0 10px #0000001a;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.btn-submit {
+  width: 100%;
 }
 /*# sourceMappingURL=index.2212206d.css.map */
