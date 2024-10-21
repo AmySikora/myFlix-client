@@ -16,42 +16,25 @@ export const MainView = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');  // Ensure the token is retrieved
-    if (token) {
-      fetch('https://myflixmovies123-d3669f5b95da.herokuapp.com/movies', {
-        headers: {
-          Authorization: `Bearer ${token}`,  // Include the token in the Authorization header
-          'Content-Type': 'application/json',
-        },
-      })
-      .then((response) => {
-        if (!response.ok) {
-          if (response.status === 401) {
-            throw new Error('Unauthorized');  // Handle unauthorized response
-          }
-          throw new Error('Failed to fetch');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const moviesFromApi = data.map((movie) => ({
-          id: movie._id,
-          title: movie.Title,
-          image: movie.ImageURL || "https://via.placeholder.com/150",
-          director: movie.Director?.Name || "Unknown Director",
-          description: movie.Description || "No description available",
-          genre: movie.Genre?.Name || "Unknown genre",
-        }));
+    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies")
+    .then((response) => response.json())
+    .then((data) => {
+      const moviesFromApi = data.docs.map((doc) => {
+        return {
+            id: movie._id,
+            title: movie.Title,
+            image: movie.ImageURL || "https://via.placeholder.com/150",
+            director: movie.Director?.Name || "Unknown Director",
+            description: movie.Description || "No description available",
+            genre: movie.Genre?.Name || "Unknown genre",
+          };
+        });
+        
         dispatch(setMovies(moviesFromApi));
-      })
-      .catch((err) => {
-        console.error(err.message);
       });
-    } else {
-      console.log("No token found, cannot fetch movies.");
-    }
-  }, [dispatch]);  
+  }, []);
 
+  
   return (
     <BrowserRouter>
       <Row>
