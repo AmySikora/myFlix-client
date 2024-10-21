@@ -1,22 +1,24 @@
-import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 export const NavigationBar = () => {
-  const user = useSelector((state) => state.user?.user); // Get user state from Redux
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
+  
+  // Handle logout action
   const handleLogout = () => {
-    localStorage.clear(); // Clear token and user data
-    dispatch(setUser(null)); // Clear user from Redux
+    // Clear user state
+    dispatch(setUser(null));  // Set user to null in Redux store
+    localStorage.clear();      // Clear localStorage
+    alert('You have logged out successfully.');
   };
 
   return (
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          MyFlix App
+          Movies App
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -35,10 +37,12 @@ export const NavigationBar = () => {
                 <Nav.Link as={Link} to="/">
                   Home
                 </Nav.Link>
-                <Nav.Link as={Link} to="/profile"> {/* Profile link */}
+                <Nav.Link as={Link} to="/profile">
                   Profile
                 </Nav.Link>
-                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                <Nav.Link onClick={handleLogout}>
+                  Logout
+                </Nav.Link>
               </>
             )}
           </Nav>
