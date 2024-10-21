@@ -8,7 +8,7 @@ const userSlice = createSlice({
       state.user = action.payload;
     },
     clearUser: (state) => {
-      state.user = null;  
+      state.user = null;  // Clear the user data on logout
     },
   },
 });
