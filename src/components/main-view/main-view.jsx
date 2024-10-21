@@ -7,7 +7,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { MoviesList } from "../movies-list/movies-list";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { setMovies } from "../../redux/reducers/movies";
-import { setUser } from "../../redux/reducers/user"; 
+import { setUser } from "../../redux/reducers/user/user"; 
 
 export const MainView = () => {
   const dispatch = useDispatch();

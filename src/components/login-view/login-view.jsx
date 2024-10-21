@@ -14,7 +14,6 @@ export const LoginView = ({ onLoggedIn }) => {
       Password: password,
     };
 
-    // Log to verify if the function is being passed correctly
     console.log('onLoggedIn:', typeof onLoggedIn);
 
     fetch('https://myflixmovies123-d3669f5b95da.herokuapp.com/login', {
@@ -27,10 +26,9 @@ export const LoginView = ({ onLoggedIn }) => {
     .then((response) => response.json())
     .then((data) => {
       if (data.token) {
-        localStorage.setItem('token', data.token);  // Store the token
-        localStorage.setItem('user', JSON.stringify(data.user));  // Optionally store user data
+        localStorage.setItem('token', data.token);  
+        localStorage.setItem('user', JSON.stringify(data.user));  
 
-        // Call the onLoggedIn function if it exists
         if (typeof onLoggedIn === 'function') {
           onLoggedIn(data.user);
         } else {
