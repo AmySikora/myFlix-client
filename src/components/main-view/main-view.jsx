@@ -10,17 +10,31 @@ import { useSelector, useDispatch } from "react-redux";
 import { setMovies } from "../../redux/reducers/movies";
 
 export const MainView = () => {
-  const movies = useSelector((state) => state.movies.list);
+  const dispatch = useDispatch();
+  const token = localStorage.getItem('token');
+  const movies = useSelector((state) => state.movies.movies);
   const user = useSelector((state) => state.user);
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies")
-    .then((response) => response.json())
-    .then((data) => {
-      const moviesFromApi = data.docs.map((doc) => {
-        return {
+    if (token) {
+      fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
+        headers: {
+          Authorization: `Bearer ${token}`,  
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => {
+        if (!response.ok) {
+          if (response.status === 401) {
+            throw new Error("Unauthorized");
+          }
+          throw new Error("Failed to fetch movies");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const moviesFromApi = data.map((movie) => {
+          return {
             id: movie._id,
             title: movie.Title,
             image: movie.ImageURL || "https://via.placeholder.com/150",
@@ -29,12 +43,18 @@ export const MainView = () => {
             genre: movie.Genre?.Name || "Unknown genre",
           };
         });
-        
-        dispatch(setMovies(moviesFromApi));
-      });
-  }, []);
 
-  
+        dispatch(setMovies(moviesFromApi));
+      })
+      .catch((error) => {
+        console.error(error.message);
+        alert(error.message); 
+      });
+    } else {
+      console.log("No token found, cannot fetch movies.");
+    }
+  }, [dispatch, token]);
+
   return (
     <BrowserRouter>
       <Row>
@@ -97,4 +117,3 @@ export const MainView = () => {
     </BrowserRouter>
   );
 };
-

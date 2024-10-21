@@ -9,24 +9,35 @@ export const LoginView = ({ onLoggedIn }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+  
     const data = {
-      Username: username,  
+      Username: username,
       Password: password,
     };
-
-    fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/login`, {
-      method: "POST",
+  
+    fetch('https://myflixmovies123-d3669f5b95da.herokuapp.com/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(data),
-    }).then((response) => {
-      if (response.ok) {
-        dispatch(setUser(username));
+    })
+    .then((response) => response.json())  
+    .then((data) => {
+      if (data.token) {  
+        localStorage.setItem('token', data.token); 
+        localStorage.setItem('user', JSON.stringify(data.user)); 
+        onLoggedIn(data.user);  
       } else {
-        alert("Login failed");
+        alert('Login failed');
       }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('Login failed');
     });
   };
-
+  
   return (
     <div className="login-view-container">
       <Form onSubmit={handleSubmit} className="login-form">
