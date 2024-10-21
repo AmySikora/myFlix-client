@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useDispatch } from 'react-redux'; 
+import { setUser } from "../../redux/reducers/user";  
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');  
+  const dispatch = useDispatch(); 
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,13 +20,22 @@ export const LoginView = ({ onLoggedIn }) => {
 
     fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/login`, {
       method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(data),
     }).then((response) => {
       if (response.ok) {
-        dispatch(setUser(username));
+        response.json().then((data) => {
+          dispatch(setUser(data.user));  
+          setErrorMessage('');  
+          onLoggedIn(data); 
+        });
       } else {
-        alert("Login failed");
+        setErrorMessage('Login failed. Please check your username and password.'); 
       }
+    }).catch((error) => {
+      setErrorMessage('An error occurred. Please try again.'); 
     });
   };
 
