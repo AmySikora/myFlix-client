@@ -37770,7 +37770,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _reactRedux = require("react-redux");
-var _user = require("../../redux/reducers/user/user"); // Action to clear the user from Redux
+var _user = require("../../redux/reducers/user/user");
 var _s = $RefreshSig$();
 const NavigationBar = ()=>{
     _s();
@@ -37778,11 +37778,9 @@ const NavigationBar = ()=>{
     const dispatch = (0, _reactRedux.useDispatch)();
     const navigate = (0, _reactRouterDom.useNavigate)();
     const onLoggedOut = ()=>{
-        // Clear the user data from Redux store and localStorage
         dispatch((0, _user.clearUser)());
         localStorage.removeItem("token");
         localStorage.removeItem("user");
-        // Redirect to login page or home
         navigate("/login");
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar), {
@@ -37796,14 +37794,14 @@ const NavigationBar = ()=>{
                     children: "MyFLix"
                 }, void 0, false, {
                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                    lineNumber: 24,
+                    lineNumber: 23,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Toggle, {
                     "aria-controls": "basic-navbar-nav"
                 }, void 0, false, {
                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                    lineNumber: 27,
+                    lineNumber: 26,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Collapse, {
@@ -37819,7 +37817,7 @@ const NavigationBar = ()=>{
                                         children: "Login"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 32,
+                                        lineNumber: 31,
                                         columnNumber: 17
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -37828,7 +37826,7 @@ const NavigationBar = ()=>{
                                         children: "Signup"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 35,
+                                        lineNumber: 34,
                                         columnNumber: 17
                                     }, undefined)
                                 ]
@@ -37841,7 +37839,7 @@ const NavigationBar = ()=>{
                                         children: "Home"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 42,
+                                        lineNumber: 41,
                                         columnNumber: 17
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -37849,7 +37847,7 @@ const NavigationBar = ()=>{
                                         children: "Logout"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 45,
+                                        lineNumber: 44,
                                         columnNumber: 17
                                     }, undefined)
                                 ]
@@ -37857,23 +37855,23 @@ const NavigationBar = ()=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                        lineNumber: 29,
+                        lineNumber: 28,
                         columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                    lineNumber: 28,
+                    lineNumber: 27,
                     columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/navigation-bar/navigation-bar.jsx",
-            lineNumber: 23,
+            lineNumber: 22,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-        lineNumber: 22,
+        lineNumber: 21,
         columnNumber: 5
     }, undefined);
 };
