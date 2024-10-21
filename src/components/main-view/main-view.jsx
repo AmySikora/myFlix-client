@@ -12,7 +12,7 @@ import { setMovies } from "../../redux/reducers/movies";
 import { setUser } from "../../redux/reducers/user/user.js";
 
 export const MainView = () => {
-  const movies = useSelector((state) => state.movies.list);
+  const movies = useSelector((state) => state.movies.list || []);  // Ensure movies is an array
   const user = useSelector((state) => state.user?.user);  // Use optional chaining to avoid null errors
 
   const dispatch = useDispatch();
@@ -35,7 +35,10 @@ export const MainView = () => {
           description: movie.Description || "No description available",
         }));
 
-        dispatch(setMovies(moviesFromApi));
+        dispatch(setMovies(moviesFromApi));  // Dispatch the fetched movies
+      })
+      .catch((error) => {
+        console.error("Error fetching movies:", error);  // Handle potential errors
       });
   }, [dispatch]);
 
@@ -89,8 +92,10 @@ export const MainView = () => {
             element={
               !user ? (
                 <Navigate to="/login" replace />
+              ) : movies.length === 0 ? (
+                <Col>No movies available</Col>  // Handle case when movies list is empty
               ) : (
-                <MoviesList /> 
+                <MoviesList />  // Show the movie list
               )
             }
           />
