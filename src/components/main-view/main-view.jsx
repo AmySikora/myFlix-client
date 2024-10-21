@@ -9,6 +9,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { SignupView } from "../signup-view/signup-view";
 import { LoginView } from "../login-view/login-view";
+import { ProfileView } from "../profile-view/profile-view";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
@@ -64,10 +65,10 @@ export const MainView = () => {
             path="/signup"
             element={
               user ? (
-                <Navigate to="/" replace />  // Navigate if user exists
+                <Navigate to="/" replace />
               ) : (
                 <Col md={5}>
-                  <SignupView />  // Show signup view
+                  <SignupView />
                 </Col>
               )
             }
@@ -84,6 +85,12 @@ export const MainView = () => {
               )
             }
           />
+          <Route
+              path="/profile"
+                element={
+              !user ? <Navigate to="/login" replace /> : <ProfileView user={user} token={token} movies={movies} setUser={setUser} />
+              }
+            />
           <Route
             path="/movies/:movieId"
             element={

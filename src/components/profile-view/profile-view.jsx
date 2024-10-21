@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button, Form, Row, Col } from 'react-bootstrap';
@@ -24,43 +25,46 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-
-    if (!password) {
-      alert("Please enter your password to update your profile");
+  
+    // Ensure password is valid
+    if (!password || password.length < 6) {
+      alert("Please enter a valid password (at least 8 characters) to update your profile");
       return;
     }
-
+  
+    // Create the updated user payload
     const updatedUser = {
       Username: userUsername,
       Email: email,
       Birthday: birthday,
-      Password: password,
+      Password: password,  
     };
-
-    console.log('Updated user data:', updatedUser);
-
-    fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${username}`, {
+  
+    fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${user.Username}`, {
       method: 'PUT',
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,  // Ensure you are passing the token
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(updatedUser),
+      body: JSON.stringify(updatedUser),  // Send the updated data
     })
-    .then(response => {
-      if (!response.ok) {
-        return response.json().then((error) => {
-          throw new Error(`Update failed: ${error.message}`);
-        });
-      }
-      return response.json();
-    })
-    .then(data => {
-      alert('Your profile was updated');
-      setUser(data); 
-      localStorage.setItem('user', JSON.stringify(data)); 
-    })
-    .catch(err => console.error('Error updating profile:', err));
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then((error) => {
+            throw new Error(`Update failed: ${error.message}`);
+          });
+        }
+        return response.json();  // Parse the JSON response
+      })
+      .then(data => {
+        alert('Your profile has been updated successfully');
+        setUser(data);  // Update the user state in the app
+        localStorage.setItem('user', JSON.stringify(data));  // Save the updated user to localStorage
+      })
+      .catch(err => {
+        console.error('Error updating profile:', err);  // Log the error for debugging
+        alert('Failed to update profile, please try again later');  // Show user-friendly error
+      });
   };
 
   const handleDeregister = () => {

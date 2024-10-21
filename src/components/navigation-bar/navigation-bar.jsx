@@ -1,21 +1,15 @@
+import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { clearUser } from "../../redux/reducers/user/user";  // Action to clear the user from Redux
 
 export const NavigationBar = () => {
-  const user = useSelector((state) => state.user?.user);  // Use optional chaining to avoid errors
+  const user = useSelector((state) => state.user?.user); // Get user state from Redux
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const onLoggedOut = () => {
-    // Clear the user data from Redux store and localStorage
-    dispatch(clearUser());
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    
-    // Redirect to the login page
-    navigate("/login");
+  const handleLogout = () => {
+    localStorage.clear(); // Clear token and user data
+    dispatch(setUser(null)); // Clear user from Redux
   };
 
   return (
@@ -41,7 +35,10 @@ export const NavigationBar = () => {
                 <Nav.Link as={Link} to="/">
                   Home
                 </Nav.Link>
-                <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>  {/* Handle logout */}
+                <Nav.Link as={Link} to="/profile"> {/* Profile link */}
+                  Profile
+                </Nav.Link>
+                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
               </>
             )}
           </Nav>
