@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button, Form, Row, Col } from 'react-bootstrap';
@@ -23,54 +22,46 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
     }
   }, [user, movies]);
 
- const handleUpdate = (e) => {
-  e.preventDefault();
+  const handleUpdate = (e) => {
+    e.preventDefault();
 
-  // Check if the password is valid
-  if (password.length < 6) {
-    alert("Please enter a valid password (at least 6 characters) to update your profile");
-    return;
-  }
+    if (!password) {
+      alert("Please enter your password to update your profile");
+      return;
+    }
 
-  // Create the updated user payload
-  const updatedUser = {
-    Username: userUsername,
-    Email: email,
-    Birthday: birthday,
-    Password: password,  // Ensure the password is included in the payload
-  };
+    const updatedUser = {
+      Username: userUsername,
+      Email: email,
+      Birthday: birthday,
+      Password: password,
+    };
 
-  // Send the updated data to the API
-  fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${user.Username}`, {
-    method: 'PUT',
-    headers: {
-      Authorization: `Bearer ${token}`,  // Include the token for authentication
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(updatedUser),  // Send the updated user data as JSON
-  })
+    console.log('Updated user data:', updatedUser);
+
+    fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${username}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedUser),
+    })
     .then(response => {
       if (!response.ok) {
         return response.json().then((error) => {
           throw new Error(`Update failed: ${error.message}`);
         });
       }
-      return response.json();  // Parse the JSON response
+      return response.json();
     })
     .then(data => {
-      console.log("Updated user data:", data);  // Log the updated user data for debugging
-
-      // Update the user state and localStorage
-      setUser(data);  // Update the user in the app state
-      localStorage.setItem('user', JSON.stringify(data));  // Sync the updated user data to localStorage
-
-      alert('Your profile has been updated successfully.');  // Notify the user of success
+      alert('Your profile was updated');
+      setUser(data); 
+      localStorage.setItem('user', JSON.stringify(data)); 
     })
-    .catch(err => {
-      console.error('Error updating profile:', err);  // Log any errors
-      alert('Failed to update profile, please try again later.');  // Show user-friendly error message
-    });
-};
+    .catch(err => console.error('Error updating profile:', err));
+  };
 
   const handleDeregister = () => {
     fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${username}`, {
@@ -105,7 +96,6 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
   return (
     <div className="profile-view-container">
       <Row>
-        {/* Profile Form Section */}
         <Col md={6}>
           <h3>User Profile</h3>
           <Form onSubmit={handleUpdate}>
@@ -161,8 +151,6 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
 
           <Button className="btn-danger mt-3" onClick={handleDeregister}>Delete Account</Button>
         </Col>
-
-        {/* Favorite Movies Section */}
         <Col md={6}>
           <h3>Favorite Movies</h3>
           {favoriteMovies.length === 0 ? (
