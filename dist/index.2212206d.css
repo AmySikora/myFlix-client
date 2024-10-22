@@ -20513,6 +20513,31 @@ textarea.form-control-lg {
   }
 }
 
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  color: #191970;
+  font-size: 1rem;
+}
+
+.form-input {
+  color: #333;
+  background-color: #f0f0f0;
+  border: 1px solid tomato;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.form-input:focus {
+  border-color: #483d8b;
+  outline: none;
+  box-shadow: 0 0 5px #483d8b80;
+}
+
 .btn-submit {
   color: #fff;
   cursor: pointer;
@@ -20521,6 +20546,10 @@ textarea.form-control-lg {
   border-radius: 5px;
   width: 100%;
   padding: 10px;
+}
+
+.btn-submit:hover {
+  background-color: #362d68;
 }
 
 .navbar {
@@ -20558,50 +20587,33 @@ textarea.form-control-lg {
   border-color: tomato;
 }
 
-.profile-container {
-  box-sizing: border-box;
-  justify-content: space-between;
-  max-width: 100%;
-  padding: 20px;
-  display: flex;
-}
-
-.profile-info {
+.profile-view-container {
   background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  flex: 1;
-  margin-right: 20px;
+  border: 1px solid tomato;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 20px auto;
   padding: 20px;
+  box-shadow: 0 2px 10px #0000001a;
 }
 
-.favorites-container {
-  flex-wrap: wrap;
-  flex: 2;
-  gap: 20px;
-  display: flex;
+.profile-view-container h3, .profile-view-container .h3 {
+  color: #191970;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
 }
 
-.favorites-container .favorite-movie-card {
-  box-sizing: border-box;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  width: 30%;
-  min-width: 150px;
-  padding: 10px;
-}
-
-.form-group {
+.profile-view-container .form-group {
   margin-bottom: 15px;
 }
 
-.form-label {
+.profile-view-container .form-label {
   color: #191970;
   font-size: 1rem;
 }
 
-.form-input {
+.profile-view-container .form-input {
   color: #333;
   background-color: #f0f0f0;
   border: 1px solid tomato;
@@ -20611,13 +20623,13 @@ textarea.form-control-lg {
   padding: 10px;
 }
 
-.form-input:focus {
+.profile-view-container .form-input:focus {
   border-color: #483d8b;
   outline: none;
   box-shadow: 0 0 5px #483d8b80;
 }
 
-.btn-submit, .btn-danger {
+.profile-view-container .btn-submit, .profile-view-container .btn-danger {
   border-radius: 5px;
   width: 100%;
   padding: 10px;
@@ -20625,22 +20637,22 @@ textarea.form-control-lg {
   font-weight: bold;
 }
 
-.btn-submit {
+.profile-view-container .btn-submit {
   color: #fff;
   background-color: #483d8b;
   border: none;
 }
 
-.btn-submit:hover {
+.profile-view-container .btn-submit:hover {
   background-color: #362d68;
 }
 
-.btn-danger {
+.profile-view-container .btn-danger {
   background-color: red;
   border: none;
 }
 
-.btn-danger:hover {
+.profile-view-container .btn-danger:hover {
   background-color: #c00;
 }
 

@@ -51,9 +51,7 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <Row>
-        <NavigationBar />
-      </Row>
+      <NavigationBar user={user} onLoggedOut={handleLoggedOut} />
       <Row className="justify-content-md-center">
         <Routes>
           <Route
