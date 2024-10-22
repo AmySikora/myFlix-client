@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import React, { useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
@@ -7,42 +8,22 @@ export const LoginView = ({ onLoggedIn }) => {
   const [password, setPassword] = useState('');
 
   const handleSubmit = (event) => {
-    event.preventDefault();  // Prevent default form submission behavior
+    event.preventDefault();
 
     const data = {
       Username: username,  
       Password: password,
     };
 
-    // Ensure both username and password are filled
-    if (!username || !password) {
-      setErrorMessage("Please enter both a username and password.");
-      return;
-    }
-
     fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
       body: JSON.stringify(data),
-    })
-    .then(response => {
-      if (!response.ok) {
-        setErrorMessage('Invalid username or password');
-        throw new Error('Login failed');
+    }).then((response) => {
+      if (response.ok) {
+        dispatch(setUser(username));
+      } else {
+        alert("Login failed");
       }
-      return response.json();
-    })
-    .then((data) => {
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-
-        onLoggedIn(data.user, data.token);
-      }
-    })
-    .catch((e) => {
-      console.error('Error during login:', e);
-      setErrorMessage('Login failed. Please try again.');
     });
   };
 
@@ -50,29 +31,31 @@ export const LoginView = ({ onLoggedIn }) => {
     <div className="login-view-container">
       <Form onSubmit={handleSubmit} className="login-form">
         <Form.Group controlId="formUsername" className="form-group">
-          <Form.Label>Username</Form.Label>
+          <Form.Label className="form-label">Username:</Form.Label>
           <Form.Control
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            className="form-input"
           />
         </Form.Group>
 
         <Form.Group controlId="formPassword" className="form-group">
-          <Form.Label>Password</Form.Label>
+          <Form.Label className="form-label">Password:</Form.Label>
           <Form.Control
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            className="form-input"
           />
         </Form.Group>
 
         {errorMessage && <p className="text-danger">{errorMessage}</p>}
 
         <Button variant="primary" className="btn-submit mt-3" type="submit">
-          Login
+          Submit
         </Button>
       </Form>
     </div>
