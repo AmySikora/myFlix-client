@@ -47180,14 +47180,6 @@ const LoginView = ({ onLoggedIn })=>{
                     lineNumber: 44,
                     columnNumber: 9
                 }, undefined),
-                errorMessage && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                    className: "text-danger",
-                    children: errorMessage
-                }, void 0, false, {
-                    fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 55,
-                    columnNumber: 26
-                }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
                     variant: "primary",
                     className: "btn-submit mt-3",
@@ -47195,7 +47187,7 @@ const LoginView = ({ onLoggedIn })=>{
                     children: "Submit"
                 }, void 0, false, {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 57,
+                    lineNumber: 55,
                     columnNumber: 9
                 }, undefined)
             ]
