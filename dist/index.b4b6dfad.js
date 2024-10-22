@@ -46849,7 +46849,9 @@ const userSlice = (0, _toolkit.createSlice)({
     name: "user",
     initialState: null,
     reducers: {
-        setUser: (state, action)=>action.payload
+        setUser: (state, action)=>{
+            state.user = action.payload;
+        }
     }
 });
 const { setUser } = userSlice.actions;
