@@ -14,26 +14,41 @@ export const MainView = () => {
   const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem('token'); 
 
   useEffect(() => {
-    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies")
-    .then((response) => response.json())
-    .then((data) => {
-      const moviesFromApi = data.docs.map((doc) => {
-        return {
-            id: movie._id,
-            title: movie.Title,
-            image: movie.ImageURL || "https://via.placeholder.com/150",
-            director: movie.Director?.Name || "Unknown Director",
-            description: movie.Description || "No description available",
-            genre: movie.Genre?.Name || "Unknown genre",
-          };
-        });
-        
+    if (!token) {
+      console.error("No token found, redirecting to login...");
+      return;
+    }
+  
+    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
+      headers: {
+        Authorization: `Bearer ${token}` 
+      }
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Unauthorized");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const moviesFromApi = data.docs.map((movie) => ({
+          id: movie._id,
+          title: movie.Title,
+          image: movie.ImageURL || "https://via.placeholder.com/150",
+          director: movie.Director?.Name || "Unknown Director",
+          description: movie.Description || "No description available",
+          genre: movie.Genre?.Name || "Unknown genre",
+        }));
+  
         dispatch(setMovies(moviesFromApi));
+      })
+      .catch((error) => {
+        console.error("Error fetching movies:", error);
       });
-  }, []);
-
+  }, [dispatch, token]);
   
   return (
     <BrowserRouter>

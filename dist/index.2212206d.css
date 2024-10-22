@@ -101,6 +101,10 @@ button, input, optgroup, select, textarea {
   margin: 0;
 }
 
+[type="button"], [type="reset"], [type="submit"], button {
+  -webkit-appearance: button;
+}
+
 [type="button"]:not(:disabled), [type="reset"]:not(:disabled), [type="submit"]:not(:disabled), button:not(:disabled) {
   cursor: pointer;
 }
@@ -1313,6 +1317,7 @@ button, input, optgroup, select, textarea {
   background-image: var(--bs-form-check-bg-image);
   border: var(--bs-border-width) solid var(--bs-border-color);
   -webkit-print-color-adjust: exact;
+  color-adjust: exact;
   print-color-adjust: exact;
   background-position: center;
   background-repeat: no-repeat;
@@ -7814,6 +7819,10 @@ select:disabled {
   display: none !important;
 }
 
+button, [type="button"], [type="reset"], [type="submit"] {
+  -webkit-appearance: button;
+}
+
 button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disabled), [type="submit"]:not(:disabled) {
   cursor: pointer;
 }
@@ -7886,6 +7895,7 @@ legend + * {
 }
 
 [type="search"] {
+  -webkit-appearance: textfield;
   outline-offset: -2px;
 }
 
@@ -7899,6 +7909,7 @@ legend + * {
 
 ::file-selector-button {
   font: inherit;
+  -webkit-appearance: button;
 }
 
 output {
