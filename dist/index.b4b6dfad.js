@@ -28549,16 +28549,15 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "setMovies", ()=>setMovies);
 parcelHelpers.export(exports, "setFilter", ()=>setFilter);
 var _toolkit = require("@reduxjs/toolkit");
-const initialState = {
-    movies: [],
-    filter: ""
-};
 const moviesSlice = (0, _toolkit.createSlice)({
     name: "movies",
-    initialState,
+    initialState: {
+        list: [],
+        filter: ""
+    },
     reducers: {
         setMovies: (state, action)=>{
-            state.movies = action.payload;
+            state.list = action.payload;
         },
         setFilter: (state, action)=>{
             state.filter = action.payload;
