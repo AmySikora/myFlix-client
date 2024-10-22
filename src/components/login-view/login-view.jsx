@@ -5,7 +5,6 @@ import Form from "react-bootstrap/Form";
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();  // Prevent default form submission behavior
@@ -35,11 +34,9 @@ export const LoginView = ({ onLoggedIn }) => {
     })
     .then((data) => {
       if (data.token) {
-        // Store token and user details in localStorage
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
 
-        // Call onLoggedIn to update the app state with user info
         onLoggedIn(data.user, data.token);
       }
     })
@@ -74,7 +71,7 @@ export const LoginView = ({ onLoggedIn }) => {
 
         {errorMessage && <p className="text-danger">{errorMessage}</p>}
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" className="btn-submit mt-3" type="submit">
           Login
         </Button>
       </Form>

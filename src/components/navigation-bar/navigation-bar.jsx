@@ -1,29 +1,18 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 
-export const NavigationBar = () => {
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  
-  // Handle logout action
-  const handleLogout = () => {
-    // Clear user state
-    dispatch(setUser(null));  // Set user to null in Redux store
-    localStorage.clear();      // Clear localStorage
-    alert('You have logged out successfully.');
-  };
+export const NavigationBar = ({ user, onLoggedOut }) => {
 
-  return (
+    return (
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          Movies App
-        </Navbar.Brand>
+          MyFlix App
+          </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            {!user ? (
+            {!user && (
               <>
                 <Nav.Link as={Link} to="/login">
                   Login
@@ -32,17 +21,16 @@ export const NavigationBar = () => {
                   Signup
                 </Nav.Link>
               </>
-            ) : (
+            )}
+            {user && (
               <>
                 <Nav.Link as={Link} to="/">
                   Home
                 </Nav.Link>
-                <Nav.Link as={Link} to="/profile">
+                <Nav.Link as={Link} to={`/users/${user.Username}`}>
                   Profile
-                </Nav.Link>
-                <Nav.Link onClick={handleLogout}>
-                  Logout
-                </Nav.Link>
+                 </Nav.Link>
+                <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
               </>
             )}
           </Nav>

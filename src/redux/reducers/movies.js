@@ -20,3 +20,4 @@ const moviesSlice = createSlice({
 
 export const { setMovies, setFilter } = moviesSlice.actions;
 export default moviesSlice.reducer;
+
