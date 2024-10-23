@@ -27561,7 +27561,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-redux":"62sf7","../../redux/reducers/movies":"l0qwl","react-router-dom":"9xmpe","../navigation-bar/navigation-bar":"bsPVM","react-bootstrap/Col":"2L2I6","react-bootstrap/Row":"cMC39","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../signup-view/signup-view":"4OGiN","../login-view/login-view":"9YtA0","../movie-view/movie-view":"ggaUx","../../redux/reducers/user/user":"gtUqg","../movie-card/movie-card":"bwuIu","../movies-filter/movies-filter":"kxBRK","react-bootstrap/Form":"iBZ80"}],"62sf7":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-redux":"62sf7","../../redux/reducers/movies":"l0qwl","react-router-dom":"9xmpe","../navigation-bar/navigation-bar":"bsPVM","react-bootstrap/Col":"2L2I6","react-bootstrap/Row":"cMC39","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../signup-view/signup-view":"4OGiN","../login-view/login-view":"9YtA0","../movie-view/movie-view":"ggaUx","../movie-card/movie-card":"bwuIu","../movies-filter/movies-filter":"kxBRK","../../redux/reducers/user/user":"gtUqg","react-bootstrap/Form":"iBZ80"}],"62sf7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Provider", ()=>Provider_default);
@@ -47470,22 +47470,12 @@ const LoginView = ({ onLoggedIn })=>{
             Username: username,
             Password: password
         };
-        fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/login", {
+        fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/login`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
             body: JSON.stringify(data)
         }).then((response)=>{
-            if (response.ok) return response.json();
-            else throw new Error("Login failed");
-        }).then((data)=>{
-            localStorage.setItem("token", data.token);
-            localStorage.setItem("user", JSON.stringify(data.user));
-            onLoggedIn(data.user);
-        }).catch((error)=>{
-            console.error("Error:", error);
-            alert("Login failed");
+            if (response.ok) dispatch(setUser(username));
+            else alert("Login failed");
         });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -47503,7 +47493,7 @@ const LoginView = ({ onLoggedIn })=>{
                             children: "Username:"
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 46,
+                            lineNumber: 34,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -47514,13 +47504,13 @@ const LoginView = ({ onLoggedIn })=>{
                             className: "form-input"
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 47,
+                            lineNumber: 35,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 45,
+                    lineNumber: 33,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -47532,7 +47522,7 @@ const LoginView = ({ onLoggedIn })=>{
                             children: "Password:"
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 57,
+                            lineNumber: 45,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -47543,14 +47533,22 @@ const LoginView = ({ onLoggedIn })=>{
                             className: "form-input"
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 58,
+                            lineNumber: 46,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 56,
+                    lineNumber: 44,
                     columnNumber: 9
+                }, undefined),
+                errorMessage && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                    className: "text-danger",
+                    children: errorMessage
+                }, void 0, false, {
+                    fileName: "src/components/login-view/login-view.jsx",
+                    lineNumber: 55,
+                    columnNumber: 26
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
                     variant: "primary",
@@ -47559,18 +47557,18 @@ const LoginView = ({ onLoggedIn })=>{
                     children: "Submit"
                 }, void 0, false, {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 67,
+                    lineNumber: 57,
                     columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 44,
+            lineNumber: 32,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/login-view/login-view.jsx",
-        lineNumber: 43,
+        lineNumber: 31,
         columnNumber: 5
     }, undefined);
 };

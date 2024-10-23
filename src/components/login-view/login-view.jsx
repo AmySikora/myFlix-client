@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -10,32 +11,19 @@ export const LoginView = ({ onLoggedIn }) => {
     event.preventDefault();
 
     const data = {
-      Username: username,
+      Username: username,  
       Password: password,
     };
 
-    fetch('https://myflixmovies123-d3669f5b95da.herokuapp.com/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/login`, {
+      method: "POST",
       body: JSON.stringify(data),
-    })
-    .then((response) => {
+    }).then((response) => {
       if (response.ok) {
-        return response.json(); 
+        dispatch(setUser(username));
       } else {
-        throw new Error('Login failed');
+        alert("Login failed");
       }
-    })
-    .then((data) => {
-      localStorage.setItem('token', data.token); 
-      localStorage.setItem('user', JSON.stringify(data.user)); 
-      onLoggedIn(data.user); 
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-      alert('Login failed');
     });
   };
 
@@ -63,6 +51,8 @@ export const LoginView = ({ onLoggedIn }) => {
             className="form-input"
           />
         </Form.Group>
+
+        {errorMessage && <p className="text-danger">{errorMessage}</p>}
 
         <Button variant="primary" className="btn-submit mt-3" type="submit">
           Submit
