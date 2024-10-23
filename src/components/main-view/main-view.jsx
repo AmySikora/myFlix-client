@@ -8,19 +8,18 @@ import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setMovies } from "../../redux/reducers/movies";
-import { setUser, logoutUser } from "../../redux/reducers/user/user";
+import { setUser, logoutUser } from "../../redux/reducers/user/user";  
 import { MoviesList } from "../movies-list/movies-list";
 
 export const MainView = () => {
   const movies = useSelector((state) => state.movies.list);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const token = localStorage.getItem("token"); 
 
-  // Fetch token from localStorage
-  const token = localStorage.getItem("token");
-
+  // Fetch movies when token is present
   useEffect(() => {
-    if (!token) return; // Don't fetch movies if no token
+    if (!token) return; // If no token, don't fetch movies
 
     fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
       method: "GET",
@@ -48,7 +47,7 @@ export const MainView = () => {
       });
   }, [dispatch, token]);
 
-  // Handle login and store token
+  // Handle login
   const handleLogin = (data) => {
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", JSON.stringify(data.user));
@@ -108,7 +107,13 @@ export const MainView = () => {
           />
           <Route
             path="/"
-            element={<>{!user ? <Navigate to="/login" replace /> : <MoviesList />}</>}
+            element={
+              !user ? (
+                <Navigate to="/login" replace />
+              ) : (
+                <MoviesList />
+              )
+            }
           />
         </Routes>
       </Row>
