@@ -11,7 +11,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { setMovies } from "../../redux/reducers/movies";
 import { setUser } from "../../redux/reducers/user/user";  
 import { MoviesList } from "../movies-list/movies-list"; 
-import { ProfileView } from "../profile-view/profile-view"
+import { ProfileView } from "../profile-view/profile-view";
+import { Form } from "react-bootstrap";
+
 
 export const MainView = () => {
   const movies = useSelector((state) => state.movies.list);
