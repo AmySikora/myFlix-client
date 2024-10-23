@@ -17,22 +17,22 @@ export const MainView = () => {
   const dispatch = useDispatch();
 
   const storedToken = localStorage.getItem("token");
-  const storedUser = localStorage.getItem("user") !== null 
+  const storedUser = localStorage.getItem("user") 
     ? JSON.parse(localStorage.getItem("user")) 
-    : null; // Ensure it's only parsed if not null
+    : null;  // Ensure only valid data is parsed
 
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (!storedToken) {
       setErrorMessage("You are not authorized. Please log in.");
-      return; // Do not make the fetch request if no token exists
+      return;
     }
 
     fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${storedToken}`, // Include the JWT token
+        Authorization: `Bearer ${storedToken}`, 
         "Content-Type": "application/json",
       },
     })
