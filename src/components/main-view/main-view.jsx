@@ -17,17 +17,21 @@ export const MainView = () => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token"); 
 
-  // Fetch movies when token is present
   useEffect(() => {
-    if (!token) return; // If no token, don't fetch movies
-
+    const token = localStorage.getItem('token'); // Get the token from localStorage
+  
+    if (!token) {
+      console.error("Token is missing, cannot fetch movies.");
+      return;
+    }
+  
     fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
+      method: 'GET',
+      headers: { Authorization: `Bearer ${token}` }, // Attach the token
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Failed to fetch movies");
+          throw new Error(`Failed to fetch movies. Status: ${response.status}`);
         }
         return response.json();
       })
@@ -45,14 +49,18 @@ export const MainView = () => {
       .catch((error) => {
         console.error("Error fetching movies:", error);
       });
-  }, [dispatch, token]);
-
-  // Handle login
+  }, [dispatch]);
+  
   const handleLogin = (data) => {
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("user", JSON.stringify(data.user));
-    dispatch(setUser(data.user));
-  };
+  if (data.token) {
+    localStorage.setItem('token', data.token);  
+    localStorage.setItem('user', JSON.stringify(data.user)); 
+    dispatch(setUser(data.user)); 
+  } else {
+    console.error('Login response did not contain a token');
+  }
+};
+
 
   // Handle logout
   const handleLogout = () => {
