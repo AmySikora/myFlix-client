@@ -24,7 +24,7 @@ export const NavigationBar = () => {
                     <Nav.Link as={Link} to="/signup">
                       Signup
                     </Nav.Link>
-                    <Nav.Link onCLick={() => dispatch(setUser(null))}>
+                    <Nav.Link onClick={() => dispatch(setUser(null))}>
                       Logout
                     </Nav.Link>
                   </>
