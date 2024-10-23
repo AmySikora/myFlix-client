@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { MovieView } from "../movie-view/movie-view";
@@ -12,29 +12,37 @@ import { setMovies } from "../../redux/reducers/movies";
 export const MainView = () => {
   const movies = useSelector((state) => state.movies.list);
   const user = useSelector((state) => state.user);
-
   const dispatch = useDispatch();
+
+  // State for error message
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies")
-    .then((response) => response.json())
-    .then((data) => {
-      const moviesFromApi = data.docs.map((doc) => {
-        return {
-            id: movie._id,
-            title: movie.Title,
-            image: movie.ImageURL || "https://via.placeholder.com/150",
-            director: movie.Director?.Name || "Unknown Director",
-            description: movie.Description || "No description available",
-            genre: movie.Genre?.Name || "Unknown genre",
-          };
-        });
-        
-        dispatch(setMovies(moviesFromApi));
-      });
-  }, []);
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch movies");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const moviesFromApi = data.map((movie) => ({
+          id: movie._id,
+          title: movie.Title,
+          image: movie.ImageURL || "https://via.placeholder.com/150",
+          director: movie.Director?.Name || "Unknown Director",
+          description: movie.Description || "No description available",
+          genre: movie.Genre?.Name || "Unknown genre",
+        }));
 
-  
+        dispatch(setMovies(moviesFromApi));
+      })
+      .catch((error) => {
+        console.error("Error fetching movies:", error);
+        setErrorMessage("Error fetching movies."); // Set the error message state
+      });
+  }, [dispatch]);
+
   return (
     <BrowserRouter>
       <Row>
@@ -65,6 +73,7 @@ export const MainView = () => {
                 ) : (
                   <Col md={5}>
                     <LoginView />
+                    {errorMessage && <p className="text-danger">{errorMessage}</p>} {/* Display error if exists */}
                   </Col>
                 )}
               </>
