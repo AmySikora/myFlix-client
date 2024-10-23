@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -6,24 +5,36 @@ import Form from "react-bootstrap/Form";
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); // Add error message state
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = {
-      Username: username,  
+      Username: username,
       Password: password,
     };
 
-    fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/login`, {
-      method: "POST",
+    fetch('https://myflixmovies123-d3669f5b95da.herokuapp.com/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', 
+      },
       body: JSON.stringify(data),
-    }).then((response) => {
+    })
+    .then((response) => {
       if (response.ok) {
-        dispatch(setUser(username));
+        return response.json(); 
       } else {
-        alert("Login failed");
+        throw new Error('Login failed');
       }
+    })
+    .then((data) => {
+      onLoggedIn(data); 
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      setErrorMessage('Login failed. Please check your username and password.');
     });
   };
 
@@ -52,6 +63,7 @@ export const LoginView = ({ onLoggedIn }) => {
           />
         </Form.Group>
 
+        {/* Display the error message if present */}
         {errorMessage && <p className="text-danger">{errorMessage}</p>}
 
         <Button variant="primary" className="btn-submit mt-3" type="submit">
