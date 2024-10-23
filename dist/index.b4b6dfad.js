@@ -27278,10 +27278,9 @@ const MainView = ()=>{
     const filter = (0, _reactRedux.useSelector)((state)=>state.movies.filter);
     const user = (0, _reactRedux.useSelector)((state)=>state.user);
     const dispatch = (0, _reactRedux.useDispatch)();
-    const [selectedGenre, setSelectedGenre] = (0, _react.useState)("");
-    // Ensure the token is properly retrieved and used
     const storedToken = localStorage.getItem("token") || null;
-    const storedUser = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
+    const storedUser = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null; // Fixed parsing
+    const [selectedGenre, setSelectedGenre] = (0, _react.useState)("");
     (0, _react.useEffect)(()=>{
         // If there's a stored user, set it in Redux
         if (storedUser) dispatch((0, _user.setUser)(storedUser));

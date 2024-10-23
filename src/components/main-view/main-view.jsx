@@ -4,26 +4,26 @@ import { SignupView } from "../signup-view/signup-view";
 import { MovieView } from "../movie-view/movie-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
-import { MoviesFilter } from "../movies-filter/movies-filter";
+import { MoviesFilter } from "../movies-filter/movies-filter"; 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setMovies } from "../../redux/reducers/movies";
-import { setUser } from "../../redux/reducers/user/user";
+import { setUser } from "../../redux/reducers/user/user";  
 import Form from "react-bootstrap/Form";
 
 export const MainView = () => {
   const movies = useSelector((state) => state.movies.list);
-  const filter = useSelector((state) => state.movies.filter);
+  const filter = useSelector((state) => state.movies.filter);  
   const user = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
+  
+  const storedToken = localStorage.getItem('token') || null;
+  const storedUser = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null; // Fixed parsing
 
   const [selectedGenre, setSelectedGenre] = useState("");
-
-  // Ensure the token is properly retrieved and used
-  const storedToken = localStorage.getItem('token') || null;
-  const storedUser = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
 
   useEffect(() => {
     // If there's a stored user, set it in Redux
@@ -37,7 +37,7 @@ export const MainView = () => {
     fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${storedToken}`, // Ensure token is sent in Authorization header
+        Authorization: `Bearer ${storedToken}`, 
         'Content-Type': 'application/json',
       },
     })
