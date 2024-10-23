@@ -4,27 +4,30 @@ import { SignupView } from "../signup-view/signup-view";
 import { MovieView } from "../movie-view/movie-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { MoviesFilter } from "../movies-filter/movies-filter"; 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setMovies } from "../../redux/reducers/movies";
 import { setUser } from "../../redux/reducers/user/user";  
-import { MoviesList } from "../movies-list/movies-list"; 
-import { ProfileView } from "../profile-view/profile-view";
-import { Form } from "react-bootstrap";
-
+import Form from "react-bootstrap/Form";
 
 export const MainView = () => {
   const movies = useSelector((state) => state.movies.list);
+  const filter = useSelector((state) => state.movies.filter);  
   const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
-  const token = localStorage.getItem('token'); 
+  const storedToken = localStorage.getItem('token'); 
+
+  const [selectedGenre, setSelectedGenre] = useState("");
 
   useEffect(() => {
-    const token = localStorage.getItem('token');  
-  
+    const token = storedToken || localStorage.getItem("token");
+
+    if (!token) return;
+
     fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
       method: 'GET',
       headers: {
@@ -57,11 +60,18 @@ export const MainView = () => {
       });
   }, [dispatch]);
 
-  // Define the handleLogin function
   const handleLogin = (data) => {
-    localStorage.setItem('token', data.token);  
-    dispatch(setUser(data.user)); 
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('user', JSON.stringify(data.user));
+    dispatch(setUser(data.user));
   };
+
+  const filteredMovies = movies.filter((movie) => {
+    return (
+      movie.title.toLowerCase().includes(filter.toLowerCase()) &&
+      (!selectedGenre || movie.genre === selectedGenre)
+    );
+  });
 
   return (
     <BrowserRouter>
@@ -117,7 +127,45 @@ export const MainView = () => {
           <Route
             path="/"
             element={
-              <>{!user ? <Navigate to="/login" replace /> : <MoviesList />}</>
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <>
+                    <Row className="justify-content-center mb-4">
+                      <Col md={6}>
+                        <MoviesFilter />
+                      </Col>
+                      <Col md={6}>
+                        <Form.Select
+                          value={selectedGenre}
+                          onChange={(e) => setSelectedGenre(e.target.value)}
+                        >
+                          <option value="">All genres</option>
+                          {[...new Set(movies.map((m) => m.genre))]
+                            .sort()
+                            .map((genre) => (
+                              <option key={genre} value={genre}>
+                                {genre}
+                              </option>
+                            ))}
+                        </Form.Select>
+                      </Col>
+                    </Row>
+                    <Row>
+                      {filteredMovies.length === 0 ? (
+                        <Col>No movies found!</Col>
+                      ) : (
+                        filteredMovies.map((movie) => (
+                          <Col className="mb-4" key={movie.id} xs={8} sm={6} md={4} lg={2}>
+                            <MovieCard movieData={movie} />
+                          </Col>
+                        ))
+                      )}
+                    </Row>
+                  </>
+                )}
+              </>
             }
           />
         </Routes>
