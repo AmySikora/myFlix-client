@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/reducers/user/user'; // Redux user setter
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch(); // Redux dispatch function
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,20 +20,23 @@ export const LoginView = ({ onLoggedIn }) => {
     fetch('https://myflixmovies123-d3669f5b95da.herokuapp.com/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json', 
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     })
-    .then((response) => {
-      if (response.ok) {
-        return response.json(); 
-      } else {
-        throw new Error('Login failed');
-      }
-    })
+    .then((response) => response.json())
     .then((data) => {
-      localStorage.setItem('token', data.token);  
-      onLoggedIn(data);  
+      if (data.user) {
+        // Store the user and token in localStorage
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        // Dispatch user to Redux store
+        dispatch(setUser(data.user));
+        // Invoke the onLoggedIn callback
+        onLoggedIn(data.user, data.token);
+      } else {
+        alert('No such user');
+      }
     })
     .catch((error) => {
       console.error('Error:', error);
