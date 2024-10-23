@@ -1,19 +1,19 @@
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams, Navigate, Link } from "react-router-dom";
 import "./movie-view.scss"; 
 
 export const MovieView = ({ movies, user, token, setUser }) => {
-  const { movieId } = useParams(); 
+  const { movieId } = useParams();
+
 
   if (!user || !user.Username) {
-    return <p>User is not logged in or data is incomplete.</p>;
+    return <Navigate to="/login" replace />;
   }
 
   const movie = movies.find((b) => b.id === movieId);
   if (!movie) {
     return <p>Movie not found</p>;
   }
-
+ 
   const isFavorite = user?.FavoriteMovies?.includes(movieId) || false;
 
   const handleFavorite = () => {
@@ -38,6 +38,7 @@ export const MovieView = ({ movies, user, token, setUser }) => {
       return response.json();
     })
     .then(updatedUser => {
+
       setUser(updatedUser);
       localStorage.setItem('user', JSON.stringify(updatedUser));
     })
