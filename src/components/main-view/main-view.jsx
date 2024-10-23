@@ -4,36 +4,42 @@ import { SignupView } from "../signup-view/signup-view";
 import { MovieView } from "../movie-view/movie-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
-import { MoviesFilter } from "../movies-filter/movies-filter"; 
+import { MoviesFilter } from "../movies-filter/movies-filter";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setMovies } from "../../redux/reducers/movies";
-import { setUser } from "../../redux/reducers/user/user";  
+import { setUser } from "../../redux/reducers/user/user";
 import Form from "react-bootstrap/Form";
 
 export const MainView = () => {
   const movies = useSelector((state) => state.movies.list);
-  const filter = useSelector((state) => state.movies.filter);  
+  const filter = useSelector((state) => state.movies.filter);
   const user = useSelector((state) => state.user);
-
   const dispatch = useDispatch();
-  const storedToken = localStorage.getItem('token'); 
 
   const [selectedGenre, setSelectedGenre] = useState("");
 
+  // Ensure the token is properly retrieved and used
+  const storedToken = localStorage.getItem('token') || null;
+  const storedUser = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
+
   useEffect(() => {
-    const token = storedToken || localStorage.getItem("token");
+    // If there's a stored user, set it in Redux
+    if (storedUser) {
+      dispatch(setUser(storedUser));
+    }
 
-    if (!token) return;
+    if (!storedToken) return; // Stop if no token
 
+    // Fetch movies using token
     fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${token}`, 
-        'Content-Type': 'application/json'
-      }
+        Authorization: `Bearer ${storedToken}`, // Ensure token is sent in Authorization header
+        'Content-Type': 'application/json',
+      },
     })
       .then((response) => {
         if (!response.ok) {
@@ -42,25 +48,24 @@ export const MainView = () => {
         return response.json();
       })
       .then((data) => {
-        const moviesFromApi = data.map((movie) => {
-          return {
-            id: movie._id,
-            title: movie.Title,
-            image: movie.ImageURL || "https://via.placeholder.com/150",
-            director: movie.Director?.Name || "Unknown Director",
-            description: movie.Description || "No description available",
-            genre: movie.Genre?.Name || "Unknown genre",
-          };
-        });
-  
+        const moviesFromApi = data.map((movie) => ({
+          id: movie._id,
+          title: movie.Title,
+          image: movie.ImageURL || "https://via.placeholder.com/150",
+          director: movie.Director?.Name || "Unknown Director",
+          description: movie.Description || "No description available",
+          genre: movie.Genre?.Name || "Unknown genre",
+        }));
+
         dispatch(setMovies(moviesFromApi));
       })
       .catch((error) => {
         console.error("Error fetching movies:", error);
       });
-  }, [dispatch]);
+  }, [dispatch, storedToken, storedUser]); // Add storedUser as dependency for correct user updates
 
   const handleLogin = (data) => {
+    // Store token and user in localStorage, then dispatch
     localStorage.setItem('token', data.token);
     localStorage.setItem('user', JSON.stringify(data.user));
     dispatch(setUser(data.user));
@@ -83,89 +88,67 @@ export const MainView = () => {
           <Route
             path="/signup"
             element={
-              <>
-                {user ? (
-                  <Navigate to="/" replace />
-                ) : (
-                  <Col md={5}>
-                    <SignupView />
-                  </Col>
-                )}
-              </>
+              user ? <Navigate to="/" replace /> : <Col md={5}><SignupView /></Col>
             }
           />
           <Route
             path="/login"
             element={
-              <>
-                {user ? (
-                  <Navigate to="/" replace />
-                ) : (
-                  <Col md={5}>
-                    <LoginView onLoggedIn={handleLogin} />
-                  </Col>
-                )}
-              </>
+              user ? <Navigate to="/" replace /> : <Col md={5}><LoginView onLoggedIn={handleLogin} /></Col>
             }
           />
           <Route
             path="/movies/:movieId"
             element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
-                ) : (
-                  <Col md={8}>
-                    <MovieView />
-                  </Col>
-                )}
-              </>
+              !user ? (
+                <Navigate to="/login" replace />
+              ) : movies.length === 0 ? (
+                <Col>The list is empty!</Col>
+              ) : (
+                <Col md={8}><MovieView /></Col>
+              )
             }
           />
           <Route
             path="/"
             element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : (
-                  <>
-                    <Row className="justify-content-center mb-4">
-                      <Col md={6}>
-                        <MoviesFilter />
-                      </Col>
-                      <Col md={6}>
-                        <Form.Select
-                          value={selectedGenre}
-                          onChange={(e) => setSelectedGenre(e.target.value)}
-                        >
-                          <option value="">All genres</option>
-                          {[...new Set(movies.map((m) => m.genre))]
-                            .sort()
-                            .map((genre) => (
-                              <option key={genre} value={genre}>
-                                {genre}
-                              </option>
-                            ))}
-                        </Form.Select>
-                      </Col>
-                    </Row>
-                    <Row>
-                      {filteredMovies.length === 0 ? (
-                        <Col>No movies found!</Col>
-                      ) : (
-                        filteredMovies.map((movie) => (
-                          <Col className="mb-4" key={movie.id} xs={8} sm={6} md={4} lg={2}>
-                            <MovieCard movieData={movie} />
-                          </Col>
-                        ))
-                      )}
-                    </Row>
-                  </>
-                )}
-              </>
+              !user ? (
+                <Navigate to="/login" replace />
+              ) : (
+                <>
+                  <Row className="justify-content-center mb-4">
+                    <Col md={6}>
+                      <MoviesFilter />
+                    </Col>
+                    <Col md={6}>
+                      <Form.Select
+                        value={selectedGenre}
+                        onChange={(e) => setSelectedGenre(e.target.value)}
+                      >
+                        <option value="">All genres</option>
+                        {[...new Set(movies.map((m) => m.genre))]
+                          .sort()
+                          .map((genre) => (
+                            <option key={genre} value={genre}>
+                              {genre}
+                            </option>
+                          ))}
+                      </Form.Select>
+                    </Col>
+                  </Row>
+                  <Row>
+                    {filteredMovies.length === 0 ? (
+                      <Col>No movies found!</Col>
+                    ) : (
+                      filteredMovies.map((movie) => (
+                        <Col className="mb-4" key={movie.id} xs={8} sm={6} md={4} lg={2}>
+                          <MovieCard movieData={movie} />
+                        </Col>
+                      ))
+                    )}
+                  </Row>
+                </>
+              )
             }
           />
         </Routes>
