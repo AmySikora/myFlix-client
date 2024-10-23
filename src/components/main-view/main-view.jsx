@@ -19,12 +19,16 @@ export const MainView = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      dispatch(setUser(storedUser)); // Load user from localStorage into Redux
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        dispatch(setUser(parsedUser)); 
+      } catch (error) {
+        console.error("Failed to parse user from localStorage:", error);
+      }
     }
   }, [dispatch]);
-
   useEffect(() => {
     const token = localStorage.getItem("token");
 
