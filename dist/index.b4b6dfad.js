@@ -27275,7 +27275,7 @@ const MainView = ()=>{
     const user = (0, _reactRedux.useSelector)((state)=>state.user);
     const dispatch = (0, _reactRedux.useDispatch)();
     const storedToken = localStorage.getItem("token");
-    const storedUser = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
+    const storedUser = localStorage.getItem("user") !== null ? JSON.parse(localStorage.getItem("user")) : null; // Ensure it's only parsed if not null
     const [errorMessage, setErrorMessage] = (0, _react.useState)("");
     (0, _react.useEffect)(()=>{
         if (!storedToken) {
