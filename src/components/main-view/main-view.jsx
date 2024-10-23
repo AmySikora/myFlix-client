@@ -1,37 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { MovieView } from "../movie-view/movie-view";
+import { ProfileView } from "../profile-view/profile-view"; // Import ProfileView
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setMovies } from "../../redux/reducers/movies";
-import { setUser, logoutUser } from "../../redux/reducers/user/user";  
+import { setUser } from "../../redux/reducers/user/user";
 import { MoviesList } from "../movies-list/movies-list";
 
 export const MainView = () => {
   const movies = useSelector((state) => state.movies.list);
   const user = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
-  const token = localStorage.getItem("token"); 
 
   useEffect(() => {
-    const token = localStorage.getItem('token'); // Get the token from localStorage
-  
-    if (!token) {
-      console.error("Token is missing, cannot fetch movies.");
-      return;
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      dispatch(setUser(storedUser)); // Load user from localStorage into Redux
     }
-  
+  }, [dispatch]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) return;
+
     fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
-      method: 'GET',
-      headers: { Authorization: `Bearer ${token}` }, // Attach the token
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error(`Failed to fetch movies. Status: ${response.status}`);
+          throw new Error("Failed to fetch movies");
         }
         return response.json();
       })
@@ -44,83 +49,92 @@ export const MainView = () => {
           description: movie.Description || "No description available",
           genre: movie.Genre?.Name || "Unknown genre",
         }));
+
         dispatch(setMovies(moviesFromApi));
       })
       .catch((error) => {
         console.error("Error fetching movies:", error);
       });
   }, [dispatch]);
-  
+
+  // Define the handleLogin function
   const handleLogin = (data) => {
-  if (data.token) {
-    localStorage.setItem('token', data.token);  
-    localStorage.setItem('user', JSON.stringify(data.user)); 
-    dispatch(setUser(data.user)); 
-  } else {
-    console.error('Login response did not contain a token');
-  }
-};
-
-
-  // Handle logout
-  const handleLogout = () => {
-    localStorage.clear();
-    dispatch(logoutUser());
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user)); // Store user in localStorage
+    dispatch(setUser(data.user));
   };
 
   return (
     <BrowserRouter>
       <Row>
-        <NavigationBar onLoggedOut={handleLogout} />
+        <NavigationBar />
       </Row>
       <Row className="justify-content-md-center">
         <Routes>
           <Route
             path="/signup"
             element={
-              user ? (
-                <Navigate to="/" replace />
-              ) : (
-                <Col md={5}>
-                  <SignupView />
-                </Col>
-              )
+              <>
+                {user ? (
+                  <Navigate to="/" replace />
+                ) : (
+                  <Col md={5}>
+                    <SignupView />
+                  </Col>
+                )}
+              </>
             }
           />
           <Route
             path="/login"
             element={
-              user ? (
-                <Navigate to="/" replace />
-              ) : (
-                <Col md={5}>
-                  <LoginView onLoggedIn={handleLogin} />
-                </Col>
-              )
+              <>
+                {user ? (
+                  <Navigate to="/" replace />
+                ) : (
+                  <Col md={5}>
+                    <LoginView onLoggedIn={handleLogin} />
+                  </Col>
+                )}
+              </>
             }
           />
           <Route
             path="/movies/:movieId"
             element={
-              !user ? (
-                <Navigate to="/login" replace />
-              ) : movies.length === 0 ? (
-                <Col>The list is empty!</Col>
-              ) : (
-                <Col md={8}>
-                  <MovieView />
-                </Col>
-              )
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <Col md={8}>
+                    <MovieView />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col md={8}>
+                    <ProfileView /> 
+                  </Col>
+                )}
+              </>
             }
           />
           <Route
             path="/"
             element={
-              !user ? (
-                <Navigate to="/login" replace />
-              ) : (
-                <MoviesList />
-              )
+              <>
+                {!user ? <Navigate to="/login" replace /> : <MoviesList />}
+              </>
             }
           />
         </Routes>

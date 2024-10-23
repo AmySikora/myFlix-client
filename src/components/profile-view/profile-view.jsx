@@ -8,10 +8,10 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
   const { username } = useParams();
   const navigate = useNavigate(); 
 
-  const [userUsername, setUserUsername] = useState(user.Username || "");
-  const [email, setEmail] = useState(user.Email || "");
-  const [birthday, setBirthday] = useState(user.Birthday ? user.Birthday.split("T")[0] : "");
-  const [password, setPassword] = useState("");
+  const [userUsername, setUserUsername] = useState(user?.Username || "");
+  const [email, setEmail] = useState(user?.Email || "");
+  const [birthday, setBirthday] = useState(user?.Birthday ? user.Birthday.split("T")[0] : "");
+  const [password, setPassword] = useState("");  
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
