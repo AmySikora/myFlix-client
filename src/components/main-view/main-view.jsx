@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { MovieView } from "../movie-view/movie-view";
-import { MovieCard } from "../movie-card/movie-card";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -11,7 +10,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { setMovies } from "../../redux/reducers/movies";
 import { setUser } from "../../redux/reducers/user/user";  
 import { MoviesList } from "../movies-list/movies-list"; 
-import { ProfileView } from "../profile-view/profile-view"
 
 export const MainView = () => {
   const movies = useSelector((state) => state.movies.list);
