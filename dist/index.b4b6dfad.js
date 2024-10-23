@@ -47130,10 +47130,10 @@ parcelHelpers.export(exports, "setUser", ()=>setUser);
 var _toolkit = require("@reduxjs/toolkit");
 const userSlice = (0, _toolkit.createSlice)({
     name: "user",
-    initialState: {},
+    initialState: null,
     reducers: {
         setUser: (state, action)=>{
-            return action.payload; // Set the entire state to the user payload
+            state.user = action.payload;
         }
     }
 });
