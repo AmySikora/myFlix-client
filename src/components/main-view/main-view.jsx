@@ -21,19 +21,19 @@ export const MainView = () => {
   const dispatch = useDispatch();
   
   const storedToken = localStorage.getItem('token') || null;
-  const storedUser = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null; // Fixed parsing
+  const storedUser = localStorage.getItem('user') && localStorage.getItem('user') !== 'undefined'
+    ? JSON.parse(localStorage.getItem('user'))
+    : null; // Fixed parsing
 
   const [selectedGenre, setSelectedGenre] = useState("");
 
   useEffect(() => {
-    // If there's a stored user, set it in Redux
     if (storedUser) {
       dispatch(setUser(storedUser));
     }
 
-    if (!storedToken) return; // Stop if no token
+    if (!storedToken) return; 
 
-    // Fetch movies using token
     fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
       method: 'GET',
       headers: {
@@ -62,10 +62,9 @@ export const MainView = () => {
       .catch((error) => {
         console.error("Error fetching movies:", error);
       });
-  }, [dispatch, storedToken, storedUser]); // Add storedUser as dependency for correct user updates
+  }, [dispatch, storedToken, storedUser]);
 
   const handleLogin = (data) => {
-    // Store token and user in localStorage, then dispatch
     localStorage.setItem('token', data.token);
     localStorage.setItem('user', JSON.stringify(data.user));
     dispatch(setUser(data.user));
