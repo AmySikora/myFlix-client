@@ -17,8 +17,21 @@ export const MainView = () => {
   const token = localStorage.getItem('token'); 
 
   useEffect(() => {
-    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies")
-      .then((response) => response.json())
+    const token = localStorage.getItem('token');  
+  
+    fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`, 
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch movies');
+        }
+        return response.json();
+      })
       .then((data) => {
         const moviesFromApi = data.map((movie) => {
           return {
