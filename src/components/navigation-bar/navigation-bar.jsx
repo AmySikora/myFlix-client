@@ -1,46 +1,42 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logoutUser } from "../../redux/reducers/user/user";
+import { setUser } from "../../redux/reducers/user/user";
 
-export const NavigationBar = ({ onLoggedOut }) => {
+export const NavigationBar = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  // Function to handle logout, dispatches redux action and clears localStorage
-  const handleLogout = () => {
-    dispatch(logoutUser());
-    localStorage.clear();
-    if (onLoggedOut) {
-      onLoggedOut(); // Call any additional logout handling passed in
-    }
-  };
-
-  return (
-    <Navbar bg="light" expand="lg">
-      <Container>
-        <Navbar.Brand as={Link} to="/">
-          MyFlix App
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+    return (
+        <Navbar bg="light" expand="lg">
+          <Container>
+            <Navbar.Brand as={Link} to="/">
+              MyFlix 
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
             {!user && (
               <>
                 <Nav.Link as={Link} to="/login">
-                  Login
+                  <span className="nav">Login</span>
                 </Nav.Link>
                 <Nav.Link as={Link} to="/signup">
-                  Signup
+                  <span className="nav">Signup</span>
                 </Nav.Link>
               </>
             )}
             {user && (
               <>
                 <Nav.Link as={Link} to="/">
-                  Home
+                  <span className="nav"> Home</span>
                 </Nav.Link>
-                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                <Nav.Link as={Link} to={`/users/${user.userName}`}>
+                  <span className="nav"> Profile</span>
+                </Nav.Link>
+                <Nav.Link onClick={onLoggedOut}>
+                  <span className="nav">Logout</span>
+                </Nav.Link>
               </>
             )}
           </Nav>
