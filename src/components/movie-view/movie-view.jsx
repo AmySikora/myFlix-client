@@ -1,19 +1,27 @@
 import { useParams, Navigate, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "./movie-view.scss"; 
 
-export const MovieView = ({ movies, user, token, setUser }) => {
+export const MovieView = ({ movies, user, setUser }) => {
   const { movieId } = useParams();
+  const [token, setToken] = useState(localStorage.getItem('token') || '');
 
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
 
   if (!user || !user.Username) {
     return <Navigate to="/login" replace />;
   }
 
-  const movie = movies.find((b) => b.id === movieId);
+  const movie = movies?.find((b) => b.id === movieId);
   if (!movie) {
     return <p>Movie not found</p>;
   }
- 
+
   const isFavorite = user?.FavoriteMovies?.includes(movieId) || false;
 
   const handleFavorite = () => {
@@ -38,7 +46,6 @@ export const MovieView = ({ movies, user, token, setUser }) => {
       return response.json();
     })
     .then(updatedUser => {
-
       setUser(updatedUser);
       localStorage.setItem('user', JSON.stringify(updatedUser));
     })
