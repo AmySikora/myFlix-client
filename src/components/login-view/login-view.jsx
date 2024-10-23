@@ -17,7 +17,7 @@ export const LoginView = ({ onLoggedIn }) => {
     fetch('https://myflixmovies123-d3669f5b95da.herokuapp.com/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json', 
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     })
@@ -29,8 +29,9 @@ export const LoginView = ({ onLoggedIn }) => {
       }
     })
     .then((data) => {
-      localStorage.setItem('token', data.token);  
-      onLoggedIn(data);  
+      localStorage.setItem('token', data.token); 
+      localStorage.setItem('user', JSON.stringify(data.user)); 
+      onLoggedIn(data.user); 
     })
     .catch((error) => {
       console.error('Error:', error);
