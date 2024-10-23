@@ -47133,6 +47133,7 @@ const LoginView = ({ onLoggedIn })=>{
             if (response.ok) return response.json();
             else throw new Error("Login failed");
         }).then((data)=>{
+            localStorage.setItem("token", data.token);
             onLoggedIn(data);
         }).catch((error)=>{
             console.error("Error:", error);

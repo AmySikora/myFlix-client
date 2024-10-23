@@ -29,8 +29,8 @@ export const LoginView = ({ onLoggedIn }) => {
       }
     })
     .then((data) => {
-      
-      onLoggedIn(data); 
+      localStorage.setItem('token', data.token);  
+      onLoggedIn(data);  
     })
     .catch((error) => {
       console.error('Error:', error);
