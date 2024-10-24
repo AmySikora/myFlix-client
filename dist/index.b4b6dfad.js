@@ -39891,27 +39891,33 @@ const MoviesList = ()=>{
     _s();
     const movies = (0, _reactRedux.useSelector)((state)=>state.movies.list);
     const filter = (0, _reactRedux.useSelector)((state)=>state.movies.filter).trim().toLowerCase();
-    const filteredMovies = movies.filter((movie)=>movie.title.toLowerCase().includes(filter));
+    const filteredMovies = movies.filter((movie)=>{
+        // Check if the movie title, genre, or director contains the filter value
+        const titleMatch = movie.title.toLowerCase().includes(filter);
+        const genreMatch = movie.genre?.toLowerCase().includes(filter); // Ensure genre exists
+        const directorMatch = movie.director?.toLowerCase().includes(filter); // Ensure director exists
+        return titleMatch || genreMatch || directorMatch;
+    });
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _moviesFilter.MoviesFilter), {}, void 0, false, {
                     fileName: "src/components/movies-list/movies-list.jsx",
-                    lineNumber: 19,
-                    columnNumber: 1
+                    lineNumber: 24,
+                    columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/movies-list/movies-list.jsx",
-                lineNumber: 18,
-                columnNumber: 5
+                lineNumber: 23,
+                columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
-                children: movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                children: filteredMovies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                     children: "The list is empty!"
                 }, void 0, false, {
                     fileName: "src/components/movies-list/movies-list.jsx",
-                    lineNumber: 23,
-                    columnNumber: 5
+                    lineNumber: 28,
+                    columnNumber: 11
                 }, undefined) : filteredMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                         className: "mb-4",
                         md: 3,
@@ -39919,18 +39925,18 @@ const MoviesList = ()=>{
                             movie: movie
                         }, void 0, false, {
                             fileName: "src/components/movies-list/movies-list.jsx",
-                            lineNumber: 27,
-                            columnNumber: 13
+                            lineNumber: 32,
+                            columnNumber: 15
                         }, undefined)
                     }, movie.id, false, {
                         fileName: "src/components/movies-list/movies-list.jsx",
-                        lineNumber: 26,
-                        columnNumber: 9
+                        lineNumber: 31,
+                        columnNumber: 13
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/movies-list/movies-list.jsx",
-                lineNumber: 21,
-                columnNumber: 5
+                lineNumber: 26,
+                columnNumber: 7
             }, undefined)
         ]
     }, void 0, true);
