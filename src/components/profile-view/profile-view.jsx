@@ -15,9 +15,12 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
+  // Ensure IDs are strings and comparison works
   useEffect(() => {
-    if (user && movies && user.FavoriteMovies) {
-      const favoriteMoviesList = movies.filter(m => user.FavoriteMovies.includes(m.id));
+    if (user?.FavoriteMovies && movies?.length > 0) {
+      const favoriteMoviesList = movies.filter(movie => 
+        user.FavoriteMovies.includes(movie._id.toString())  // Convert to string if necessary
+      );
       setFavoriteMovies(favoriteMoviesList);
     }
   }, [user, movies]);
@@ -36,8 +39,6 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
       Birthday: birthday,
       Password: password,
     };
-
-    console.log('Updated user data:', updatedUser);
 
     fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${username}`, {
       method: 'PUT',
@@ -96,6 +97,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
   return (
     <div className="profile-view-container">
       <Row>
+        {/* Profile Form Section */}
         <Col md={6}>
           <h3>User Profile</h3>
           <Form onSubmit={handleUpdate}>
@@ -151,6 +153,8 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
 
           <Button className="btn-danger mt-3" onClick={handleDeregister}>Delete Account</Button>
         </Col>
+
+        {/* Favorite Movies Section */}
         <Col md={6}>
           <h3>Favorite Movies</h3>
           {favoriteMovies.length === 0 ? (
@@ -158,7 +162,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
           ) : (
             <Row>
               {favoriteMovies.map((movie) => (
-                <Col key={movie.id} md={4} className="mb-4">
+                <Col key={movie._id} md={4} className="mb-4">
                   <MovieCard movie={movie} />
                 </Col>
               ))}
