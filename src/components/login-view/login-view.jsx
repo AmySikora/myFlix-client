@@ -27,20 +27,19 @@ export const LoginView = ({ onLoggedIn }) => {
     .then((response) => response.json())
     .then((data) => {
       if (data.user) {
-
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
+        onLoggedIn(data.user, data.token);
        
         dispatch(setUser(data.user));
-    
-        onLoggedIn(data.user, data.token);
+   
       } else {
         alert('No such user');
       }
     })
-    .catch((error) => {
-      console.error('Error:', error);
-      alert('Login failed');
+    .catch((e) => {
+      console.error("Login error: ", e, username, password);
+      alert("Something went wrong");
     });
   };
 
@@ -53,7 +52,7 @@ export const LoginView = ({ onLoggedIn }) => {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            required
+            required minLength="3"
             className="form-input"
           />
         </Form.Group>
@@ -68,7 +67,6 @@ export const LoginView = ({ onLoggedIn }) => {
             className="form-input"
           />
         </Form.Group>
-
         <Button variant="primary" className="btn-submit mt-3" type="submit">
           Submit
         </Button>

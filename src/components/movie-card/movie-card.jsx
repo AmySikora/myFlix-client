@@ -16,8 +16,7 @@ export const MovieCard = ({ movie }) => {
           {directorName && <Card.Text><strong>Director:</strong> {directorName}</Card.Text>}
         </Card.Body>
       </Link>
-
-      {/* The button should be outside the Link for better click handling */}
+      
       <Button as={Link} to={`/movies/${movie.id}`} className="btn mt-2">
         Open
       </Button>

@@ -27263,7 +27263,7 @@ var _moviesList = require("../movies-list/movies-list");
 var _loginView = require("../login-view/login-view");
 var _signupView = require("../signup-view/signup-view");
 var _movieView = require("../movie-view/movie-view");
-var _profileView = require("../profile-view/profile-view"); // Import the ProfileView
+var _profileView = require("../profile-view/profile-view");
 var _navigationBar = require("../navigation-bar/navigation-bar");
 var _s = $RefreshSig$();
 const MainView = ()=>{
@@ -27271,12 +27271,15 @@ const MainView = ()=>{
     const movies = (0, _reactRedux.useSelector)((state)=>state.movies.list);
     const user = (0, _reactRedux.useSelector)((state)=>state.user);
     const dispatch = (0, _reactRedux.useDispatch)();
+    const [favoriteMovies, setFavoriteMovies] = (0, _react.useState)([]);
+    const [error, setError] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
         const storedUser = localStorage.getItem("user");
         const storedToken = localStorage.getItem("token");
         if (storedUser && storedToken) try {
             const parsedUser = JSON.parse(storedUser);
             dispatch((0, _user.setUser)(parsedUser));
+            setFavoriteMovies(parsedUser.favorite_movies || []); // Load user's favorite movies
         } catch (error) {
             console.error("Failed to parse user from localStorage:", error);
         }
@@ -27309,20 +27312,74 @@ const MainView = ()=>{
             dispatch((0, _movies.setMovies)(moviesFromApi));
         }).catch((error)=>{
             console.error("Error fetching movies:", error);
+            setError(error.message);
         });
     }, [
         dispatch
     ]);
     const handleLogin = (data)=>{
         localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user)); // Store user in localStorage
+        localStorage.setItem("user", JSON.stringify(data.user));
         dispatch((0, _user.setUser)(data.user));
+        setFavoriteMovies(data.user.favorite_movies || []); // Load favorite movies on login
     };
+    const onLoggedOut = ()=>{
+        (0, _user.setUser)(null);
+        setFavoriteMovies([]); // Clear favorite movies
+        localStorage.clear();
+    };
+    const handleFavoriteToggle = async (movieId, isFavorite)=>{
+        const token = localStorage.getItem("token");
+        const username = user.Username;
+        try {
+            const headers = {
+                Authorization: `Bearer ${token}`
+            };
+            if (isFavorite) {
+                await axios.post(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${username}/movies/${movieId}`, {}, {
+                    headers
+                });
+                setFavoriteMovies([
+                    ...favoriteMovies,
+                    movieId
+                ]);
+            } else {
+                await axios.delete(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${username}/movies/${movieId}`, {
+                    headers
+                });
+                setFavoriteMovies(favoriteMovies.filter((id)=>id !== movieId));
+            }
+            // Update user in localStorage
+            const updatedUser = {
+                ...user,
+                favorite_movies: [
+                    ...favoriteMovies
+                ]
+            };
+            localStorage.setItem("user", JSON.stringify(updatedUser));
+            dispatch((0, _user.setUser)(updatedUser)); // Update user in Redux store
+        } catch (error) {
+            console.error("Error updating favorite status:", error);
+        }
+    };
+    if (error) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: [
+            "Error: ",
+            error
+        ]
+    }, void 0, true, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 116,
+        columnNumber: 12
+    }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigationBar.NavigationBar), {}, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigationBar.NavigationBar), {
+                user: user,
+                onLoggedOut: onLoggedOut
+            }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 73,
+                lineNumber: 121,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Routes), {
@@ -27333,112 +27390,118 @@ const MainView = ()=>{
                             onLoggedIn: handleLogin
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 77,
+                            lineNumber: 125,
                             columnNumber: 28
                         }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
                             to: "/"
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 77,
+                            lineNumber: 125,
                             columnNumber: 69
                         }, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 75,
+                        lineNumber: 123,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                         path: "/signup",
                         element: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 81,
+                            lineNumber: 129,
                             columnNumber: 28
                         }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
                             to: "/"
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 81,
+                            lineNumber: 129,
                             columnNumber: 45
                         }, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 79,
+                        lineNumber: 127,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                         path: "/movies/:movieId",
                         element: user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-                            movies: movies
+                            movies: movies,
+                            user: user,
+                            favoriteMovies: favoriteMovies,
+                            onFavoriteToggle: handleFavoriteToggle
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 85,
-                            columnNumber: 27
+                            lineNumber: 135,
+                            columnNumber: 15
                         }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
                             to: "/login"
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 85,
-                            columnNumber: 59
+                            lineNumber: 142,
+                            columnNumber: 15
                         }, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 83,
+                        lineNumber: 131,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                         path: "/profile",
                         element: user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileView.ProfileView), {
-                            user: user
+                            user: user,
+                            favoriteMovies: favoriteMovies,
+                            onFavoriteToggle: handleFavoriteToggle
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 89,
-                            columnNumber: 27
+                            lineNumber: 150,
+                            columnNumber: 15
                         }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
                             to: "/login"
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 89,
-                            columnNumber: 57
+                            lineNumber: 156,
+                            columnNumber: 15
                         }, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 87,
+                        lineNumber: 146,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                         path: "/",
                         element: user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _moviesList.MoviesList), {
-                            movies: movies
+                            movies: movies,
+                            onFavoriteToggle: handleFavoriteToggle
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 93,
+                            lineNumber: 162,
                             columnNumber: 27
                         }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
                             to: "/login"
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 93,
-                            columnNumber: 60
+                            lineNumber: 162,
+                            columnNumber: 100
                         }, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 91,
+                        lineNumber: 160,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 74,
+                lineNumber: 122,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 72,
+        lineNumber: 120,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "E91sn+WqA1Lr8Oroy/hhRSl4ssQ=", false, function() {
+_s(MainView, "JXk/X5d9eqLXs0iZD3M89rqLGbA=", false, function() {
     return [
         (0, _reactRedux.useSelector),
         (0, _reactRedux.useSelector),
@@ -47286,12 +47349,12 @@ const LoginView = ({ onLoggedIn })=>{
             if (data.user) {
                 localStorage.setItem("token", data.token);
                 localStorage.setItem("user", JSON.stringify(data.user));
-                dispatch((0, _user.setUser)(data.user));
                 onLoggedIn(data.user, data.token);
+                dispatch((0, _user.setUser)(data.user));
             } else alert("No such user");
-        }).catch((error)=>{
-            console.error("Error:", error);
-            alert("Login failed");
+        }).catch((e)=>{
+            console.error("Login error: ", e, username, password);
+            alert("Something went wrong");
         });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -47309,7 +47372,7 @@ const LoginView = ({ onLoggedIn })=>{
                             children: "Username:"
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 51,
+                            lineNumber: 50,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -47317,16 +47380,17 @@ const LoginView = ({ onLoggedIn })=>{
                             value: username,
                             onChange: (e)=>setUsername(e.target.value),
                             required: true,
+                            minLength: "3",
                             className: "form-input"
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 52,
+                            lineNumber: 51,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 50,
+                    lineNumber: 49,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -47338,7 +47402,7 @@ const LoginView = ({ onLoggedIn })=>{
                             children: "Password:"
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 62,
+                            lineNumber: 61,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -47349,13 +47413,13 @@ const LoginView = ({ onLoggedIn })=>{
                             className: "form-input"
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 63,
+                            lineNumber: 62,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 61,
+                    lineNumber: 60,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
@@ -47365,18 +47429,18 @@ const LoginView = ({ onLoggedIn })=>{
                     children: "Submit"
                 }, void 0, false, {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 72,
+                    lineNumber: 70,
                     columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 49,
+            lineNumber: 48,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/login-view/login-view.jsx",
-        lineNumber: 48,
+        lineNumber: 47,
         columnNumber: 5
     }, undefined);
 };
