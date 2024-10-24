@@ -7,39 +7,30 @@ import { MoviesList } from "../movies-list/movies-list";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { MovieView } from "../movie-view/movie-view";
-import { ProfileView } from "../profile-view/profile-view";  
+import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 
 export const MainView = () => {
   const movies = useSelector((state) => state.movies.list);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  
-  const [favoriteMovies, setFavoriteMovies] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("token");
-
+    
     if (storedUser && storedToken) {
       try {
         const parsedUser = JSON.parse(storedUser);
         dispatch(setUser(parsedUser));
-        setFavoriteMovies(parsedUser.favorite_movies || []); 
+        fetchMovies(storedToken);
       } catch (error) {
         console.error("Failed to parse user from localStorage:", error);
       }
     }
   }, [dispatch]);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      console.error('Token is missing. Please log in.');
-      return;
-    }
-
+  const fetchMovies = (token) => {
     fetch("https://myflixmovies123-d3669f5b95da.herokuapp.com/movies", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
@@ -63,62 +54,19 @@ export const MainView = () => {
       })
       .catch((error) => {
         console.error("Error fetching movies:", error);
-        setError(error.message);
       });
-  }, [dispatch]);
+  };
 
   const handleLogin = (data) => {
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", JSON.stringify(data.user)); 
     dispatch(setUser(data.user));
-    setFavoriteMovies(data.user.favorite_movies || []); 
+    fetchMovies(data.token); // Fetch movies after login
   };
-
-  const onLoggedOut = () => {
-    setUser(null);
-    setFavoriteMovies([]); 
-    localStorage.clear();
-  };
-
-  const handleFavoriteToggle = async (movieId, isFavorite) => {
-    const token = localStorage.getItem("token");
-    const username = user.Username;
-
-    try {
-      const headers = { Authorization: `Bearer ${token}` };
-
-      if (isFavorite) {
-        await axios.post(
-          `https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${username}/movies/${movieId}`,
-          {},
-          { headers }
-        );
-        setFavoriteMovies([...favoriteMovies, movieId]);
-      } else {
-        await axios.delete(
-          `https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${username}/movies/${movieId}`,
-          { headers }
-        );
-        setFavoriteMovies(favoriteMovies.filter((id) => id !== movieId));
-      }
-
-
-      const updatedUser = { ...user, favorite_movies: [...favoriteMovies] };
-      localStorage.setItem("user", JSON.stringify(updatedUser));
-      dispatch(setUser(updatedUser)); 
-
-    } catch (error) {
-      console.error("Error updating favorite status:", error);
-    }
-  };
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
 
   return (
     <BrowserRouter>
-      <NavigationBar user={user} onLoggedOut={onLoggedOut} />
+      <NavigationBar />
       <Routes>
         <Route
           path="/login"
@@ -130,36 +78,15 @@ export const MainView = () => {
         />
         <Route
           path="/movies/:movieId"
-          element={
-            user ? (
-              <MovieView
-                movies={movies}
-                user={user}
-                favoriteMovies={favoriteMovies}
-                onFavoriteToggle={handleFavoriteToggle}
-              />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
+          element={user ? <MovieView /> : <Navigate to="/login" />}
         />
         <Route
           path="/profile"
-          element={
-            user ? (
-              <ProfileView
-                user={user}
-                favoriteMovies={favoriteMovies}
-                onFavoriteToggle={handleFavoriteToggle}
-              />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
+          element={user ? <ProfileView user={user} /> : <Navigate to="/login" />}
         />
         <Route
           path="/"
-          element={user ? <MoviesList movies={movies} onFavoriteToggle={handleFavoriteToggle} /> : <Navigate to="/login" />}
+          element={user ? <MoviesList movies={movies} /> : <Navigate to="/login" />}
         />
       </Routes>
     </BrowserRouter>
