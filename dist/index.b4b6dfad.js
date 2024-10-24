@@ -27279,7 +27279,7 @@ const MainView = ()=>{
         if (storedUser && storedToken) try {
             const parsedUser = JSON.parse(storedUser);
             dispatch((0, _user.setUser)(parsedUser));
-            setFavoriteMovies(parsedUser.favorite_movies || []); // Load user's favorite movies
+            setFavoriteMovies(parsedUser.favorite_movies || []);
         } catch (error) {
             console.error("Failed to parse user from localStorage:", error);
         }
@@ -27321,11 +27321,11 @@ const MainView = ()=>{
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
         dispatch((0, _user.setUser)(data.user));
-        setFavoriteMovies(data.user.favorite_movies || []); // Load favorite movies on login
+        setFavoriteMovies(data.user.favorite_movies || []);
     };
     const onLoggedOut = ()=>{
         (0, _user.setUser)(null);
-        setFavoriteMovies([]); // Clear favorite movies
+        setFavoriteMovies([]);
         localStorage.clear();
     };
     const handleFavoriteToggle = async (movieId, isFavorite)=>{
@@ -27349,7 +27349,6 @@ const MainView = ()=>{
                 });
                 setFavoriteMovies(favoriteMovies.filter((id)=>id !== movieId));
             }
-            // Update user in localStorage
             const updatedUser = {
                 ...user,
                 favorite_movies: [
@@ -27357,7 +27356,7 @@ const MainView = ()=>{
                 ]
             };
             localStorage.setItem("user", JSON.stringify(updatedUser));
-            dispatch((0, _user.setUser)(updatedUser)); // Update user in Redux store
+            dispatch((0, _user.setUser)(updatedUser));
         } catch (error) {
             console.error("Error updating favorite status:", error);
         }
