@@ -40108,7 +40108,7 @@ const MovieCard = ({ movie })=>{
                 children: "Open"
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 21,
+                lineNumber: 20,
                 columnNumber: 7
             }, undefined)
         ]
