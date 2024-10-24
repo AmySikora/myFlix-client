@@ -1,9 +1,13 @@
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./movie-view.scss"; 
 
-export const MovieView = ({ movies, user, setUser }) => {
+export const MovieView = () => {
   const { movieId } = useParams();
+  const movies = useSelector((state) => state.movies.list);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const [token, setToken] = useState(localStorage.getItem('token') || '');
 
   useEffect(() => {
@@ -46,7 +50,7 @@ export const MovieView = ({ movies, user, setUser }) => {
       return response.json();
     })
     .then(updatedUser => {
-      setUser(updatedUser);
+      dispatch(setUser(updatedUser));
       localStorage.setItem('user', JSON.stringify(updatedUser));
     })
     .catch(err => console.error('Error updating favorite movies:', err));
