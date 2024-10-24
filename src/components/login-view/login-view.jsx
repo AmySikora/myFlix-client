@@ -29,16 +29,14 @@ export const LoginView = ({ onLoggedIn }) => {
       if (data.user) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
-        onLoggedIn(data.user, data.token);
-       
-        dispatch(setUser(data.user));
-   
+        onLoggedIn(data);  // Pass token and user
+        dispatch(setUser(data.user)); 
       } else {
         alert('No such user');
       }
     })
     .catch((e) => {
-      console.error("Login error: ", e, username, password);
+      console.error("Login error: ", e);
       alert("Something went wrong");
     });
   };
@@ -52,7 +50,8 @@ export const LoginView = ({ onLoggedIn }) => {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            required minLength="3"
+            required
+            minLength="3"
             className="form-input"
           />
         </Form.Group>
