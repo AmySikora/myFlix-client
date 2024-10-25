@@ -15,7 +15,7 @@ export const ProfileView = ({ user, token, movies = [], setUser }) => {
   useEffect(() => {
     if (user && Array.isArray(movies) && movies.length > 0 && user.FavoriteMovies) {
       const favoriteMoviesList = movies.filter(movie =>
-        user.FavoriteMovies.includes(movie._id) // Ensure ID comparison is correct
+        user.FavoriteMovies.includes(movie._id)
       );
       setFavoriteMovies(favoriteMoviesList);
     }
@@ -78,7 +78,6 @@ export const ProfileView = ({ user, token, movies = [], setUser }) => {
   return (
     <div className="profile-view-container">
       <Row>
-        {/* Profile Form Section */}
         <Col md={6}>
           <h3>User Profile</h3>
           <Form onSubmit={handleUpdate}>
@@ -135,7 +134,6 @@ export const ProfileView = ({ user, token, movies = [], setUser }) => {
           <Button className="btn-danger mt-3" onClick={handleDeregister}>Delete Account</Button>
         </Col>
 
-        {/* Favorite Movies Section */}
         <Col md={6}>
           <h3>Favorite Movies</h3>
           {favoriteMovies.length === 0 ? (
