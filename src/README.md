@@ -1,6 +1,6 @@
 # myFlix
 
-myFlix is a web application built with React that allows users to browse, view details, and manage their favorite movies. With myFlix, users can sign up, log in, view a catalog of movies, see detailed information about each one, and manage their profile and favorite movies. 
+myFlix is a web application built with React that allows users to browse, view details, and manage their favorite movies. With myFlix, users can sign up, log in, view a list of movies, see detailed information about each one, and manage their profile information and favorite movies. 
 
 ## Features
 
@@ -9,9 +9,6 @@ myFlix is a web application built with React that allows users to browse, view d
 - **Detailed Movie Information**: Click on any movie to see details, including genre, director, description, and image.
 - **Favorite Movies Management**: Add or remove movies from your list of favorites.
 - **User Profile Management**: Update profile information and manage your favorite movies.
-
-## Live Demo
-[myFlix Live Demo](https://myflixmoviedatabase.netlify.app)
 
 ## Usage
 
@@ -60,8 +57,6 @@ The myFlix app communicates with a RESTful backend API to fetch and update movie
 - **POST** `/users/:username/movies/:movieId`: Adds a movie to user favorites.
 - **DELETE** `/users/:username/movies/:movieId`: Removes a movie from user favorites.
 - **DELETE** `/users/:username`: Deregisters the user account.
-
-For more detailed API documentation, see the GitHub Page [Movies API](https://github.com/mayyinandprojects/Movie-API).
 
 ## Development & Deployment
 
