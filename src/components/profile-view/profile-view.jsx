@@ -14,13 +14,13 @@ export const ProfileView = ({ user, token, movies = [], setUser }) => {
 
   useEffect(() => {
     if (user && Array.isArray(movies) && movies.length > 0 && user.FavoriteMovies) {
-      const favoriteMoviesList = movies.filter(movie =>
-        user.FavoriteMovies.includes(movie._id)
+      const favoriteMoviesList = movies.filter(movie => 
+        user.FavoriteMovies.includes(movie.id) 
       );
       setFavoriteMovies(favoriteMoviesList);
     }
   }, [user, movies]);
-
+  
   const handleUpdate = (e) => {
     e.preventDefault();
 
