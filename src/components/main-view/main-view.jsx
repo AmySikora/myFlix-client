@@ -82,8 +82,19 @@ export const MainView = () => {
         />
         <Route
           path="/profile"
-          element={user ? <ProfileView user={user} /> : <Navigate to="/login" />}
+          element={
+            user ? (
+              <ProfileView
+                user={user}
+                token={localStorage.getItem("token")}
+                movies={movies}
+                setUser={(updatedUser) => dispatch(setUser(updatedUser))}
         />
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
         <Route
           path="/"
           element={user ? <MoviesList movies={movies} /> : <Navigate to="/login" />}
