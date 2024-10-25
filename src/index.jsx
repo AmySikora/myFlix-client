@@ -20,5 +20,7 @@ const MyFlixApplication = () => {
 };
 
 const container = document.querySelector("#root");
-const root = createRoot(container);
-root.render(<MyFlixApplication />);
+if (!container.hasChildNodes()) {
+  const root = createRoot(container);
+  root.render(<MyFlixApplication />);
+}

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/reducers/user/user'; 
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch(); 
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,24 +20,24 @@ export const LoginView = ({ onLoggedIn }) => {
     fetch('https://myflixmovies123-d3669f5b95da.herokuapp.com/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json', 
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     })
-    .then((response) => {
-      if (response.ok) {
-        return response.json(); 
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.user) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        onLoggedIn(data);  // Pass token and user
+        dispatch(setUser(data.user)); 
       } else {
-        throw new Error('Login failed');
+        alert('No such user');
       }
     })
-    .then((data) => {
-      localStorage.setItem('token', data.token);  
-      onLoggedIn(data);  
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-      alert('Login failed');
+    .catch((e) => {
+      console.error("Login error: ", e);
+      alert("Something went wrong");
     });
   };
 
@@ -48,6 +51,7 @@ export const LoginView = ({ onLoggedIn }) => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            minLength="3"
             className="form-input"
           />
         </Form.Group>
@@ -62,7 +66,6 @@ export const LoginView = ({ onLoggedIn }) => {
             className="form-input"
           />
         </Form.Group>
-
         <Button variant="primary" className="btn-submit mt-3" type="submit">
           Submit
         </Button>

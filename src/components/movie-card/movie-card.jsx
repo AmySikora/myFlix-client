@@ -7,18 +7,20 @@ export const MovieCard = ({ movie }) => {
   const directorName = typeof movie.director === "object" ? movie.director?.Name : movie.director;
 
   return (
-   <Card className="movie-card-container h-100">
-  <Link to={`/movies/${movie.id}`} className="text-decoration-none">
-    <Card.Img variant="top" src={movie.image} className="card-img-top" />
-    <Card.Body className="card-body">
-      <Card.Title>{movie.title}</Card.Title>
-      <Card.Text>{movie.description}</Card.Text>
-      {directorName && <Card.Text><strong>Director:</strong> {directorName}</Card.Text>}
-    </Card.Body>
-    <Button className="btn">Open</Button>
-  </Link>
-</Card>
-
+    <Card className="movie-card-container h-100">
+      <Link to={`/movies/${movie.id}`} className="text-decoration-none">
+        <Card.Img variant="top" src={movie.image} className="card-img-top" />
+        <Card.Body className="card-body">
+          <Card.Title>{movie.title}</Card.Title>
+          <Card.Text>{movie.description}</Card.Text>
+          {directorName && <Card.Text><strong>Director:</strong> {directorName}</Card.Text>}
+        </Card.Body>
+      </Link>
+      
+      <Button as={Link} to={`/movies/${movie.id}`} className="btn mt-2">
+        Open
+      </Button>
+    </Card>
   );
 };
 

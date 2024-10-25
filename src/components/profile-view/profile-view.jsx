@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import { MovieCard } from '../movie-card/movie-card';
-import { MovieView } from '../movie-view/movie-view';
 
-export const ProfileView = ({ user, token, movies, setUser }) => {
-  const { username } = useParams();
-  const navigate = useNavigate(); 
+export const ProfileView = ({ user, token, movies = [], setUser }) => {
+  const navigate = useNavigate();
 
-  const [userUsername, setUserUsername] = useState(user.Username || "");
-  const [email, setEmail] = useState(user.Email || "");
-  const [birthday, setBirthday] = useState(user.Birthday ? user.Birthday.split("T")[0] : "");
+  const [userUsername, setUserUsername] = useState(user?.Username || "");
+  const [email, setEmail] = useState(user?.Email || "");
+  const [birthday, setBirthday] = useState(user?.Birthday ? user.Birthday.split("T")[0] : "");
   const [password, setPassword] = useState("");
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
-    if (user && movies && user.FavoriteMovies) {
-      const favoriteMoviesList = movies.filter(m => user.FavoriteMovies.includes(m.id));
+    if (user && Array.isArray(movies) && movies.length > 0 && user.FavoriteMovies) {
+      const favoriteMoviesList = movies.filter(movie => 
+        user.FavoriteMovies.includes(movie.id) 
+      );
       setFavoriteMovies(favoriteMoviesList);
     }
   }, [user, movies]);
-
+  
   const handleUpdate = (e) => {
     e.preventDefault();
 
@@ -37,9 +36,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
       Password: password,
     };
 
-    console.log('Updated user data:', updatedUser);
-
-    fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${username}`, {
+    fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${user.Username}`, {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -49,49 +46,34 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
     })
     .then(response => {
       if (!response.ok) {
-        return response.json().then((error) => {
-          throw new Error(`Update failed: ${error.message}`);
-        });
+        throw new Error(`Update failed: ${response.statusText}`);
       }
       return response.json();
     })
     .then(data => {
       alert('Your profile was updated');
-      setUser(data); 
-      localStorage.setItem('user', JSON.stringify(data)); 
+      setUser(data);
+      localStorage.setItem('user', JSON.stringify(data));
     })
     .catch(err => console.error('Error updating profile:', err));
   };
 
   const handleDeregister = () => {
-    fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${username}`, {
+    fetch(`https://myflixmovies123-d3669f5b95da.herokuapp.com/users/${user.Username}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
     })
     .then(response => {
       if (response.ok) {
         alert('User deleted');
-        localStorage.clear(); 
-        navigate('/login'); 
+        localStorage.clear();
+        navigate('/login');
       } else {
         alert('Failed to delete user');
       }
     })
     .catch(err => console.error('Error deleting user:', err));
   };
-
-  if (selectedMovie) {
-    return (
-      <MovieView
-        movies={movies}
-        user={user}
-        token={token}
-        setUser={setUser}
-        movieId={selectedMovie.id} 
-        onBackClick={() => setSelectedMovie(null)} 
-      />
-    );
-  }
 
   return (
     <div className="profile-view-container">
@@ -151,6 +133,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
 
           <Button className="btn-danger mt-3" onClick={handleDeregister}>Delete Account</Button>
         </Col>
+
         <Col md={6}>
           <h3>Favorite Movies</h3>
           {favoriteMovies.length === 0 ? (
@@ -158,7 +141,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
           ) : (
             <Row>
               {favoriteMovies.map((movie) => (
-                <Col key={movie.id} md={4} className="mb-4">
+                <Col key={movie._id} md={4} className="mb-4">
                   <MovieCard movie={movie} />
                 </Col>
               ))}

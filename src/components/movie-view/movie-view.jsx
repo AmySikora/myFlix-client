@@ -1,15 +1,28 @@
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams, Navigate, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser } from '../../redux/reducers/user/user';
 import "./movie-view.scss"; 
 
-export const MovieView = ({ movies, user, token, setUser }) => {
-  const { movieId } = useParams(); 
+export const MovieView = () => {
+  const { movieId } = useParams();
+  const movies = useSelector((state) => state.movies.list);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const [token, setToken] = useState(localStorage.getItem('token') || '');
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
 
   if (!user || !user.Username) {
-    return <p>User is not logged in or data is incomplete.</p>;
+    return <Navigate to="/login" replace />;
   }
 
-  const movie = movies.find((b) => b.id === movieId);
+  const movie = movies?.find((b) => b.id === movieId);
   if (!movie) {
     return <p>Movie not found</p>;
   }
@@ -38,8 +51,8 @@ export const MovieView = ({ movies, user, token, setUser }) => {
       return response.json();
     })
     .then(updatedUser => {
-      setUser(updatedUser);
-      localStorage.setItem('user', JSON.stringify(updatedUser));
+      dispatch(setUser(updatedUser)); // Update user in Redux
+      localStorage.setItem('user', JSON.stringify(updatedUser)); // Update user in localStorage
     })
     .catch(err => console.error('Error updating favorite movies:', err));
   };
