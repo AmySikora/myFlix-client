@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setMovies } from "../../redux/reducers/movies";
 import { setUser } from "../../redux/reducers/user/user";
@@ -65,7 +65,7 @@ export const MainView = () => {
   };
 
   return (
-    <BrowserRouter>
+    <Router>
       <NavigationBar />
       <Routes>
         <Route
@@ -88,7 +88,9 @@ export const MainView = () => {
           path="/"
           element={user ? <MoviesList movies={movies} /> : <Navigate to="/login" />}
         />
+        {/* Fallback route for unmatched paths */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 };
