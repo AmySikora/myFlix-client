@@ -9,7 +9,6 @@ myFlix is a web application built with React that allows users to browse, view d
 - **Detailed Movie Information**: Click on any movie to see details, including genre, director, description, and image.
 - **Favorite Movies Management**: Add or remove movies from your list of favorites.
 - **User Profile Management**: Update profile information and manage your favorite movies.
-- **Loading Animations**: Loading skeleton animations provide feedback during data fetching.
 
 ## Live Demo
 [myFlix Live Demo](https://myflixmoviedatabase.netlify.app)
