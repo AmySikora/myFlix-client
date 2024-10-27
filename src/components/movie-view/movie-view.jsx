@@ -51,8 +51,8 @@ export const MovieView = () => {
       return response.json();
     })
     .then(updatedUser => {
-      dispatch(setUser(updatedUser)); // Update user in Redux
-      localStorage.setItem('user', JSON.stringify(updatedUser)); // Update user in localStorage
+      dispatch(setUser(updatedUser)); 
+      localStorage.setItem('user', JSON.stringify(updatedUser)); 
     })
     .catch(err => console.error('Error updating favorite movies:', err));
   };
