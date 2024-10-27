@@ -61,7 +61,7 @@ export const MainView = () => {
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", JSON.stringify(data.user)); 
     dispatch(setUser(data.user));
-    fetchMovies(data.token); // Fetch movies after login
+    fetchMovies(data.token); 
   };
 
   return (
