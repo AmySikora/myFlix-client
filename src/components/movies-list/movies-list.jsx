@@ -10,10 +10,9 @@ export const MoviesList = () => {
   const filter = useSelector((state) => state.movies.filter).trim().toLowerCase();
 
   const filteredMovies = movies.filter((movie) => {
-    // Check if the movie title, genre, or director contains the filter value
     const titleMatch = movie.title.toLowerCase().includes(filter);
-    const genreMatch = movie.genre?.toLowerCase().includes(filter); // Ensure genre exists
-    const directorMatch = movie.director?.toLowerCase().includes(filter); // Ensure director exists
+    const genreMatch = movie.genre?.toLowerCase().includes(filter); 
+    const directorMatch = movie.director?.toLowerCase().includes(filter);
 
     return titleMatch || genreMatch || directorMatch;
   });
