@@ -12,7 +12,4 @@ export const MoviesFilter = () => {
       type="text"
       placeholder="Search by Title, Director or Genre.."
       value={filter}
-      onChange={(e) => dispatch(setFilter(e.target.value))}
-    />
-  );
-};
+      onChange={(e) => dispatch(setFilter(e.tar
