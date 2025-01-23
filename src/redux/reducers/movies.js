@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 const moviesSlice = createSlice({
   name: "movies",
   initialState: {
@@ -12,9 +13,12 @@ const moviesSlice = createSlice({
     setFilter: (state, action) => {
       state.filter = action.payload;
     },
+    resetFilter: (state) => {
+      state.filter = ""; // Clear the filter value
+    },
   },
 });
 
-export const { setMovies, setFilter } = moviesSlice.actions;
+export const { setMovies, setFilter, resetFilter } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

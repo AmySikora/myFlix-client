@@ -168,67 +168,76 @@ $input-text-color: #333;
     }
   }
 
-.movie-view-container {
-  margin: 20px auto;
-  max-width: 600px;
-  background-color: white;
-  padding: 20px;
-  border: 1px solid $border-color;
-  border-radius: 8px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-
-  img {
-    width: 100%; // Ensure the image takes full width of the container
-    border-radius: 5px;
-    margin-bottom: 20px;
-  }
-
-  div {
-    margin-bottom: 15px; // Add spacing between movie details
-  }
-
-  span {
-    font-size: 1.1rem; // Consistent text size with other components
-    color: $text-color;
-  }
-
-  p {
-    font-size: 1rem;
-    color: $text-color;
-  }
-
-  // Button styling
-  .btn-primary {
-    width: 100%; 
-    padding: 10px;
-    margin-top: 15px;
-    background-color: $primary-color;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    color: white;
-    &:hover {
-      background-color: darken($primary-color, 10%);
+  .movie-view-container {
+    margin: 20px auto;
+    max-width: 400px; /* Wider card for better readability */
+    background-color: white;
+    padding: 20px;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center;
+  
+    img {
+      width: 100%; /* Ensure the image takes full width of the container */
+      border-radius: 5px;
+      margin-bottom: 20px;
+      object-fit: contain; /* Prevent cropping */
+      max-height: 400px; /* Limit image height */
+    }
+  
+    div {
+      margin-bottom: 15px; /* Add spacing between movie details */
+      width: 100%; /* Stretch details across the container width */
+      text-align: left; /* Align text to the left */
+  
+      span:first-child {
+        font-weight: bold;
+        color: $primary-color; /* Highlight label text */
+      }
+  
+      p {
+        margin-top: 5px;
+        font-size: 1rem;
+        color: $text-color;
+      }
+    }
+  
+    .btn {
+      width: 100%; /* Make buttons full width for better usability */
+      max-width: 300px; /* Limit button width */
+      padding: 10px;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      font-weight: bold;
+      margin-top: 10px;
+  
+      &.btn-primary {
+        background-color: $primary-color;
+        color: white;
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+  
+      &.btn-secondary {
+        background-color: gray;
+        color: white;
+        &:hover {
+          background-color: darken(gray, 10%);
+        }
+      }
     }
   }
-
-  .btn-secondary {
-    width: 100%; 
-    padding: 10px;
-    margin-top: 10px;
-    background-color: gray;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    color: white;
-    &:hover {
-      background-color: darken(gray, 10%);
-    }
-  }
-}
-
+  
 .movie-card-container {
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  justify-content: space-between; /* Space between content and button */
   margin-bottom: 20px;
+  padding: 15px;
   border: 1px solid $border-color;
   border-radius: 8px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
@@ -243,13 +252,17 @@ $input-text-color: #333;
   .card-img-top {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    width: 100%; 
-    height: auto;  // Ensure the height scales with the width
-    max-height: 300px; // Limit the height but allow scaling
-    object-fit: contain;  // Prevent cropping and show the full image
+    width: 100%;
+    height: auto; /* Ensure the image scales proportionally */
+    max-height: 300px;
+    object-fit: contain; /* Prevent cropping */
   }
 
   .card-body {
+    display: flex;
+    flex-direction: column; /* Stack title, text, and button */
+    justify-content: space-between; /* Space between description and button */
+    flex-grow: 1; /* Make it stretch to fill space */
     padding: 15px;
   }
 
@@ -262,12 +275,11 @@ $input-text-color: #333;
   .card-text {
     font-size: 1rem;
     color: $text-color;
-    margin-bottom: 15px;
+    margin-bottom: auto; /* Push the button to the bottom */
   }
 
   .btn {
-    width: 100%;
-    padding: 10px;
+    margin-top: 15px; /* Space between content and button */
     background-color: $primary-color;
     color: white;
     border: none;
@@ -278,4 +290,24 @@ $input-text-color: #333;
       background-color: darken($primary-color, 10%);
     }
   }
+
+  // MoviesFilter styling
+.form-control {
+  display: inline-block; // Prevent the input from extending full width
+  width: auto; // Let the width adapt to content
+  max-width: 300px; // Set a maximum width for better responsiveness
+  padding: 10px;
+  border: 1px solid $border-color;
+  border-radius: 5px;
+  background-color: $input-background-color;
+  color: $input-text-color;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: $primary-color;
+    outline: none;
+    box-shadow: 0px 0px 5px rgba($primary-color, 0.5);
+  }
+}
+
 }
