@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Form, Row, Col } from 'react-bootstrap';
-import { MovieCard } from '../movie-card/movie-card';
+import { FavoriteMovieCard } from './FavoriteMovieCard';
 
 export const ProfileView = ({ user, token, movies = [], setUser }) => {
   const navigate = useNavigate();
@@ -14,13 +14,13 @@ export const ProfileView = ({ user, token, movies = [], setUser }) => {
 
   useEffect(() => {
     if (user && Array.isArray(movies) && movies.length > 0 && user.FavoriteMovies) {
-      const favoriteMoviesList = movies.filter(movie => 
-        user.FavoriteMovies.includes(movie.id) 
+      const favoriteMoviesList = movies.filter(movie =>
+        user.FavoriteMovies.includes(movie.id)
       );
       setFavoriteMovies(favoriteMoviesList);
     }
   }, [user, movies]);
-  
+
   const handleUpdate = (e) => {
     e.preventDefault();
 
@@ -44,18 +44,18 @@ export const ProfileView = ({ user, token, movies = [], setUser }) => {
       },
       body: JSON.stringify(updatedUser),
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Update failed: ${response.statusText}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      alert('Your profile was updated');
-      setUser(data);
-      localStorage.setItem('user', JSON.stringify(data));
-    })
-    .catch(err => console.error('Error updating profile:', err));
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Update failed: ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        alert('Your profile was updated');
+        setUser(data);
+        localStorage.setItem('user', JSON.stringify(data));
+      })
+      .catch(err => console.error('Error updating profile:', err));
   };
 
   const handleDeregister = () => {
@@ -63,23 +63,22 @@ export const ProfileView = ({ user, token, movies = [], setUser }) => {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
     })
-    .then(response => {
-      if (response.ok) {
-        alert('User deleted');
-        localStorage.clear();
-        navigate('/login');
-      } else {
-        alert('Failed to delete user');
-      }
-    })
-    .catch(err => console.error('Error deleting user:', err));
+      .then(response => {
+        if (response.ok) {
+          alert('User deleted');
+          localStorage.clear();
+          navigate('/login');
+        } else {
+          alert('Failed to delete user');
+        }
+      })
+      .catch(err => console.error('Error deleting user:', err));
   };
 
   return (
     <div className="profile-view-container">
-      {/* User Profile Section */}
       <Row>
-        <Col md={12}>
+        <Col md={6}>
           <h3>User Profile</h3>
           <Form onSubmit={handleUpdate}>
             <Form.Group controlId="formUsername" className="form-group">
@@ -87,39 +86,39 @@ export const ProfileView = ({ user, token, movies = [], setUser }) => {
               <Form.Control
                 type="text"
                 value={userUsername}
-                onChange={(e) => setUserUsername(e.target.value)}
+                onChange={e => setUserUsername(e.target.value)}
                 required
                 className="form-input"
               />
             </Form.Group>
-  
+
             <Form.Group controlId="formEmail" className="form-group">
               <Form.Label className="form-label">Email</Form.Label>
               <Form.Control
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={e => setEmail(e.target.value)}
                 required
                 className="form-input"
               />
             </Form.Group>
-  
+
             <Form.Group controlId="formBirthday" className="form-group">
               <Form.Label className="form-label">Birthday</Form.Label>
               <Form.Control
                 type="date"
                 value={birthday}
-                onChange={(e) => setBirthday(e.target.value)}
+                onChange={e => setBirthday(e.target.value)}
                 className="form-input"
               />
             </Form.Group>
-  
+
             <Form.Group controlId="formPassword" className="form-group">
               <Form.Label className="form-label">Password</Form.Label>
               <Form.Control
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
                 placeholder="Enter your current password"
                 required
                 className="form-input"
@@ -128,35 +127,28 @@ export const ProfileView = ({ user, token, movies = [], setUser }) => {
                 Please enter your password to update your profile
               </Form.Text>
             </Form.Group>
-  
-            <Button className="btn-submit" type="submit">
-              Update Profile
-            </Button>
+
+            <Button className="btn-submit" type="submit">Update Profile</Button>
           </Form>
-  
-          <Button className="btn-danger mt-3" onClick={handleDeregister}>
-            Delete Account
-          </Button>
+
+          <Button className="btn-danger mt-3" onClick={handleDeregister}>Delete Account</Button>
         </Col>
-      </Row>
-  
-      {/* Favorite Movies Section */}
-      <Row className="mt-5">
-        <Col md={12}>
+
+        <Col md={6}>
           <h3>Favorite Movies</h3>
           {favoriteMovies.length === 0 ? (
             <p>No favorite movies added yet.</p>
           ) : (
-            <Row>
+            <div className="favorites-container">
               {favoriteMovies.map((movie) => (
-                <Col key={movie._id} md={4} sm={6} xs={12} className="mb-4">
-                  <MovieCard movie={movie} />
-                </Col>
+                <div key={movie._id} className="favorite-movie-card-wrapper">
+                  <FavoriteMovieCard movie={movie} />
+                </div>
               ))}
-            </Row>
+            </div>
           )}
         </Col>
       </Row>
     </div>
   );
-}
+};

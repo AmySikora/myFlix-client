@@ -195,7 +195,7 @@ $input-text-color: #333;
   
       span:first-child {
         font-weight: bold;
-        color: $primary-color; /* Highlight label text */
+        color: $primary-color; 
       }
   
       p {
@@ -206,8 +206,8 @@ $input-text-color: #333;
     }
   
     .btn {
-      width: 100%; /* Make buttons full width for better usability */
-      max-width: 300px; /* Limit button width */
+      width: 100%; 
+      max-width: 300px; 
       padding: 10px;
       font-size: 1.2rem;
       border-radius: 5px;
@@ -234,8 +234,8 @@ $input-text-color: #333;
   
 .movie-card-container {
   display: flex;
-  flex-direction: column; /* Stack content vertically */
-  justify-content: space-between; /* Space between content and button */
+  flex-direction: column; 
+  justify-content: space-between; 
   margin-bottom: 20px;
   padding: 15px;
   border: 1px solid $border-color;
@@ -253,9 +253,9 @@ $input-text-color: #333;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     width: 100%;
-    height: auto; /* Ensure the image scales proportionally */
+    height: auto; 
     max-height: 300px;
-    object-fit: contain; /* Prevent cropping */
+    object-fit: contain; 
   }
 
   .card-body {
@@ -296,6 +296,57 @@ $input-text-color: #333;
     }
   }
 
+  .favorite-movie-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 220px;
+    background-color: #fff;
+    border: 1px solid $border-color;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  
+    &:hover {
+      transform: scale(1.03);
+    }
+  
+    .favorite-movie-image {
+      width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+  
+    .movie-title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: $primary-color;
+      margin-bottom: 5px;
+    }
+  
+    .movie-description {
+      font-size: 0.9rem;
+      color: $text-color;
+      margin-bottom: 5px;
+    }
+  
+    .movie-director {
+      font-size: 0.85rem;
+      color: $text-color;
+      margin-bottom: 10px;
+    }
+  
+    .btn {
+      font-size: 0.9rem;
+      padding: 6px 12px;
+    }
+  }
+  
   // MoviesFilter styling
 .form-control {
   display: inline-block; // Prevent the input from extending full width
