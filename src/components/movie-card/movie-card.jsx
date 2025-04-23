@@ -6,17 +6,20 @@ import { Link } from "react-router-dom";
 export const MovieCard = ({ movie }) => {
   const directorName = typeof movie.director === "object" ? movie.director?.Name : movie.director;
 
+  const truncate = (text, maxLength) =>
+    text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+
   return (
     <Card className="movie-card-container h-100">
       <Link to={`/movies/${movie.id}`} className="text-decoration-none">
         <Card.Img variant="top" src={movie.image} className="card-img-top" />
         <Card.Body className="card-body">
           <Card.Title>{movie.title}</Card.Title>
-          <Card.Text>{movie.description}</Card.Text>
+          <Card.Text>{truncate(movie.description, 180)}</Card.Text>
           {directorName && <Card.Text><strong>Director:</strong> {directorName}</Card.Text>}
         </Card.Body>
       </Link>
-      
+
       <Button as={Link} to={`/movies/${movie.id}`} className="btn mt-2">
         Open
       </Button>
