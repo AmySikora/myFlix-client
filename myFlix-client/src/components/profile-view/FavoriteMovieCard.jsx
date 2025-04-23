@@ -7,7 +7,8 @@ export const FavoriteMovieCard = ({ movie }) => {
   const truncate = (text, maxLength) =>
     text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
 
-  const directorName = typeof movie.director === "object" ? movie.director?.Name : movie.director;
+  const directorName =
+    typeof movie.director === "object" ? movie.director?.Name : movie.director;
 
   return (
     <div className="favorite-movie-card">
