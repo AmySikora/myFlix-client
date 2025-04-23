@@ -11,7 +11,7 @@ export const MovieCard = ({ movie }) => {
 
   return (
     <Card className="movie-card-container h-100">
-      <Link to={`/movies/${movie.id}`} className="text-decoration-none">
+      <Link to={`/movies/${movie.id}`} className="text-decoration-none" state={{ from: "main" }}>
         <Card.Img variant="top" src={movie.image} className="card-img-top" />
         <Card.Body className="card-body">
           <Card.Title>{movie.title}</Card.Title>
@@ -20,7 +20,7 @@ export const MovieCard = ({ movie }) => {
         </Card.Body>
       </Link>
 
-      <Button as={Link} to={`/movies/${movie.id}`} className="btn mt-2">
+      <Button as={Link} to={`/movies/${movie.id}`} state={{ from: "main" }} className="btn mt-2">
         Open
       </Button>
     </Card>
