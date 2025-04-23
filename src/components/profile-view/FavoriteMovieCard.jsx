@@ -21,7 +21,12 @@ export const FavoriteMovieCard = ({ movie }) => {
             <strong>Director:</strong> {directorName}
           </p>
         )}
-        <Button as={Link} to={`/movies/${movie.id}`} className="btn btn-primary mt-2">
+        <Button
+          as={Link}
+          to={`/movies/${movie.id}`}
+          state={{ from: "profile" }}
+          className="btn btn-primary mt-2"
+        >
           Open
         </Button>
       </div>
