@@ -340,4 +340,35 @@ $input-text-color: #333;
   }
 
   .btn {
-    margi
+    margin-top: 15px; 
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+
+  // MoviesFilter styling
+.form-control {
+  display: inline-block; // Prevent the input from extending full width
+  width: auto; // Let the width adapt to content
+  max-width: 300px; // Set a maximum width for better responsiveness
+  padding: 10px;
+  border: 1px solid $border-color;
+  border-radius: 5px;
+  background-color: $input-background-color;
+  color: $input-text-color;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: $primary-color;
+    outline: none;
+    box-shadow: 0px 0px 5px rgba($primary-color, 0.5);
+  }
+}
+
+}

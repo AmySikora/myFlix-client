@@ -2,6 +2,7 @@ import { useParams, Navigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from '../../redux/reducers/user/user';
+import { useLocation, useNavigate } from "react-router-dom";
 import "./movie-view.scss"; 
 
 export const MovieView = () => {
@@ -10,6 +11,10 @@ export const MovieView = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [token, setToken] = useState(localStorage.getItem('token') || '');
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from || "main";
+
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
@@ -81,9 +86,12 @@ export const MovieView = () => {
         {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
       </button>
 
-      <Link to="/">
-        <button className="btn btn-secondary mt-3">Back</button>
-      </Link>
+      <button
+      className="btn btn-back mt-3"
+      onClick={() => navigate(from === "profile" ? "/profile" : "/")}
+      >
+        Back
+      </button>
     </div>
   );
 };
