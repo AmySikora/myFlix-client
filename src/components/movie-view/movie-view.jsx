@@ -87,7 +87,7 @@ export const MovieView = () => {
       </button>
 
       <button
-      className="btn btn-back mt-3"
+      className="btn-back mt-3"
       onClick={() => navigate(from === "profile" ? "/profile" : "/")}
       >
         Back
