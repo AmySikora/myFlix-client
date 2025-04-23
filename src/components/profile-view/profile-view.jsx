@@ -139,11 +139,11 @@ export const ProfileView = ({ user, token, movies = [], setUser }) => {
         {favoriteMovies.length === 0 ? (
           <p>No favorite movies added yet.</p>
         ) : (
-          <div className="favorites-container d-flex flex-wrap gap-3">
-            {favoriteMovies.map((movie) => (
-              <FavoriteMovieCard key={movie._id} movie={movie} />
-            ))}
-          </div>
+          <div className="favorites-container">
+          {favoriteMovies.map((movie) => (
+            <FavoriteMovieCard key={movie._id} movie={movie} />
+          ))}
+        </div>
         )}
       </Col>
       </Row>
