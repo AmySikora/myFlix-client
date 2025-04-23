@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Form, Row, Col } from 'react-bootstrap';
-import { MovieCard } from '../movie-card/movie-card';
+import { FavoriteMovieCard } from './FavoriteMovieCard';
 
 export const ProfileView = ({ user, token, movies = [], setUser }) => {
   const navigate = useNavigate();
@@ -135,19 +135,17 @@ export const ProfileView = ({ user, token, movies = [], setUser }) => {
         </Col>
 
         <Col md={6}>
-          <h3>Favorite Movies</h3>
-          {favoriteMovies.length === 0 ? (
-            <p>No favorite movies added yet.</p>
-          ) : (
-            <Row>
-              {favoriteMovies.map((movie) => (
-                <Col key={movie._id} md={4} className="mb-4">
-                  <MovieCard movie={movie} />
-                </Col>
-              ))}
-            </Row>
-          )}
-        </Col>
+        <h3>Favorite Movies</h3>
+        {favoriteMovies.length === 0 ? (
+          <p>No favorite movies added yet.</p>
+        ) : (
+          <div className="favorites-container d-flex flex-wrap gap-3">
+            {favoriteMovies.map((movie) => (
+              <FavoriteMovieCard key={movie._id} movie={movie} />
+            ))}
+          </div>
+        )}
+      </Col>
       </Row>
     </div>
   );
