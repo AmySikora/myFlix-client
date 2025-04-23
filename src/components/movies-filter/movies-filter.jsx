@@ -15,10 +15,9 @@ export const MoviesFilter = () => {
     <Form.Control
       type="text"
       placeholder="Search by Title, Director or Genre"
-      className="form-control"
+      className="search-input"
       value={filter}
       onChange={(e) => dispatch(setFilter(e.target.value))}
-      onBlur={handleClearFilter} 
     />
   );
 };
