@@ -416,4 +416,21 @@ $input-text-color: #333;
   margin-bottom: 30px;
 }
 
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  height: 40px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid tomato;
+
+  &:focus {
+    border-color: DarkSlateBlue;
+    box-shadow: 0 0 5px rgba(72, 61, 139, 0.5); 
+    outline: none;
+  }
+}
+
+
 }
