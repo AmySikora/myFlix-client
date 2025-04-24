@@ -3,15 +3,7 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-  
-    .favorite-movie-card {
-      flex: 1 1 250px;
-      max-width: 250px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-  }
+} 
   
   .favorite-movie-card {
     height: 100%;
@@ -68,90 +60,4 @@
         }
       
         .movie-title {
-          font-size: 1rem;
-          font-weight: bold;
-          color: DarkSlateBlue;
-          margin-bottom: 5px;
-        }
-      
-        .movie-description {
-          font-size: 0.9rem;
-          color: MidnightBlue;
-          margin-bottom: auto; 
-          flex-grow: 1;
-        }
-      
-        .movie-director {
-          font-size: 0.85rem;
-          color: MidnightBlue;
-          margin-top: 10px;
-          margin-bottom: 10px;
-        }
-      
-        .btn {
-          margin-top: auto;
-          font-weight: bold;
-          background-color: DarkSlateBlue;
-          border: none;
-          &:hover {
-            background-color: #1c1c6b;
-          }
-        }
-      }      
-    }
-  
-    .favorite-movie-image {
-      width: 100%;
-      max-height: 280px;
-      object-fit: contain;
-      border-radius: 5px;
-      margin-bottom: 10px;
-    }
-  
-    .favorite-movie-info {
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      justify-content: space-between;
-    }
-  
-    .movie-title {
-      font-size: 1rem;
-      font-weight: bold;
-      color: DarkSlateBlue;
-      margin-bottom: 5px;
-    }
-  
-    .movie-description {
-      font-size: 0.9rem;
-      color: MidnightBlue;
-      margin-bottom: 10px;
-      flex-grow: 1;
-    }
-  
-    .movie-director {
-      font-size: 0.85rem;
-      color: MidnightBlue;
-      margin-bottom: 10px;
-    }
-  
-    .btn {
-      margin-top: auto;
-      font-weight: bold;
-      background-color: DarkSlateBlue;
-      color: white;
-      border: none;
-  
-      &:hover {
-        background-color: darken(DarkSlateBlue, 10%);
-      }
-    }
-
-    .favorites-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-      }      
-  }
-  
+          font-siz
