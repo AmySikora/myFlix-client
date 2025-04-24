@@ -17,23 +17,32 @@ export const MovieCard = ({ movie }) => {
       state={{ from: "main" }}
       className="movie-card-link"
     >
-      <Card className="movie-card">
-        <Card.Img variant="top" src={movie.image} className="movie-img" />
-        <Card.Body>
-          <Card.Title className="movie-title">
-            {truncate(movie.title, 30)}
-          </Card.Title>
-          <Card.Text className="movie-description">
-            {truncate(movie.description, 100)}
-          </Card.Text>
-          {directorName && (
-            <Card.Text className="movie-director">
-              <strong>Director:</strong> {directorName}
-            </Card.Text>
-          )}
-          <div className="btn-open">Open</div>
-        </Card.Body>
-      </Card>
+      <Card className="movie-card d-flex flex-column">
+  <Link to={`/movies/${movie.id}`} state={{ from: "main" }} className="movie-card-link">
+    <Card.Img variant="top" src={movie.image} className="movie-img" />
+  </Link>
+
+  <Card.Body className="d-flex flex-column justify-content-between flex-grow-1">
+    <div className="mb-2">
+      <Card.Title className="movie-title">{truncate(movie.title, 30)}</Card.Title>
+      <Card.Text className="movie-description">{truncate(movie.description, 100)}</Card.Text>
+      {directorName && (
+        <Card.Text className="movie-director">
+          <strong>Director:</strong> {directorName}
+        </Card.Text>
+      )}
+    </div>
+
+    <Button
+      as={Link}
+      to={`/movies/${movie.id}`}
+      state={{ from: "main" }}
+      className="btn-open mt-auto"
+    >
+      Open
+    </Button>
+  </Card.Body>
+</Card>
     </Link>
   );
 };
