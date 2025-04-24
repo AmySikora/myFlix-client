@@ -13,24 +13,26 @@ export const MoviesList = () => {
     const titleMatch = movie.title.toLowerCase().includes(filter);
     const genreMatch = movie.genre?.toLowerCase().includes(filter); 
     const directorMatch = movie.director?.toLowerCase().includes(filter);
+
     return titleMatch || genreMatch || directorMatch;
   });
 
   return (
-    <div className="movies-page-wrapper">
-      <div className="movies-filter-bar">
+    <>
+      <Row>
         <MoviesFilter />
-      </div>
-
-      <div className="movies-grid">
+      </Row>
+      <Row>
         {filteredMovies.length === 0 ? (
-          <p>The list is empty!</p>
+          <Col>The list is empty!</Col>
         ) : (
           filteredMovies.map((movie) => (
-            <MovieCard movie={movie} key={movie.id} />
+            <Col className="mb-4" key={movie.id} md={3}>
+              <MovieCard movie={movie} />
+            </Col>
           ))
         )}
-      </div>
-    </div>
+      </Row>
+    </>
   );
 };

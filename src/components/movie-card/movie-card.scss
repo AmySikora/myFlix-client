@@ -1,63 +1,66 @@
-.movie-card {
-    width: 240px;
-    min-height: 540px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: #fff;
-    border: 1px solid tomato;
-    border-radius: 10px;
-    padding: 15px;
-    text-align: center;
+.movie-card-link {
     text-decoration: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    color: inherit;
+    width: 100%;
+    display: block;
+    height: 100%;
   
     &:hover {
-      transform: scale(1.03);
+      text-decoration: none;
     }
   
-    .movie-img {
-      width: 100%;
-      height: 280px;
-      object-fit: contain;
-      margin-bottom: 10px;
-      border-radius: 5px;
-    }
-  
-    .movie-title {
-      font-size: 1rem;
-      font-weight: bold;
-      color: DarkSlateBlue;
-      margin-bottom: 5px;
-    }
-  
-    .movie-description {
-      font-size: 0.9rem;
-      color: MidnightBlue;
-      margin-bottom: auto;
-      flex-grow: 1;
-    }
-  
-    .movie-director {
-      font-size: 0.85rem;
-      color: MidnightBlue;
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
-  
-    .btn-open {
-      background-color: DarkSlateBlue;
-      color: white;
-      font-weight: bold;
-      border: none;
-      width: 100%;
-      margin-top: auto;
-      padding: 10px;
-      border-radius: 5px;
+    .movie-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid tomato;
+      border-radius: 10px;
+      background-color: #fff;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      text-align: center;
   
       &:hover {
-        background-color: #1c1c6b;
+        transform: scale(1.03);
+      }
+  
+      .movie-img {
+        width: 100%;
+        max-height: 300px;
+        object-fit: contain;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+  
+      .movie-title {
+        font-size: 1rem;
+        font-weight: bold;
+        color: DarkSlateBlue;
+        margin-bottom: 5px;
+      }
+  
+      .movie-description {
+        font-size: 0.9rem;
+        color: MidnightBlue;
+        margin-bottom: 10px;
+      }
+  
+      .movie-director {
+        font-size: 0.85rem;
+        color: MidnightBlue;
+        margin-bottom: 10px;
+      }
+  
+      .btn-open {
+        background-color: DarkSlateBlue;
+        color: white;
+        font-weight: bold;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: auto;
+        pointer-events: none;
       }
     }
   }

@@ -17,21 +17,21 @@ export const MovieCard = ({ movie }) => {
       state={{ from: "main" }}
       className="movie-card-link"
     >
-      <Card className="movie-card h-100">
+      <Card className="movie-card">
         <Card.Img variant="top" src={movie.image} className="movie-img" />
-        <Card.Body className="d-flex flex-column justify-content-between">
-          <div>
-            <Card.Title className="movie-title">{truncate(movie.title, 30)}</Card.Title>
-            <Card.Text className="movie-description">
-              {truncate(movie.description, 100)}
-            </Card.Text>
-          </div>
+        <Card.Body>
+          <Card.Title className="movie-title">
+            {truncate(movie.title, 30)}
+          </Card.Title>
+          <Card.Text className="movie-description">
+            {truncate(movie.description, 100)}
+          </Card.Text>
           {directorName && (
             <Card.Text className="movie-director">
               <strong>Director:</strong> {directorName}
             </Card.Text>
           )}
-          <div className="btn-open text-center">Open</div>
+          <div className="btn-open">Open</div>
         </Card.Body>
       </Card>
     </Link>
