@@ -1,3 +1,22 @@
+.movies-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  
+    .favorite-movie-card {
+      flex: 1 1 250px;
+      max-width: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+  
+  .favorite-movie-card {
+    height: 100%;
+  }
+  
 .favorite-movie-card {
     display: flex;
     flex-direction: column;
