@@ -11,22 +11,31 @@ export const MovieCard = ({ movie }) => {
     text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
 
   return (
-    <Card className="movie-card-container h-100 d-flex flex-column justify-content-between">
+    <Card className="movie-card-container d-flex flex-column justify-content-between h-100">
       <Link to={`/movies/${movie.id}`} className="text-decoration-none" state={{ from: "main" }}>
         <Card.Img variant="top" src={movie.image} className="card-img-top" />
-        <Card.Body className="card-body">
-          <Card.Title>{movie.title}</Card.Title>
-          <Card.Text className="card-description">{truncate(movie.description, 180)}</Card.Text>
+        <Card.Body className="card-body d-flex flex-column justify-content-between">
+          <div>
+            <Card.Title>{movie.title}</Card.Title>
+            <Card.Text className="card-description">
+              {truncate(movie.description, 160)}
+            </Card.Text>
+          </div>
         </Card.Body>
       </Link>
 
-      <div className="card-footer mt-auto p-3">
+      <div className="movie-card-footer px-3 pb-3">
         {directorName && (
-          <div className="card-director mb-2">
+          <p className="card-director mb-2">
             <strong>Director:</strong> {directorName}
-          </div>
+          </p>
         )}
-        <Button as={Link} to={`/movies/${movie.id}`} state={{ from: "main" }} className="btn">
+        <Button
+          as={Link}
+          to={`/movies/${movie.id}`}
+          state={{ from: "main" }}
+          className="btn btn-primary"
+        >
           Open
         </Button>
       </div>
