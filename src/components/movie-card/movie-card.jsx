@@ -12,32 +12,30 @@ export const MovieCard = ({ movie }) => {
 
   return (
     <Card className="favorite-movie-card">
-  <Link to={`/movies/${movie.id}`} className="text-decoration-none" state={{ from: "main" }}>
-    <Card.Img variant="top" src={movie.image} className="favorite-movie-image" />
-  </Link>
-
-  <div className="favorite-movie-info">
-    <div>
-      <h5 className="movie-title">{truncate(movie.title, 30)}</h5>
-      <p className="movie-description">{truncate(movie.description, 100)}</p>
+    <Link to={`/movies/${movie.id}`} className="text-decoration-none" state={{ from: "main" }}>
+      <Card.Img variant="top" src={movie.image} className="favorite-movie-image" />
+    </Link>
+  
+    <div className="favorite-movie-info">
+      <div>
+        <h5 className="movie-title">{truncate(movie.title, 30)}</h5>
+        <p className="movie-description">{truncate(movie.description, 100)}</p>
+      </div>
+      {directorName && (
+        <p className="movie-director">
+          <strong>Director:</strong> {directorName}
+        </p>
+      )}
+      <Button
+        as={Link}
+        to={`/movies/${movie.id}`}
+        state={{ from: "main" }}
+        className="btn mt-2"
+      >
+        Open
+      </Button>
     </div>
-
-    {directorName && (
-      <p className="movie-director">
-        <strong>Director:</strong> {directorName}
-      </p>
-    )}
-
-    <Button
-      as={Link}
-      to={`/movies/${movie.id}`}
-      state={{ from: "main" }}
-      className="btn mt-2"
-    >
-      Open
-    </Button>
-  </div>
-</Card>
+  </Card>  
   );
 };
 
