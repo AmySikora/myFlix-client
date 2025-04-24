@@ -1,26 +1,24 @@
 .movie-card-link {
     text-decoration: none;
     color: inherit;
-    width: 100%;
     display: block;
+    width: 100%;
     height: 100%;
   
-    &:hover {
-      text-decoration: none;
-    }
-  
     .movie-card {
-      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      height: 100%;
+      max-width: 100%;
+      min-height: 540px;
+      background-color: #fff;
       border: 1px solid tomato;
       border-radius: 10px;
-      background-color: #fff;
       padding: 15px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
       text-align: center;
+      transition: transform 0.3s ease;
   
       &:hover {
         transform: scale(1.03);
@@ -28,10 +26,10 @@
   
       .movie-img {
         width: 100%;
-        max-height: 300px;
+        max-height: 280px;
         object-fit: contain;
-        border-radius: 5px;
         margin-bottom: 10px;
+        border-radius: 5px;
       }
   
       .movie-title {
@@ -44,22 +42,22 @@
       .movie-description {
         font-size: 0.9rem;
         color: MidnightBlue;
-        margin-bottom: 10px;
+        flex-grow: 1;
       }
   
       .movie-director {
         font-size: 0.85rem;
         color: MidnightBlue;
-        margin-bottom: 10px;
+        margin: 10px 0;
       }
   
       .btn-open {
+        margin-top: auto;
         background-color: DarkSlateBlue;
         color: white;
         font-weight: bold;
         padding: 10px;
         border-radius: 5px;
-        margin-top: auto;
         pointer-events: none;
       }
     }
