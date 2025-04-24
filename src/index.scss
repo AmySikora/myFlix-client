@@ -398,4 +398,22 @@ $input-text-color: #333;
     outline: none;
   }
 }
+
+.movies-page-wrapper {
+  padding: 20px;
+}
+
+.movies-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.movies-filter-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
 }
