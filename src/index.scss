@@ -388,20 +388,22 @@ $input-text-color: #333;
   }  
   
 // MoviesFilter styling
-  .search-input {
-    max-width: 300px;
-    width: 100%;
-    padding: 8px 12px;
-    border-radius: 8px;
-    border: 1px solid $border-color;
-    font-size: 1rem;
-    margin: 10px auto;
-    display: block;
-  
-    &:focus {
-      border-color: $primary-color;
-      box-shadow: 0 0 5px rgba($primary-color, 0.5);
-      outline: none;
-    }
+.search-input {
+  max-width: 250px;
+  width: 100%;
+  margin: 10px auto;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid $border-color;
+  font-size: 1rem;
+  background-color: $input-background-color;
+  color: $input-text-color;
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 6px rgba($primary-color, 0.4);
   }
+}
 }
