@@ -45,6 +45,24 @@
       margin-bottom: 10px;
     }
   
+    .movie-card-link {
+        text-decoration: none !important;
+        color: inherit;
+      }
+      
+      .btn-open {
+        width: 100%;
+        background-color: DarkSlateBlue;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+      
+        &:hover {
+          background-color: #1c1c6b;
+        }
+      }
+      
     .btn-open {
       margin-top: auto;
       font-weight: bold;
