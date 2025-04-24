@@ -22,17 +22,24 @@ export const MoviesList = () => {
       <Row>
         <MoviesFilter />
       </Row>
-      <Row>
-        {filteredMovies.length === 0 ? (
-          <Col>The list is empty!</Col>
-        ) : (
-          filteredMovies.map((movie) => (
-            <Col className="mb-4" key={movie.id} md={3}>
-              <MovieCard movie={movie} />
-            </Col>
-          ))
-        )}
-      </Row>
+      <Row className="justify-content-center">
+  {filteredMovies.length === 0 ? (
+    <Col className="text-center">The list is empty!</Col>
+  ) : (
+    filteredMovies.map((movie) => (
+      <Col
+        key={movie.id}
+        xs={12}
+        sm={6}
+        md={4}
+        lg={3}
+        className="d-flex align-items-stretch"
+      >
+        <MovieCard movie={movie} />
+      </Col>
+    ))
+  )}
+</Row>
     </>
   );
 };
