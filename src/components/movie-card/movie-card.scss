@@ -1,23 +1,17 @@
-.movie-card-link {
-    text-decoration: none;
-    color: inherit;
-    display: inline-block;
-  }
-  
-  .movie-card {
+.movie-card {
+    width: 240px;
+    min-height: 540px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-width: 240px;
-    width: 100%;
-    min-height: 540px;
     background-color: #fff;
     border: 1px solid tomato;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    transition: transform 0.3s ease;
     text-align: center;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
   
     &:hover {
       transform: scale(1.03);
@@ -25,7 +19,7 @@
   
     .movie-img {
       width: 100%;
-      max-height: 280px;
+      height: 280px;
       object-fit: contain;
       margin-bottom: 10px;
       border-radius: 5px;
@@ -41,12 +35,14 @@
     .movie-description {
       font-size: 0.9rem;
       color: MidnightBlue;
-      margin-bottom: 10px;
+      margin-bottom: auto;
+      flex-grow: 1;
     }
   
     .movie-director {
       font-size: 0.85rem;
       color: MidnightBlue;
+      margin-top: 10px;
       margin-bottom: 10px;
     }
   
@@ -54,11 +50,11 @@
       background-color: DarkSlateBlue;
       color: white;
       font-weight: bold;
-      padding: 10px 0;
-      border-radius: 5px;
-      margin-top: auto;
-      transition: background-color 0.2s ease;
       border: none;
+      width: 100%;
+      margin-top: auto;
+      padding: 10px;
+      border-radius: 5px;
   
       &:hover {
         background-color: #1c1c6b;
