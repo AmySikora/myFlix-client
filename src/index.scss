@@ -354,6 +354,17 @@ $input-text-color: #333;
     text-overflow: ellipsis;
   }
 
+  .card-footer {
+    border-top: 1px solid $border-color;
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .card-director {
+    font-size: 0.95rem;
+    color: $text-color;
+  }  
+
   .btn {
     margin-top: 15px; 
     background-color: $primary-color;
