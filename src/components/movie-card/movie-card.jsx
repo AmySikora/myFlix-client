@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button, Card } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const MovieCard = ({ movie }) => {
@@ -11,22 +11,14 @@ export const MovieCard = ({ movie }) => {
     text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
 
   return (
-    <Card className="movie-card-container d-flex flex-column justify-content-between h-100">
-      <Link to={`/movies/${movie.id}`} className="text-decoration-none" state={{ from: "main" }}>
-        <Card.Img variant="top" src={movie.image} className="card-img-top" />
-        <Card.Body className="card-body d-flex flex-column justify-content-between">
-          <div>
-            <Card.Title>{movie.title}</Card.Title>
-            <Card.Text className="card-description">
-              {truncate(movie.description, 160)}
-            </Card.Text>
-          </div>
-        </Card.Body>
-      </Link>
+    <div className="favorite-movie-card"> {/* reuse the same styling class */}
+      <img src={movie.image} alt={movie.title} className="favorite-movie-image" />
 
-      <div className="movie-card-footer px-3 pb-3">
+      <div className="favorite-movie-info">
+        <h5 className="movie-title">{truncate(movie.title, 30)}</h5>
+        <p className="movie-description">{truncate(movie.description, 90)}</p>
         {directorName && (
-          <p className="card-director mb-2">
+          <p className="movie-director">
             <strong>Director:</strong> {directorName}
           </p>
         )}
@@ -34,12 +26,12 @@ export const MovieCard = ({ movie }) => {
           as={Link}
           to={`/movies/${movie.id}`}
           state={{ from: "main" }}
-          className="btn btn-primary"
+          className="btn btn-primary mt-2"
         >
           Open
         </Button>
       </div>
-    </Card>
+    </div>
   );
 };
 
@@ -51,9 +43,7 @@ MovieCard.propTypes = {
     description: PropTypes.string.isRequired,
     director: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.shape({
-        Name: PropTypes.string,
-      }),
+      PropTypes.shape({ Name: PropTypes.string }),
     ]),
     genre: PropTypes.string,
   }).isRequired,
