@@ -17,28 +17,21 @@ export const MovieCard = ({ movie }) => {
       state={{ from: "main" }}
       className="movie-card-link"
     >
-      <Card className="favorite-movie-card">
-        <Card.Img
-          variant="top"
-          src={movie.image}
-          className="favorite-movie-image"
-          alt={movie.title}
-        />
-        <Card.Body className="d-flex flex-column justify-content-between flex-grow-1">
-          <div className="flex-grow-1">
-            <Card.Title className="movie-title">
-              {truncate(movie.title, 30)}
-            </Card.Title>
+      <Card className="movie-card h-100">
+        <Card.Img variant="top" src={movie.image} className="movie-img" />
+        <Card.Body className="d-flex flex-column justify-content-between">
+          <div>
+            <Card.Title className="movie-title">{truncate(movie.title, 30)}</Card.Title>
             <Card.Text className="movie-description">
               {truncate(movie.description, 100)}
             </Card.Text>
           </div>
           {directorName && (
-            <Card.Text className="movie-director mt-2">
+            <Card.Text className="movie-director">
               <strong>Director:</strong> {directorName}
             </Card.Text>
           )}
-          <div className="btn-favorite-card mt-3 text-center">Open</div>
+          <div className="btn-open text-center">Open</div>
         </Card.Body>
       </Card>
     </Link>
@@ -53,10 +46,7 @@ MovieCard.propTypes = {
     description: PropTypes.string.isRequired,
     director: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.shape({
-        Name: PropTypes.string,
-      }),
+      PropTypes.shape({ Name: PropTypes.string }),
     ]),
-    genre: PropTypes.string,
   }).isRequired,
 };
