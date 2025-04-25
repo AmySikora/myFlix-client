@@ -12,50 +12,29 @@ export const MovieCard = ({ movie }) => {
     text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
 
   return (
-    <Link
-      to={`/movies/${movie.id}`}
-      state={{ from: "main" }}
-      className="movie-card-link"
-    >
-      <Card className="movie-card d-flex flex-column">
-  <Link to={`/movies/${movie.id}`} state={{ from: "main" }} className="movie-card-link">
-    <Card.Img variant="top" src={movie.image} className="movie-img" />
-  </Link>
-
-  <Card.Body className="d-flex flex-column justify-content-between flex-grow-1">
-    <div className="mb-2">
-      <Card.Title className="movie-title">{truncate(movie.title, 30)}</Card.Title>
-      <Card.Text className="movie-description">{truncate(movie.description, 100)}</Card.Text>
-      {directorName && (
-        <Card.Text className="movie-director">
-          <strong>Director:</strong> {directorName}
-        </Card.Text>
-      )}
-    </div>
-
-    <Button
-      as={Link}
-      to={`/movies/${movie.id}`}
-      state={{ from: "main" }}
-      className="btn-open mt-auto"
-    >
-      Open
-    </Button>
-  </Card.Body>
-</Card>
-    </Link>
+    <Card className="movie-card d-flex flex-column">
+      <Link to={`/movies/${movie.id}`} state={{ from: "main" }}>
+        <Card.Img variant="top" src={movie.image} className="movie-img" />
+      </Link>
+      <Card.Body className="d-flex flex-column flex-grow-1">
+        <div className="flex-grow-1">
+          <Card.Title className="movie-title">{truncate(movie.title, 40)}</Card.Title>
+          <Card.Text className="movie-description">{truncate(movie.description, 150)}</Card.Text>
+          {directorName && (
+            <Card.Text className="movie-director">
+              <strong>Director:</strong> {directorName}
+            </Card.Text>
+          )}
+        </div>
+        <Button
+          as={Link}
+          to={`/movies/${movie.id}`}
+          state={{ from: "main" }}
+          className="btn-open mt-auto"
+        >
+          Open
+        </Button>
+      </Card.Body>
+    </Card>
   );
-};
-
-MovieCard.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.shape({ Name: PropTypes.string }),
-    ]),
-  }).isRequired,
 };
