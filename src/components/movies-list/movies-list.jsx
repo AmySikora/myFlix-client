@@ -27,5 +27,20 @@ export const MoviesList = () => {
     <Col>The list is empty!</Col>
   ) : (
     filteredMovies.map((movie) => (
-      <Col key={movie.id} xs={12} sm={6} md={4} lg={3} className="d-flex justify-content-center mb-4">
-        <MovieCard movi
+      <Col
+        key={movie.id}
+        xs={12}
+        sm={6}
+        md={4}
+        lg={3}
+        className="d-flex align-items-stretch justify-content-center mb-4"
+      >
+  <MovieCard movie={movie} />
+</Col>
+
+    ))
+  )}
+</Row>
+    </div>
+  );
+};
