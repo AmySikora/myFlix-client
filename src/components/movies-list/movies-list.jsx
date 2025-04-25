@@ -29,4 +29,18 @@ export const MoviesList = () => {
           filteredMovies.map((movie) => (
             <Col
               key={movie.id}
-              xs=
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+              xl={3}
+              className="d-flex justify-content-center mb-4"
+            >
+              <MovieCard movie={movie} />
+            </Col>
+          ))
+        )}
+      </Row>
+    </div>
+  );
+};
