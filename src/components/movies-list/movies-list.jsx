@@ -35,4 +35,11 @@ export const MoviesList = () => {
         lg={3}
         className="d-flex align-items-stretch"
       >
-        <Mo
+        <MovieCard movie={movie} />
+      </Col>
+    ))
+  )}
+</Row>
+    </>
+  );
+};
