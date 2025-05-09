@@ -9,6 +9,7 @@ export const LoginView = ({ onLoggedIn }) => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch(); 
 
+  // Handle form submission and user authentication
   const handleSubmit = (event) => {
     event.preventDefault();
 
