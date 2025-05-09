@@ -17,30 +17,33 @@ export const MoviesList = () => {
   });
 
   return (
-    <div className="px-3">
+    <div className="px-3" aria-label="Movie list section">
       <Row className="justify-content-center mb-4">
         <MoviesFilter />
       </Row>
 
-      <Row className="justify-content-center">
-  {filteredMovies.length === 0 ? (
-    <Col>The list is empty!</Col>
-  ) : (
-    filteredMovies.map((movie) => (
-      <Col
-        key={movie.id}
-        xs={12}
-        sm={6}
-        md={4}
-        lg={3}
-        className="d-flex align-items-stretch justify-content-center mb-4"
-      >
-  <MovieCard movie={movie} />
-</Col>
-
-    ))
-  )}
-</Row>
+      <Row className="justify-content-center" aria-live="polite">
+        {filteredMovies.length === 0 ? (
+          <Col>
+            <p>
+              No movies match <strong>"{filter}"</strong>.
+            </p>
+          </Col>
+        ) : (
+          filteredMovies.map((movie) => (
+            <Col
+              key={movie.id}
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+              className="d-flex align-items-stretch justify-content-center mb-4"
+            >
+              <MovieCard movie={movie} />
+            </Col>
+          ))
+        )}
+      </Row>
     </div>
   );
 };
