@@ -45,7 +45,7 @@ myFlix is a web application built with React that allows users to browse, view d
 
 ## API Integration
 
-The myFlix app communicates with a RESTful backend API to fetch and update movie and user data. The backend is hosted at:
+The myFlix app communicates with a RESTful backend API to fetch and update movie and user data. The backend is hosted at: [heroku.com](https://dashboard.heroku.com/apps/myflixmovies123)
 
 ### Endpoints Used
 
