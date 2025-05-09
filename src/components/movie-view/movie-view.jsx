@@ -1,9 +1,8 @@
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from '../../redux/reducers/user/user';
-import { useLocation, useNavigate } from "react-router-dom";
-import "./movie-view.scss"; 
+import "./movie-view.scss";
 
 export const MovieView = () => {
   const { movieId } = useParams();
@@ -11,10 +10,10 @@ export const MovieView = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [token, setToken] = useState(localStorage.getItem('token') || '');
+  const [message, setMessage] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from || "main";
-
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
@@ -56,39 +55,55 @@ export const MovieView = () => {
       return response.json();
     })
     .then(updatedUser => {
-      dispatch(setUser(updatedUser)); 
-      localStorage.setItem('user', JSON.stringify(updatedUser)); 
+      dispatch(setUser(updatedUser));
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+      setMessage(isFavorite ? 'Removed from favorites' : 'Added to favorites');
+      setTimeout(() => setMessage(''), 3000);
     })
-    .catch(err => console.error('Error updating favorite movies:', err));
+    .catch(err => {
+      console.error('Error updating favorite movies:', err);
+      alert("Could not update favorites. Please try again.");
+    });
   };
 
   return (
     <div className="movie-view-container">
-      <img src={movie.image} alt={movie.title} />
+      <img src={movie.image} alt={`${movie.title} poster`} />
+
       <div>
         <span>Title: </span>
         <span>{movie.title}</span>
       </div>
+
       <div>
         <span>Description: </span>
         <p>{movie.description}</p>
       </div>
+
       <div>
         <span>Director: </span>
         <span>{movie.director || "Unknown Director"}</span>
       </div>
+
       <div>
         <span>Genre: </span>
         <span>{movie.genre || "Unknown Genre"}</span>
       </div>
 
-      <button onClick={handleFavorite} className="btn btn-primary mt-3">
+      <button
+        onClick={handleFavorite}
+        className="btn btn-primary mt-3"
+        aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+      >
         {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
       </button>
 
+      {message && <p className="text-success mt-2">{message}</p>}
+
       <button
-      className="btn btn-back mt-3"
-      onClick={() => navigate(from === "profile" ? "/profile" : "/")}
+        className="btn btn-back mt-3"
+        onClick={() => navigate(from === "profile" ? "/profile" : "/")}
+        aria-label="Back to previous page"
       >
         Back
       </button>
