@@ -34,6 +34,7 @@ export const MoviesFilter = () => {
       className="search-input"
       value={filter}
       onChange={(e) => dispatch(setFilter(e.target.value))}
+      aria-label="Search movies by title, director, or genre"
     />
   );
 };
