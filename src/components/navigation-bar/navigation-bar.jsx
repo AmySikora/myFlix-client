@@ -39,6 +39,7 @@ export const NavigationBar = () => {
                     dispatch(setUser(null));
                     localStorage.removeItem("token");
                   }}
+                  aria-label="Log out of your account"
                 >
                   Logout
                 </Nav.Link>
